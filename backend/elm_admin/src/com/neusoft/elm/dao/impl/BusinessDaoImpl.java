@@ -76,6 +76,7 @@ public class BusinessDaoImpl implements BusinessDao{
 	
 	@Override
 	public int removeBusiness(int businessId) {
+	    //采用缺省原则,先删除对应主键再删除外键
 		int result = 0;
 		String delFootSql = "delete from food where businessId=?";
 		String delBusinessSql = "delete from business where businessId=?";

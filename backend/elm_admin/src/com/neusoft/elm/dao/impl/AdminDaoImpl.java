@@ -18,7 +18,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public Admin getAdminByNameByPass(String adminName, String password) {
 		Admin admin = null;
-		String sql = "select * from admin where adminName=? and password=?";
+		String sql = "select * from ele_admin.admin where adminName=? and password=?";
 		try {
 			con = DBUtil.getConnection();
 			pst = con.prepareStatement(sql);
