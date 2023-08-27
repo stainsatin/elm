@@ -36,4 +36,15 @@ public class CartController {
         int result = service.removeCart(cart);
         return result;
     }
+    
+    public Object listCart(HttpServletRequest request)throws Exception{
+    	Cart cart = new Cart();
+        cart.setUserId((request.getParameter("userId")));
+        if(request.getParameter("businessId")!=null) {
+        	cart.setBusinessId(Integer.valueOf(request.getParameter("businessId")));
+        }
+        CartService service = new CartServiceImpl();
+        List<Cart> list = service.listCart(cart);
+        return list;
+    }
 }

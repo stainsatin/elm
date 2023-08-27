@@ -58,6 +58,16 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<Cart> listCart(Cart cart) {
-        return null;
+    	List<Cart> list = new ArrayList();
+        CartDao dao = new CartDaoImpl();
+        try {
+            DBUtil.getConnection();
+            list = dao.listCart(cart);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBUtil.close();
+        }
+        return list;
     }
 }

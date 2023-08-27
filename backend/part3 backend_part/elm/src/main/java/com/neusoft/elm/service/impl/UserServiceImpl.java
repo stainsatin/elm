@@ -23,22 +23,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int getUserById(String userId) {
-        User user = new User();
-        if(userId.equals("12345678912"))
-        {
-            user.setUserId("zyc");
+    	int result = 0;
+        UserDao dao = new UserDaoImpl();
+        try {
+            DBUtil.getConnection();
+            result = dao.getUserById(userId);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBUtil.close();
         }
-        else
-        {
-            user.setUserId("not zyc");
-        }
-
-        return 1;
+        return result;
     }
 
     @Override
     public int saveUser(User user) {
-        return 0;
+    	int result = 0;
+        UserDao dao = new UserDaoImpl();
+        try {
+            DBUtil.getConnection();
+            result = dao.saveUser(user);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBUtil.close();
+        }
+        return result;
     }
 
 }

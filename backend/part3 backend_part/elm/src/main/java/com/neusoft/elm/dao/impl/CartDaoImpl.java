@@ -7,6 +7,7 @@ import java.util.List;
 import com.neusoft.elm.dao.CartDao;
 import com.neusoft.elm.po.Cart;
 import com.neusoft.elm.po.Food;
+import com.neusoft.elm.po.Business;
 import com.neusoft.elm.util.DBUtil;
 public class CartDaoImpl implements CartDao {
 	private Connection con = null;
@@ -63,5 +64,74 @@ public class CartDaoImpl implements CartDao {
 			DBUtil.close(pst);
 		}
 		return result;
+	}
+	
+	@Override
+	public List<Cart> listCart(Cart cart)throws Exception{
+		List<Cart> list = new ArrayList(); 
+		StringBuffer sql = new StringBuffer();
+		sql.append("select c.*,");
+		sql.append(" f.foodId ffoodId,");
+		sql.append(" f.foodName ffoodName,");
+		sql.append(" f.foodExplain ffoodExplain,");
+		sql.append(" f.foodImg ffoodImg,");
+		sql.append(" f.foodPrice ffoodPrice,");
+		sql.append(" f.businessId fbusinessId,");
+		sql.append(" f.remarks fremarks,");
+		sql.append(" b.businessId bbusinessId,");
+		sql.append(" b.businessName bbusinessName,");
+		sql.append(" b.businessAddress bbusinessAddress,");
+		sql.append(" b.businessExplain bbusinessExplain,");
+		sql.append(" b.businessImg bbusinessImg,");
+		sql.append(" b.orderTypeId borderTypeId,");
+		sql.append(" b.starPrice bstarprice,");
+		sql.append(" b.deliveryPrice bdeliveryPrice,");
+		sql.append(" b.remarks bremarks");
+		sql.append("from (cart c left join food f on c.foodId = f.foodId)");
+		sql.append("left join business b on c.businessId = b.businessId");
+		sql.append("where c.userId=?");
+		if(cart.getBusinessId()!=null) {
+			sql.append("and c.businessId="+cart.getBusinessId());
+		}
+		try {
+			con = DBUtil.getConnection();
+			pst = con.prepareStatement(sql.toString());
+			pst.setString(1, cart.getUserId());
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Cart c = new Cart();
+				c.setCartId(rs.getInt("cartId"));
+				c.setFoodId(rs.getInt("foodId"));
+				c.setBusinessId(rs.getInt("businessId"));
+				c.setQuantity(rs.getInt("quantity"));
+				c.setUserId(rs.getString("userId"));
+				
+				Food food = new Food();
+				food.setBusinessId(rs.getInt("fbusinessId"));
+				food.setFoodId(rs.getInt("ffoodId"));
+				food.setFoodExplain(rs.getString("ffoodExplain"));
+				food.setFoodName(rs.getString("ffoodName"));
+				food.setFoodPrice(rs.getDouble("ffoodPrice"));
+				food.setFoodImg(rs.getString("ffoodImg"));
+				food.setRemarks(rs.getString("fremarks"));
+				c.setFood(food);
+				
+				Business business = new Business();
+				business.setBusinessId(rs.getInt("bbusinessId"));
+				business.setBusinessName(rs.getString("bbusinessName"));
+				business.setBusinessAddress(rs.getString("bbusinessAddress"));
+				business.setBusinessExplain(rs.getString("bbusinessExplain"));
+				business.setStarPrice(rs.getDouble("bstarPrice"));
+				business.setDeliveryPrice(rs.getDouble("bdeliverPrice"));
+				business.setBusinessImg(rs.getString("bbusinessImg"));
+				business.setRemarks(rs.getString("bremarks"));
+				business.setOrderTypeId(rs.getInt(rs.getInt("borderTypeId")));
+				c.setBusiness(business);
+				list.add(c);
+			}
+		}finally {
+			DBUtil.close(rs,pst);
+		}
+		return list;
 	}
 }
