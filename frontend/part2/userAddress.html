@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name = "viewport" content="width = device-width, initial-scale = 1">
+		<link rel="stylesheet" href="framework/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="framework/css_reset.css">
+		<link rel="stylesheet" href="css/userAddress.css">
+		<title>饿了么 | 地址管理</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<!--头部-->
+			<header><p>地址管理</p></header>
+			<!--地址列表-->
+			<ul class="address-list">
+				<li>
+					<div class="address-info">
+						<h3>张三先生 13656785432</h3>
+						<p>天津市津南区天津大学北洋园校区</p>
+					</div>
+					<div class="buttons">
+						<i class="fa fa-edit" onclick="location.href = 'addUserAddress.html'"></i>
+						<i class="fa fa-close"></i>
+					</div>
+				</li>
+				<li>
+					<div class="address-info">
+						<h3>李四先生 13656785987</h3>
+						<p>天津市津南区天津大学北洋园校区</p>
+					</div>
+					<div class="buttons">
+						<i class="fa fa-edit" onclick="location.href = 'editUserAddress.html'"></i>
+						<i class="fa fa-close"></i>
+					</div>
+				</li>
+			</ul>
+			<!--新增地址按钮-->
+			<div class="addressadd-button" onclick="location.href = 'addUserAddress.html'">
+				<button>
+					<i class="fa fa-plus-circle"></i>
+					新增地址按钮
+				</button>
+			</div>
+			<!--底部菜单-->
+			<ul class="footer">
+				<li onclick="location.href = 'index.html'">
+					<i class="fa fa-home"></i>
+					<p>首页</p>
+				</li>
+				<li>
+					<i class="fa fa-compass"></i>
+					<p>发现</p>
+				</li>
+				<li onclick="location.href = 'orderList.html'">
+					<i class="fa fa-file-text"></i>
+					<p>订单</p>
+				</li>
+				<li>
+					<i class="fa fa-user"></i>
+					<p>我的</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

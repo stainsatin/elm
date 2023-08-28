@@ -1,0 +1,427 @@
+/********* 总容器 *********/
+.wrapper{
+	width: 100%;
+	background-color: #f2f2f2;
+}
+
+/********* 头部 ********/
+.wrapper header{
+	width:100%;
+	height: 12vw;
+	background-color: deepskyblue;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+/********* 头部左侧 ********/
+.wrapper header .header1{
+	display:flex;
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper header .location-icon{
+	font-size: 5vw;
+	color: white;
+	height: 3.5vw;
+	width: 3.5vw;
+	margin: 1vw 1vw 0 3vw;
+}
+.wrapper header .location-box{
+	color: white;
+	margin-left: 1vw;
+}
+.wrapper header .location-text{
+	font-size: 3.5vw;
+	font-weight: 700;
+	margin-top: 1.5vw;
+}
+.wrapper header .weather{
+	font-size: 3vw;
+	font-weight: 500;
+}
+/********* 头部右侧 ********/
+.wrapper header .header2{
+	display: flex;
+	align-items: center;
+	font-size: 4.5vw;
+	color: white;
+	margin: 2vw 2.5vw;
+	user-select: none;
+}
+.wrapper header .recommend{
+	font-weight: 700;
+	margin-right: 1vw;
+	cursor: pointer;
+}
+.wrapper header .ordinary{
+	cursor: pointer;
+}
+
+/********* 搜索 ********/
+.wrapper .search{
+	width: 100%;
+	height: 13vw;
+}
+.wrapper .search .search-fix{
+	width: 100%;
+	height: 13vw;
+	background-color: #f2f2f2;
+	border-bottom-right-radius: 6vw;
+	border-bottom-left-radius: 6vw;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.wrapper .search .search-fix .search-box{
+	width: 80%;
+	height: 7.5vw;
+	background-color: white;
+	border: solid 1.5px deepskyblue;
+	border-radius: 4vw;
+	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	font-size: 3vw;
+	color: lightslategrey;
+	font-family: "宋体";
+	user-select: none; /**取消文本选中状态**/
+}
+.wrapper .search .search-fix .search-box .fa-search{
+	margin-right: 1vw;
+	margin-left: 3vw;
+}
+.wrapper .search .search-fix .search-box .search-icon{
+	width: 17%;
+	height: 100%;
+	background-color: deepskyblue;
+	border-radius: 4vw;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	font-size: 3.5vw;
+	color: white;
+	font-family: "微软雅黑";
+	
+	cursor: pointer;
+}
+
+/*********点餐分类*********/
+.wrapper .foodtype{
+	width:95%;
+	height: 40vw;
+	padding-top: 2vw;
+	margin: 2vw 2.5vw;
+	
+	display:flex;
+	flex-wrap:wrap;
+	justify-content: center;
+	
+	background-color: white;
+	border-radius: 5vw;
+}
+.wrapper .foodtype li{
+	width: 18vw;
+	height: 20vw;
+	display:flex;
+	flex-wrap:wrap;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	user-select: none; /**取消文本选中状态**/
+	cursor: pointer; /**文本点击状态**/
+}
+.wrapper .foodtype li img{
+	width: 12.5vw;
+	height: 12.5vw;
+}
+.wrapper .foodtype li p{
+	font-size: 3vw;
+	color: darkslategray;
+}
+
+/*********横幅*********/
+.wrapper .banner{
+	width:95%;
+	height: 30vw;
+	margin: 0 2.5vw 0;
+	background-color: #cce6ff;
+	border-radius: 5vw;
+	
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.wrapper .banner .banner-text{
+	margin-left: 5vw;
+	color: darkslategray;
+	user-select:none;
+}
+.wrapper .banner .banner-text h3{
+	font-size: 5vw;
+}
+.wrapper .banner .banner-text p{
+	font-size: 3.5vw;
+	margin-top: 1vw;
+	margin-bottom: 2vw;
+}
+.wrapper .banner .banner-text a{
+	font-size: 3.5vw;
+	color: saddlebrown;
+	font-weight: 700;
+	cursor: pointer;
+}
+.wrapper .banner img{
+	width: 25vw;
+	height: 25vw;
+	margin-right: 5vw;
+	border-radius: 8vw;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*********超级会员*********/
+.wrapper .supermember{
+	width:95%;
+	height: 15vw;
+	margin: 2vw 2.5vw 0;
+	background-color: lightgoldenrodyellow;
+	border-radius: 5vw;
+	
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	color: saddlebrown;
+}
+.wrapper .supermember .super-left{
+	font-size: 3.5vw;
+	margin-left: 4vw;
+	display:flex;
+	flex-wrap: wrap;
+	align-items: center;
+	user-select: none;
+}
+.wrapper .supermember .super-left img{
+	width: 10vw;
+	height: 10vw;
+	margin-right: 3vw;
+}
+.wrapper .supermember .super-right{
+	font-size: 3.5vw;
+	margin-right: 4vw;
+	cursor: pointer;
+}
+
+/*********推荐商家*********/
+.wrapper .recommend-merchant{
+	width: 100%;
+	height: 10vw;
+	margin-top: 2vw;
+	
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	
+	font-size: 4vw;
+	color: darkslategrey;
+}
+.wrapper .recommend-merchant p{
+	margin: 0 4vw 0 4vw;
+}
+
+/*********推荐方式*********/
+.wrapper .recommend-line{
+	width: 100%;
+	height: 7vw;
+	margin: 0 auto;
+	
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+.wrapper .recommend-line li{
+	font-size: 3.5vw;
+	color: darkslategrey;
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .recommend-line .fa-caret-down{
+	margin-left:1vw;
+}
+.wrapper .recommend-line .fa-filter{
+	margin-left:1vw;
+}
+
+/*********推荐商家列表*********/
+.wrapper .merchant{
+	width: 100%;
+	padding-bottom: 20vw;
+}
+.wrapper .merchant li{
+	display:flex;
+	padding: 2.5vw;
+	margin: 2vw;
+	background-color: white;
+	user-select:none;
+	cursor:pointer;
+	border-radius: 5vw;
+}
+.wrapper .merchant li img{
+	width: 20vw;
+	height: 20vw;
+	border-radius: 6vw;
+}
+.wrapper .merchant li .merchant-info{
+	width: 100%;
+	margin-left: 2.5vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-h{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 2vw;
+	color: darkslategrey;
+}
+.wrapper .merchant li .merchant-info .merchant-info-h h3{
+	font-size: 4vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-h .more-info{
+	background-color: gray;
+	color: white;
+	font-size: 4vw;
+	margin-right: 2vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1vw;
+	font-size: 3vw;
+	color: darkslategrey;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating .left{
+	display: flex;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating .left p{
+	margin-left: 1vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating .left .fa-star{
+	display: flex;
+	align-items: center;
+	font-size: 2.5vw;
+	color: gold;
+	margin-right: 0.5vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating .right{
+	display: flex;
+	background-color: deepskyblue;
+	color: white;
+	font-size: 2.8vw;
+	border-radius: 1vw;
+	padding: 0 0.6vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-delivery{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1vw;
+	font-size: 3vw;
+	color: darkslategrey;
+}
+.wrapper .merchant li .merchant-info .merchant-info-label{
+	display: flex;
+	align-items: center;
+	margin: 1vw 0 1vw 0;
+}
+.wrapper .merchant li .merchant-info .merchant-info-label p{
+	font-size: 2.8vw;
+	color: gray;
+	border: solid 1px gray;
+	border-radius: 1vw;
+	padding: 0 0.6vw;	
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.8vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .left{
+	display: flex;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .left .icon{
+	font-size: 3vw;
+	margin-right: 2vw;
+	color: white;
+	background-color: limegreen;
+	padding: 0 0.6vw;
+	border-radius: 1vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .left p{
+	font-size: 3vw;
+	color: darkslategray;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .right{
+	font-size: 3vw;
+	color: darkslategray;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .right .fa-caret-down{
+	margin-left: 1vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion2{
+	display: flex;
+	align-items: center;
+	margin-bottom: 1.8vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion2{
+	display: flex;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion2 .icon{
+	font-size: 3vw;
+	margin-right: 2vw;
+	color: white;
+	background-color: indianred;
+	padding: 0 0.6vw;
+	border-radius: 1vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion2 p{
+	font-size: 3vw;
+	color: darkslategray;
+}
+
+/*********底部菜单*********/
+.wrapper .footer{
+	width: 95%;
+	height: 14vw;
+	border: solid 1.5px darkgray;
+	background-color: white;
+	border-radius: 5vw;
+	
+	position: fixed;
+	bottom: 3vw;
+	left: 2.5%;
+	
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.wrapper .footer li{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size:5vw;
+	
+	color: gray;
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .footer li p{
+	font-size:2.8vw;
+}

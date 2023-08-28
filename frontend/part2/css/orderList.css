@@ -1,0 +1,112 @@
+body{
+	background-color: #f2f2f2;
+}
+
+/********* 总容器 *********/
+.wrapper{
+	width: 100%;
+}
+
+/********* 头部 *********/
+.wrapper header{
+	width: 100%;
+	height: 12vw;
+	background-color: deepskyblue;
+	
+	position: fixed;
+	top: 0;
+	left: 0;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	color: white;
+	font-size: 5vw;
+	font-weight: 700;
+}
+
+/********* 订单列表 *********/
+.wrapper .order {
+	box-sizing: border-box;
+	padding: 3vw;
+	margin: 14vw 2vw 2vw;
+	padding-bottom: 2vw;
+	user-select:none;
+	background-color: white;
+	border-radius: 5vw;
+}
+.wrapper .order h3{
+	margin-bottom: 3vw;
+	font-size: 3.5vw;
+	font-weight: 300;
+	color: gray;
+}
+.wrapper .order .orders li .order-info{
+	box-sizing: border-box;
+	padding-bottom: 2vw;
+	font-size: 3.5vw;
+	color: darkslategray;
+	
+	display: flex;
+	justify-content: space-between;
+}
+.wrapper .order .orders li .order-info .fa-caret-down{
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .order .orders li .order-info .order-info-right{
+	display: flex;
+	justify-content: space-between;
+}
+.wrapper .order .orders li .order-info .order-info-right .payment-button{
+	margin-left: 2vw;
+	padding: 0 1vw;
+	background-color: darkorange;
+	color: white;
+	border-radius: 1vw;
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .order .orders li .order-detail{
+	margin-bottom: 3vw;
+}
+.wrapper .order .orders li .order-detail li{
+	font-size: 3vw;
+	color: darkslategray;
+	margin-bottom: 1vw;
+	
+	display: flex;
+	justify-content: space-between;
+}
+
+/********* 底部菜单 *********/
+.wrapper .footer{
+	width: 95%;
+	height: 14vw;
+	border: solid 1.5px darkgray;
+	background-color: white;
+	border-radius: 5vw;
+	
+	position: fixed;
+	bottom: 3vw;
+	left: 2.5%;
+	
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.wrapper .footer li{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size:5vw;
+	
+	color: gray;
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .footer li p{
+	font-size:2.8vw;
+}

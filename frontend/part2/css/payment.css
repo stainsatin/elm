@@ -1,0 +1,149 @@
+body{
+	background-color: #f2f2f2;
+}
+
+/********* 总容器 *********/
+.wrapper{
+	width: 100%;
+}
+
+/********* 头部 *********/
+.wrapper header{
+	width: 100%;
+	height: 12vw;
+	background-color: deepskyblue;
+	
+	position: fixed;
+	top: 0;
+	left: 0;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	color: white;
+	font-size: 5vw;
+	font-weight: 700;
+}
+
+/********* 订单信息 *********/
+.wrapper h3{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 15vw 3vw 1vw;
+	
+	font-size: 3.5vw;
+	font-weight: 300;
+	color: gray;
+}
+.wrapper .order-info{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 2vw 3vw;
+	font-size: 3.5vw;
+	color: darkslategray;
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.wrapper .order-info .fa-caret-down{
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .order-info p:last-child{
+	color: orangered;
+}
+
+/********* 订单明细 *********/
+.wrapper .order-detail{
+	width: 100;
+	margin-bottom: 8vw;
+}
+.wrapper .order-detail li{
+	box-sizing: border-box;
+	padding: 1vw 3vw 0vw;
+	
+	display: flex;
+	justify-content: space-between;
+	
+	font-size: 3vw;
+	color: darkslategray;
+}
+
+/********* 支付方式 *********/
+.wrapper .payment-method{
+	width: 95%;
+	margin: 2vw 2.5vw;
+	
+	background-color: white;
+	border-radius: 5vw;
+}
+.wrapper .payment-method li{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 3vw;
+	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.wrapper .payment-method li img{
+	width: 33vw;
+	height: 8.9vw;
+}
+.wrapper .payment-method li .fa-check-circle{
+	color: mediumseagreen;
+	font-size: 4.5vw;
+}
+.wrapper .payment-button{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 4vw 10vw 20vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.wrapper .payment-button button{
+	width: 100%;
+	height: 10vw;
+	font-size: 3.5vw;
+	color: white;
+	background-color: mediumseagreen;
+	border: none;
+	outline: none;
+	border-radius: 4vw;
+	
+	cursor: pointer;
+}
+
+/********* 底部菜单 *********/
+.wrapper .footer{
+	width: 95%;
+	height: 14vw;
+	border: solid 1.5px darkgray;
+	background-color: white;
+	border-radius: 5vw;
+	
+	position: fixed;
+	bottom: 3vw;
+	left: 2.5%;
+	
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.wrapper .footer li{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size:5vw;
+	
+	color: gray;
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .footer li p{
+	font-size:2.8vw;
+}

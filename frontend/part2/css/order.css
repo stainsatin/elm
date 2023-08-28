@@ -1,0 +1,173 @@
+body{
+	background-color: #f2f2f2;
+}
+
+/********* 总容器 *********/
+.wrapper{
+	width: 100%;
+	background-color: #f2f2f2;
+}
+
+/********* 头部 *********/
+.wrapper header{
+	width: 100%;
+	height: 12vw;
+	background-color: deepskyblue;
+	
+	position: fixed;
+	top: 0;
+	left: 0;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	color: white;
+	font-size: 5vw;
+	font-weight: 700;
+}
+
+/********* 买家信息 *********/
+.wrapper .buyer-info {
+	width: 100%;
+	box-sizing:border-box;
+	padding: 12vw 4vw 4vw;
+	
+	background-color: deepskyblue;
+	color: white;
+	border-bottom-right-radius: 6vw;
+	border-bottom-left-radius: 6vw;
+	
+	user-select: none;
+	cursor: pointer;
+}
+.wrapper .buyer-info h5{
+	font-size: 3vw;
+	font-weight: 400;	
+}
+.wrapper .buyer-info .address{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.wrapper .buyer-info .address h3{
+	width: 90%;
+	margin: 1vw 0 1vw 0;
+	font-size: 4.5vw;
+	font-weight: 700;
+}
+.wrapper .buyer-info .address .fa-angle-right{
+	font-size: 5vw;
+	font-weight: 700;
+}
+.wrapper .buyer-info p{
+	font-size: 3.5vw;
+}
+
+/********* 商家名称 *********/
+.wrapper .order-box{
+	width: 95%;
+	margin: 2vw 2.5vw;
+	padding-bottom: 15vw;
+	
+	display:flex;
+	flex-direction: column;
+	
+	background-color: white;
+	border-radius: 5vw;
+}
+.wrapper .order-box .merchant-name{
+	width: 100%;
+	box-sizing:border-box;
+	border-bottom: solid 1px darkgray;
+	padding: 3vw;
+	
+	display: flex;
+	align-items: center;
+	
+	font-size: 4vw;
+	color: darkslategray;
+	font-weight: 700;
+}
+
+/********* 订单明细 *********/
+.wrapper .order-box .order-detail{
+	width: 100%;
+}
+.wrapper .order-box .order-detail li{
+	width: 100%;
+	height: 16vw;
+	box-sizing:border-box;
+	padding: 3vw;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+	
+	color: gray;
+	font-size: 3.5vw;
+	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.wrapper .order-box .order-detail li .left{
+	display: flex;
+	align-items: center;
+}
+.wrapper .order-box .order-detail li .left img{
+	width: 12vw;
+	height: 12vw;
+	margin-right: 3vw;
+}
+.wrapper .order-box .delivery-fee{
+	width: 100%;
+	height: 10vw;
+	box-sizing:border-box;
+	color: gray;
+	font-size: 3.5vw;
+	padding: 3vw;
+	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/********* 确认支付 *********/
+.wrapper .footer{
+	width: 95%;
+	height: 14vw;
+	
+	position: fixed;
+	bottom: 3vw;
+	left: 2.5vw;
+	
+	display:flex;
+}
+.wrapper .footer .left{
+	background-color: dimgray;
+	color: white;
+	font-size: 4.7vw;
+	font-weight: 700;
+	border-top-left-radius: 5vw;
+	border-bottom-left-radius: 5vw;
+	
+	display: flex;
+	flex: 2;
+	align-items: center;
+	justify-content: center;
+}
+.wrapper .footer .right{
+	background-color: mediumseagreen;
+	color: white;
+	font-size: 4.7vw;
+	font-weight: 700;
+	border-top-right-radius: 5vw;
+	border-bottom-right-radius: 5vw;
+	
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	
+	cursor: pointer;
+	user-select: none;
+}

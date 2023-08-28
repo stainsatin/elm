@@ -1,0 +1,19 @@
+/* ----------------CSS 重置-------------- */
+html, body, div, span, h1, h2, h3, h4, h5, h6, ul, ol, li, p{
+	margin: 0;
+	padding: 0;
+}
+/* 将边角去掉 */
+html, body{
+	height: 100%;
+	weight: 100%;
+	font-family: "微软雅黑";
+}
+/* 去掉列表样式 */
+ul,ol{
+	list-style: none;
+}
+/* 去掉超链接下划线 */
+a{
+	text-decoration: none;
+}
