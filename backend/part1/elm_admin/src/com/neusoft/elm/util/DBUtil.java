@@ -2,6 +2,9 @@ package com.neusoft.elm.util;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileInputStream;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +20,7 @@ public class DBUtil {
 	static{
 	        try {
 	            Properties properties = new Properties();
-	            properties.load(new FileInputStream(new File("C:\\Users\\some in gloss\\Desktop\\elm_admin\\src\\com\\neusoft\\elm\\util\\dbcp.properties")));
+	            properties.load(new FileInputStream(new File("src\\com\\neusoft\\elm\\util\\dbcp.properties")));
 	            //读取项目根目录下的配置文件
 	            dataSource = BasicDataSourceFactory.createDataSource(properties);
 	        } catch (Exception e) {
@@ -60,5 +63,26 @@ public class DBUtil {
 			}
 			con = null;
 		}
+	}
+
+	public static String hashPassword(String password) {
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] hashBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+
+			// Convert the byte array to a hexadecimal string
+			StringBuilder hexString = new StringBuilder();
+			for (byte hashByte : hashBytes) {
+				String hex = Integer.toHexString(0xff & hashByte);
+				if (hex.length() == 1) {
+					hexString.append('0');
+				}
+				hexString.append(hex);
+			}
+			return hexString.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
