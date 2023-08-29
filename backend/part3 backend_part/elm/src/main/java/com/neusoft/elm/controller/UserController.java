@@ -27,6 +27,8 @@ public class UserController {
     	user.setPassword(request.getParameter("password"));
     	user.setUserName(request.getParameter("userName"));
     	user.setUserSex(Integer.valueOf(request.getParameter("userSex")));
+    	if(user.getUserSex()!=0||user.getUserSex()!=1)
+    		return null;
     	UserService service = new UserServiceImpl();
     	int result = service.saveUser(user);
     	return result;

@@ -15,6 +15,8 @@ public class CartDaoImpl implements CartDao {
 	private ResultSet rs = null;
 	@Override
 	public int saveCart(Cart cart)throws Exception{
+		if(cart==null)
+			return 0;
 		int result = 0;
 		String sql = "insert into cart values(null,?,?,?,1)";
 		try {
@@ -31,6 +33,8 @@ public class CartDaoImpl implements CartDao {
 	}
 	@Override
 	public int updateCart(Cart cart)throws Exception{
+		if(cart==null)
+			return 0;
 		int result = 0;
 		String sql = "update cart set quantity=? where userId=? and businessId=? and foodId=?";
 		try {
@@ -49,6 +53,8 @@ public class CartDaoImpl implements CartDao {
 	
 	@Override
 	public int removeCart(Cart cart)throws Exception{
+		if(cart==null)
+			return 0;
 		int result = 0;
 		StringBuffer sql = new StringBuffer("delete from cart where userId=? and  businessId=?");
 		if(cart.getFoodId()!=null) {
@@ -57,7 +63,7 @@ public class CartDaoImpl implements CartDao {
 		try {
 			con = DBUtil.getConnection();
 			pst = con.prepareStatement(sql.toString());
-			pst.setInt(1, cart.getFoodId());
+			pst.setString(1, cart.getUserId());
 			pst.setInt(2, cart.getBusinessId());
 			result = pst.executeUpdate();
 		}finally {
@@ -70,26 +76,26 @@ public class CartDaoImpl implements CartDao {
 	public List<Cart> listCart(Cart cart)throws Exception{
 		List<Cart> list = new ArrayList(); 
 		StringBuffer sql = new StringBuffer();
-		sql.append("select c.*,");
-		sql.append(" f.foodId ffoodId,");
-		sql.append(" f.foodName ffoodName,");
-		sql.append(" f.foodExplain ffoodExplain,");
-		sql.append(" f.foodImg ffoodImg,");
-		sql.append(" f.foodPrice ffoodPrice,");
-		sql.append(" f.businessId fbusinessId,");
-		sql.append(" f.remarks fremarks,");
-		sql.append(" b.businessId bbusinessId,");
+		sql.append(" select c.*,");
+		sql.append(" f.foodId ffoodId, ");
+		sql.append(" f.foodName ffoodName, ");
+		sql.append(" f.foodExplain ffoodExplain, ");
+		sql.append(" f.foodImg ffoodImg, ");
+		sql.append(" f.foodPrice ffoodPrice, ");
+		sql.append(" f.businessId fbusinessId, ");
+		sql.append(" f.remarks fremarks, ");
+		sql.append(" b.businessId bbusinessId, ");
 		sql.append(" b.businessName bbusinessName,");
-		sql.append(" b.businessAddress bbusinessAddress,");
-		sql.append(" b.businessExplain bbusinessExplain,");
-		sql.append(" b.businessImg bbusinessImg,");
-		sql.append(" b.orderTypeId borderTypeId,");
-		sql.append(" b.starPrice bstarprice,");
-		sql.append(" b.deliveryPrice bdeliveryPrice,");
-		sql.append(" b.remarks bremarks");
-		sql.append("from (cart c left join food f on c.foodId = f.foodId)");
-		sql.append("left join business b on c.businessId = b.businessId");
-		sql.append("where c.userId=?");
+		sql.append(" b.businessAddress bbusinessAddress, ");
+		sql.append(" b.businessExplain bbusinessExplain, ");
+		sql.append(" b.businessImg bbusinessImg, ");
+		sql.append(" b.orderTypeId borderTypeId, ");
+		sql.append(" b.starPrice bstarprice, ");
+		sql.append(" b.deliveryPrice bdeliveryPrice, ");
+		sql.append(" b.remarks bremarks ");
+		sql.append(" from (cart c left join food f on c.foodId = f.foodId) ");
+		sql.append(" left join business b on c.businessId = b.businessId ");
+		sql.append(" where c.userId=?");
 		if(cart.getBusinessId()!=null) {
 			sql.append("and c.businessId="+cart.getBusinessId());
 		}
@@ -122,7 +128,7 @@ public class CartDaoImpl implements CartDao {
 				business.setBusinessAddress(rs.getString("bbusinessAddress"));
 				business.setBusinessExplain(rs.getString("bbusinessExplain"));
 				business.setStarPrice(rs.getDouble("bstarPrice"));
-				business.setDeliveryPrice(rs.getDouble("bdeliverPrice"));
+				business.setDeliveryPrice(rs.getDouble("bdeliveryPrice"));
 				business.setBusinessImg(rs.getString("bbusinessImg"));
 				business.setRemarks(rs.getString("bremarks"));
 				business.setOrderTypeId(rs.getInt(rs.getInt("borderTypeId")));

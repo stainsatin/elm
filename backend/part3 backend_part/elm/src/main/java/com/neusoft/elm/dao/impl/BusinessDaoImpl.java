@@ -26,10 +26,10 @@ public class BusinessDaoImpl implements BusinessDao{
 				business.setBusinessAddress(rs.getString("businessAddress"));
 				business.setBusinessExplain(rs.getString("businessExplain"));
 				business.setStarPrice(rs.getDouble("starPrice"));
-				business.setDeliveryPrice(rs.getDouble("deliverPrice"));
+				business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
 				business.setBusinessImg(rs.getString("businessImg"));
 				business.setRemarks(rs.getString("remarks"));
-				business.setOrderTypeId(rs.getInt(rs.getInt("orderTypeId")));
+				business.setOrderTypeId((rs.getInt("orderTypeId")));
 				list.add(business);
 			}
 		}finally {
@@ -53,14 +53,78 @@ public class BusinessDaoImpl implements BusinessDao{
 				business.setBusinessAddress(rs.getString("businessAddress"));
 				business.setBusinessExplain(rs.getString("businessExplain"));
 				business.setStarPrice(rs.getDouble("starPrice"));
-				business.setDeliveryPrice(rs.getDouble("deliverPrice"));
+				business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
 				business.setBusinessImg(rs.getString("businessImg"));
 				business.setRemarks(rs.getString("remarks"));
-				business.setOrderTypeId(rs.getInt(rs.getInt("orderTypeId")));
+				business.setOrderTypeId(rs.getInt("orderTypeId"));
 			}
 		}finally {
 			DBUtil.close(rs,pst);
 		}
 		return business;
+	}
+	
+	@Override
+	public List<Business> listBusinessByName(String businessName)throws Exception{
+		List<Business> list = new ArrayList<>();
+		StringBuffer sql = new StringBuffer("select * from business where 1=1 ");
+		if(businessName!=null) {
+			sql.append(" and businessName like '%"+businessName+"%' ");
+		}
+		try {
+			con = DBUtil.getConnection();
+			pst = con.prepareStatement(sql.toString());
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Business business = new Business();
+				business.setBusinessId(rs.getInt("businessId"));
+				business.setBusinessName(rs.getString("businessName"));
+				business.setBusinessAddress(rs.getString("businessAddress"));
+				business.setBusinessExplain(rs.getString("businessExplain"));
+				business.setStarPrice(rs.getDouble("starPrice"));
+				business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
+				business.setBusinessImg(rs.getString("businessImg"));
+				business.setRemarks(rs.getString("remarks"));
+				business.setOrderTypeId(rs.getInt("orderTypeId"));
+				list.add(business);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, pst);
+		}
+		return list;
+	}
+	
+	@Override
+	public List<Business> listBusinessByAddress(String businessAddress)throws Exception{
+		List<Business> list = new ArrayList<>();
+		StringBuffer sql = new StringBuffer("select * from business where 1=1 ");
+		if(businessAddress!=null) {
+			sql.append(" and businessAddress like '%"+businessAddress+"%' ");
+		}
+		try {
+			con = DBUtil.getConnection();
+			pst = con.prepareStatement(sql.toString());
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Business business = new Business();
+				business.setBusinessId(rs.getInt("businessId"));
+				business.setBusinessName(rs.getString("businessName"));
+				business.setBusinessAddress(rs.getString("businessAddress"));
+				business.setBusinessExplain(rs.getString("businessExplain"));
+				business.setStarPrice(rs.getDouble("starPrice"));
+				business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
+				business.setBusinessImg(rs.getString("businessImg"));
+				business.setRemarks(rs.getString("remarks"));
+				business.setOrderTypeId(rs.getInt("orderTypeId"));
+				list.add(business);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, pst);
+		}
+		return list;
 	}
 }

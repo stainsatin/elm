@@ -17,6 +17,8 @@ public class OrdersDaoImpl implements OrdersDao {
 	private ResultSet rs = null;
 	@Override
 	public int saveOrders(Orders orders)throws Exception{
+		if(orders==null)
+			return 0;
 		int orderId = 0;
 		String sql = "insert into orders values(null,?,?,?,?,?,0)";
 		try {
@@ -45,7 +47,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		sql.append("select o.*,");
 		sql.append(" b.businessId bbusinessId,");
 		sql.append(" b.businessName bbusinessName,");
-		sql.append(" b.deliveryPrice bdeliveryPrice,");
+		sql.append(" b.deliveryPrice bdeliveryPrice ");
 		sql.append(" from orders o left join business b on o.businessId=b.businessId");
 		sql.append(" where o.orderId=?");
 		try {
@@ -82,7 +84,7 @@ public class OrdersDaoImpl implements OrdersDao {
 		sql.append("select o.*,");
 		sql.append(" b.businessId bbusinessId,");
 		sql.append(" b.businessName bbusinessName,");
-		sql.append(" b.deliveryPrice bdeliveryPrice,");
+		sql.append(" b.deliveryPrice bdeliveryPrice ");
 		sql.append(" from orders o left join business b on o.businessId=b.businessId");
 		sql.append(" where o.userId=?");
 		try {

@@ -59,6 +59,8 @@ public class UserDaoImpl implements UserDao{
 	
 	@Override
 	public int saveUser(User user)throws Exception{
+		if(user==null)
+			return 0;
 		int result = 0;
 		String sql = "insert into user values(?,?,?,?,?,1)";
 		try {

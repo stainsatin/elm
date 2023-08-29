@@ -20,7 +20,7 @@ public class OrderDetailetDaoImpl implements OrderDetailetDao {
 		int result = 0;
 		StringBuffer sqlbuf = new StringBuffer("insert into orderDetailet(orderId,foodId,quantity) values");
 		for(OrderDetailet od: list) {
-			sqlbuf.append("("+ od.getOrderId()+","+od.getFoodId()+","+od.getQuantity()+"),");
+			sqlbuf.append(" ("+ od.getOrderId()+","+od.getFoodId()+","+od.getQuantity()+"),");
 		}
 		//去掉SQL最后的逗号
 		String sql = sqlbuf.toString().substring(0,sqlbuf.toString().length()-1);
@@ -42,7 +42,7 @@ public class OrderDetailetDaoImpl implements OrderDetailetDao {
 		sql.append(" f.foodId ffoodId,");
 		sql.append(" f.foodName ffoodName,");
 		sql.append(" f.foodPrice ffoodPrice");
-		sql.append("from OrderDetailet o left join food f on o.foodId=f.foodId");
+		sql.append(" from OrderDetailet o left join food f on o.foodId=f.foodId");
 		sql.append(" where o.orderId=?");
 		
 		try {

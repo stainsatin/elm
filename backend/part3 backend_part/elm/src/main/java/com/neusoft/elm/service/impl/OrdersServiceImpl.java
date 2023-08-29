@@ -6,6 +6,8 @@ import com.neusoft.elm.dao.CartDao;
 import com.neusoft.elm.dao.OrdersDao;
 import com.neusoft.elm.dao.impl.OrdersDaoImpl;
 import com.neusoft.elm.dao.impl.CartDaoImpl;
+import com.neusoft.elm.dao.UserDao;
+import com.neusoft.elm.dao.impl.UserDaoImpl;
 import com.neusoft.elm.po.Business;
 import com.neusoft.elm.po.Cart;
 import com.neusoft.elm.po.OrderDetailet;
@@ -21,6 +23,33 @@ import java.util.List;
 public class OrdersServiceImpl implements OrdersService {
     @Override
     public int createOrders(String userId, Integer businessId, Integer daId, Double orderTotal) {
+    	UserDao userDao = new UserDaoImpl();
+    	int res1 = 0;
+    	try {
+    		DBUtil.getConnection();
+			res1 = userDao.getUserById(userId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close();
+		}
+    	if(res1==0)
+    		return 0;
+    	
+    	BusinessDao bdao = new BusinessDaoImpl();
+    	Business res2 = null;
+    	try {
+    		DBUtil.getConnection();
+			res2 = bdao.getBusinessById(businessId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.close();
+		}
+    	if(res2==null)
+    		return 0;
+    	
     	int orderId = 0;
         CartDao cartDao = new CartDaoImpl();
         OrdersDao ordersDao = new OrdersDaoImpl();
@@ -37,6 +66,7 @@ public class OrdersServiceImpl implements OrdersService {
             orders.setUserId(userId);
             orders.setBusinessId(businessId);
             orders.setDaId(daId);
+            orders.setOrderTotal(orderTotal);
             orderId = ordersDao.saveOrders(orders);
             
             List<OrderDetailet> orderDetailetList = new ArrayList();
@@ -77,7 +107,6 @@ public class OrdersServiceImpl implements OrdersService {
             //根据订单ID查询订单信息
             orders = ordersDao.getOrdersById(orderId);
             //查订单明细
-            
             List<OrderDetailet> list = orderDetailetDao.listOrderDetailetByOrderId(orderId);
             orders.setList(list);
         }catch (Exception e) {
@@ -91,7 +120,6 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Orders> listOrdersByUserId(String userId) {
     	List<Orders> list = new ArrayList<>();
-    	Orders  orders = null; 
     	OrdersDao ordersDao = new OrdersDaoImpl();
         OrderDetailetDao orderDetailetDao = new OrderDetailetDaoImpl();
         try {

@@ -7,6 +7,7 @@ import com.neusoft.elm.service.CartService;
 import com.neusoft.elm.service.impl.CartServiceImpl;
 public class CartController {
     public Object saveCart(HttpServletRequest request)throws Exception{
+    	//存在问题
         Cart cart = new Cart();
         cart.setFoodId(Integer.valueOf(request.getParameter("foodId")));
         cart.setBusinessId(Integer.valueOf(request.getParameter("businessId")));
@@ -22,6 +23,7 @@ public class CartController {
         cart.setBusinessId(Integer.valueOf(request.getParameter("businessId")));
         cart.setUserId((request.getParameter("userId")));
         cart.setQuantity(Integer.valueOf(request.getParameter("quantity")));
+        //可能有问题
         CartService service = new CartServiceImpl();
         int result = service.updateCart(cart);
         return result;

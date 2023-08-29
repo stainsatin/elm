@@ -23,7 +23,7 @@ public class DispatcherServlet extends HttpServlet {
         out.println("</body></html>");
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
         //中文编码处理
         request.setCharacterEncoding("utf-8");
@@ -33,9 +33,9 @@ public class DispatcherServlet extends HttpServlet {
         String path = request.getServletPath();
         //根据请求路径，将Controller的类名和方法名解析出来
         String className = path.substring(1,path.lastIndexOf("/"));
+        
         String methodName = path.substring(path.lastIndexOf("/")+1);
         PrintWriter out = null;
-        System.out.println(className + "\n" + methodName);
 
         //判断请求路径，根据不同的请求，分发给不同的业务处理器
         try{
@@ -63,8 +63,8 @@ public class DispatcherServlet extends HttpServlet {
             out.close();
         }
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-        doPost(request,response);
+        doGet(request,response);
     }
 }

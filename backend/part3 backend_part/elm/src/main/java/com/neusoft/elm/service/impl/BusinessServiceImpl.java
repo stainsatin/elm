@@ -36,4 +36,34 @@ public class BusinessServiceImpl implements BusinessService{
         }
         return business;
     }
+    
+    @Override
+    public List<Business> listBusinessByName(String businessName) {
+    	List<Business> list = new ArrayList<>();
+        BusinessDao dao = new BusinessDaoImpl();
+        try {
+            DBUtil.getConnection();
+            list = dao.listBusinessByName(businessName);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBUtil.close();
+        }
+        return list;
+    }
+    
+    @Override
+    public List<Business> listBusinessByAddress(String businessAddress){
+    	List<Business> list = new ArrayList<>();
+        BusinessDao dao = new BusinessDaoImpl();
+        try {
+            DBUtil.getConnection();
+            list = dao.listBusinessByAddress(businessAddress);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBUtil.close();
+        }
+        return list;
+    }
 }

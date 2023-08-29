@@ -1,11 +1,27 @@
 package com.neusoft.elm.util;
-import java.sql.*;
+import javax.sql.DataSource;
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import org.apache.commons.dbcp.BasicDataSourceFactory;
 public class DBUtil {
-	private static final String URL = "jdbc:mysql://localhost:3306/elm?characterEncoding=utf-8";
-	private static final String USERNAME = "ydt";
-	private static final String PASSWORD = "123";
-	private static final String Driver = "com.mysql.jdbc.Driver";
+	private static DataSource dataSource;
 	
+	static{
+        try {
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(new File("C:\\Users\\some in gloss\\eclipse-workspace\\elm\\src\\main\\java\\com\\neusoft\\elm\\util\\dbcp.properties")));
+            //读取项目根目录下的配置文件
+            dataSource = BasicDataSourceFactory.createDataSource(properties);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 	private static final ThreadLocal<Connection> TL = new ThreadLocal<>();
 	
 	public static Connection getConnection() {
@@ -19,14 +35,13 @@ public class DBUtil {
 	}
 	
 	private static Connection createConnection() {
-		 Connection connection = null;
-		 try {
-	        Class.forName("com.mysql.cj.jdbc.Driver");
-		    connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
-		 }catch (Exception e){
-		    e.printStackTrace();
-		 }
-		 return connection;
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return con;
 	}
 	
 	//开启事务

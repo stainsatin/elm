@@ -22,6 +22,7 @@ public class DeliveryAddressController {
 		 deliveryAddress.setContactTel(request.getParameter("contactTel"));
 		 deliveryAddress.setAddress(request.getParameter("address"));
 		 deliveryAddress.setUserId(request.getParameter("userId"));
+		 //存在一个问题userId外键？
 		 DeliveryAddressService service = new DeliveryAddressServiceImpl();
 		 int result = service.saveDeliveryAddress(deliveryAddress);
 		 return result;

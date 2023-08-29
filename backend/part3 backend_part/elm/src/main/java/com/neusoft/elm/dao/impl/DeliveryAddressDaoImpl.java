@@ -41,6 +41,8 @@ public class DeliveryAddressDaoImpl implements DeliveryAddressDao {
 	
 	@Override
 	public int saveDeliveryAddress(DeliveryAddress deliveryAddress)throws Exception{
+		if(deliveryAddress==null)
+			return 0;
 		int result = 0;
 		String sql = "insert into deliveryAddress values(null,?,?,?,?,?)";
 		try {
@@ -84,6 +86,8 @@ public class DeliveryAddressDaoImpl implements DeliveryAddressDao {
 	
 	@Override
 	public int updateDeliveryAddress(DeliveryAddress deliveryAddress)throws Exception{
+		if(deliveryAddress==null)
+			return 0;
 		int result = 0;
 		String sql = "update deliveryAddress set contactName=?,contactSex=?,contactTel=? ,address=? where daId=?";
 		try {
