@@ -20,7 +20,7 @@ public class DBUtil {
 	static{
 	        try {
 	            Properties properties = new Properties();
-	            properties.load(new FileInputStream(new File("src\\com\\neusoft\\elm\\util\\dbcp.properties")));
+	            properties.load(new FileInputStream(new File("D:\\program\\elm\\backend\\part1\\elm_admin\\src\\com\\neusoft\\elm\\util\\dbcp.properties")));
 	            //读取项目根目录下的配置文件
 	            dataSource = BasicDataSourceFactory.createDataSource(properties);
 	        } catch (Exception e) {
