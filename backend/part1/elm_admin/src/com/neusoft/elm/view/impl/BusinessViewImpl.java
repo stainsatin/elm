@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.neusoft.elm.dao.BusinessDao;
 import com.neusoft.elm.dao.impl.BusinessDaoImpl;
 import com.neusoft.elm.po.Business;
+import com.neusoft.elm.util.DBUtil;
 import com.neusoft.elm.view.BusinessView;
 
 public class BusinessViewImpl implements BusinessView{
@@ -86,7 +87,8 @@ public class BusinessViewImpl implements BusinessView{
 		int businessId = input.nextInt();
 		System.out.println("请输入密码：");
 		String password = input.next();
-		
+		password = DBUtil.hashPassword(password);
+
 		BusinessDao dao = new BusinessDaoImpl();
 		return dao.getBusinessByIdByPass(businessId, password);
 	}
