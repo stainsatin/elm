@@ -27,10 +27,28 @@ public class UserController {
     	user.setPassword(request.getParameter("password"));
     	user.setUserName(request.getParameter("userName"));
     	user.setUserSex(Integer.valueOf(request.getParameter("userSex")));
-    	if(user.getUserSex()!=0||user.getUserSex()!=1)
+    	if(user.getUserSex()!=0&&user.getUserSex()!=1)
     		return null;
     	UserService service = new UserServiceImpl();
     	int result = service.saveUser(user);
+    	return result;
+    }
+    
+    public Object updateUserMsg(HttpServletRequest request) throws Exception{
+    	String userId = request.getParameter("userId");
+    	String userName = request.getParameter("userName");
+   
+    	UserService service = new UserServiceImpl();
+    	int result = service.updateUserMsg(userId, userName);
+    	return result;
+    }
+    
+    public Object updateUserPassword(HttpServletRequest request) throws Exception{
+    	String userId = request.getParameter("userId");
+    	String oldPass = request.getParameter("oldPass");
+    	String newPass = request.getParameter("newPass");
+    	UserService service = new UserServiceImpl();
+    	int result = service.updateUserPassword(userId, oldPass, newPass);
     	return result;
     }
 }

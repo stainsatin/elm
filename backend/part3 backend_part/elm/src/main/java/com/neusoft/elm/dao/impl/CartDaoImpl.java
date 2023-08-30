@@ -74,7 +74,7 @@ public class CartDaoImpl implements CartDao {
 	
 	@Override
 	public List<Cart> listCart(Cart cart)throws Exception{
-		List<Cart> list = new ArrayList(); 
+		List<Cart> list = new ArrayList<>(); 
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select c.*,");
 		sql.append(" f.foodId ffoodId, ");

@@ -22,7 +22,8 @@ public class UserDaoImpl implements UserDao{
 			con = DBUtil.getConnection();
 			pst = con.prepareStatement(sql);
 			pst.setString(1, userId);
-			pst.setString(2, password);
+			String digestPass = DBUtil.hashPassword(password); 
+			pst.setString(2, digestPass);
 			rs = pst.executeQuery();
 			while(rs.next()) {
 				user = new User();
@@ -67,10 +68,45 @@ public class UserDaoImpl implements UserDao{
 			con = DBUtil.getConnection();
 			pst = con.prepareStatement(sql);
 			pst.setString(1, user.getUserId());
-			pst.setString(2, user.getPassword());
+			String pass = user.getPassword();
+			String digest = DBUtil.hashPassword(pass);
+			pst.setString(2, digest);
 			pst.setString(3,user.getUserName());
 			pst.setInt(4, user.getUserSex());
 			pst.setString(5,user.getUserImg());
+			result = pst.executeUpdate();
+		}finally {
+			DBUtil.close(pst);
+		}
+		return result;
+	}
+	
+	@Override
+	public int updateUserMsg(String userId,String userName)throws Exception{
+		int result = 0;
+		StringBuffer sql = new StringBuffer("update user set userName = ? where userId = ?");
+		try {
+			con = DBUtil.getConnection();
+			pst = con.prepareStatement(sql.toString());
+			pst.setString(1, userName);
+			pst.setString(2, userId);
+			result = pst.executeUpdate();
+		}finally {
+			DBUtil.close(pst);
+		}
+		return result;
+	}
+	
+	@Override
+	public int updateUserPassword(String userId,String oldPass,String newPass)throws Exception{
+		int result = 0;
+		String sql = "update user set password = ? where userId = ? and password = ?";
+		try {
+			con = DBUtil.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, DBUtil.hashPassword(newPass));
+			pst.setString(2, userId);
+			pst.setString(3, DBUtil.hashPassword(oldPass));
 			result = pst.executeUpdate();
 		}finally {
 			DBUtil.close(pst);

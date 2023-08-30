@@ -51,4 +51,33 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public int updateUserMsg(String userId,String userName) {
+    	int result = 0;
+        UserDao dao = new UserDaoImpl();
+        try {
+            DBUtil.getConnection();
+            result = dao.updateUserMsg(userId, userName);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBUtil.close();
+        }
+        return result;
+    }
+    
+    @Override
+    public int updateUserPassword(String userId,String oldPass,String newPass) {
+    	int result = 0;
+        UserDao dao = new UserDaoImpl();
+        try {
+            DBUtil.getConnection();
+            result = dao.updateUserPassword(userId, oldPass, newPass);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DBUtil.close();
+        }
+        return result;
+    }
 }
