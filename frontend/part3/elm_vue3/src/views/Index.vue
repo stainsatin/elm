@@ -18,16 +18,16 @@
 			</div>
 		</header>
 		<!-- search部分 -->
-		<!-- 
-		 搜索框部分（此块与search-fixed-top块宽度高度一致，用于当
-		 search-fixed-top块固定后，挡住下面块不要窜上去）
-		 -->
 		<div class="search">
-			<!-- 当滚动条超过上面的定位块时，search-fixed-top块变成固定在顶部。 -->
-			<div class="search-fixed-top" ref="fixedBox">
+			<!-- 当滚动条超过上面的定位块时，search-fixed块变成固定在顶部。 -->
+			<div class="search-fix" ref="fixedBox">
 				<!-- 搜索框部分中间的白框 -->
 				<div class="search-box">
-					<i class="fa fa-search"></i>搜索饿了么商家、商品名称
+					<div class="search-text">
+						<i class="fa fa-search"></i>
+						<input type="text" v-model="businessName" placeholder="搜索饿了么商家、商品名称">
+					</div>
+					<div class="search-icon" @click="listBusinessByName()">搜索</div>
 				</div>
 			</div>
 		</div>
@@ -74,7 +74,6 @@
 				<p>炸鸡炸串</p>
 			</li>
 		</ul>
-		<!-- 横幅广告部分（注意：此处有背景图片） -->
 		<!-- 横幅广告部分（注意：此处有背景图片） -->
 		<div class="banner">
 			<h3>品质套餐</h3>
@@ -319,6 +318,9 @@
 
 	export default {
 		name: 'Index',
+		data(){
+			return{businessName:''}
+		},
 		mounted() {
 			document.onscroll = () => {
 				//获取滚动条位置
@@ -354,6 +356,14 @@
 					path: '/businessList',
 					query: {
 						orderTypeId: orderTypeId
+					}
+				});
+			},
+			listBusinessByName(){
+				this.$router.push({
+					path: '/businessList',
+					query: {
+						businessName: this.businessName
 					}
 				});
 			}
@@ -434,32 +444,62 @@
 		height: 13vw;
 	}
 
-	.wrapper .search .search-fixed-top {
+	.wrapper .search .search-fix {
 		width: 100%;
 		height: 13vw;
-		background-color: #0097FF;
+		background-color: #f2f2f2;
+		border-bottom-right-radius: 6vw;
+		border-bottom-left-radius: 6vw;
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 
-	.wrapper .search .search-fixed-top .search-box {
-		width: 90%;
-		height: 9vw;
-		background-color: #fff;
-		border-radius: 2px;
+	.wrapper .search .search-fix .search-box {
+		width: 80%;
+		height: 7.5vw;
+		background-color: white;
+		border: solid 1.5px deepskyblue;
+		border-radius: 4vw;
+
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
-		font-size: 3.5vw;
-		color: #AEAEAE;
+
+		font-size: 3vw;
+		color: lightslategrey;
 		font-family: "宋体";
-		/*此样式是让文本选中状态无效*/
 		user-select: none;
+		/**取消文本选中状态**/
 	}
 
-	.wrapper .search .search-fixed-top .search-box .fa-search {
+	.wrapper .search .search-fix .search-box .fa-search {
 		margin-right: 1vw;
+		margin-left: 3vw;
+	}
+
+	.wrapper .search .search-fix .search-box input {
+		font-size: 3vw;
+		border: none;
+		outline: none;
+	}
+
+	.wrapper .search .search-fix .search-box .search-icon {
+		width: 17%;
+		height: 100%;
+		background-color: deepskyblue;
+		border-radius: 4vw;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		font-size: 3.5vw;
+		color: white;
+		font-family: "微软雅黑";
+
+		cursor: pointer;
 	}
 
 	/*********点餐分类*********/

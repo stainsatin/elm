@@ -32,6 +32,7 @@
 		data() {
 			return {
 				orderTypeId: this.$route.query.orderTypeId,
+				businessName:this.$route.query.businessName,
 				businessArr: [],
 				user: {}
 			}
@@ -42,6 +43,19 @@
 			//根据orderTypeId查询商家信息
 			this.$axios.post('BusinessController/listBusinessByOrderTypeId', this.$qs.stringify({
 				orderTypeId: this.orderTypeId
+			})).then(response => {
+				this.businessArr = response.data;
+				//判断是否登录
+				if (this.user != null) {
+					this.listCart();
+				}
+			}).catch(error => {
+				console.error(error);
+			});
+			
+			//根据businessName查询商家信息
+			this.$axios.post('BusinessController/listBusinessByName', this.$qs.stringify({
+				businessName: this.businessName
 			})).then(response => {
 				this.businessArr = response.data;
 				//判断是否登录
