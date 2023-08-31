@@ -23,21 +23,24 @@
 /****************** 修改用户名部分 ******************/
 .wrapper .form-box{
 	width: 100%;
+	padding-top: 12vw;
+}
+.wrapper .form-box li{
 	display: flex;
 	align-items: center;
 	box-sizing: border-box;
-	padding: 16vw 3vw 0;
+	padding: 3vw 3vw 0;
 }
-.wrapper .form-box .title{
+.wrapper .form-box li .title{
 	flex: 0 0 18vw;
 	font-size: 3.5vw;
 	font-weight: 700;
 	color: darkslategray;
 }
-.wrapper .form-box .content{
+.wrapper .form-box li .content{
 	flex: 1;
 }
-.wrapper .form-box .content input{
+.wrapper .form-box li .content input{
 	width: 100%;
 	box-sizing: border-box;
 	padding: 4vw 2vw;
