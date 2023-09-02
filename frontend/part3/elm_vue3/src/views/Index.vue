@@ -1,4 +1,4 @@
-<template>
+<template scoped>
 	<div class="wrapper">
 		<!-- header部分 -->
 		<header>
@@ -315,7 +315,7 @@
 <script>
 	//导入共通组件
 	import Footer from '../components/Footer.vue';
-
+	
 	export default {
 		name: 'Index',
 		data(){
@@ -343,7 +343,7 @@
 				}
 			}
 		},
-		destroyed() {
+		unmounted() {
 			//当切换到其他组件时，就不需要document滚动条事件，所以将此事件去掉
 			document.onscroll = null;
 		},
