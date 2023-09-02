@@ -12,7 +12,7 @@
 			<i class="fa fa-file-text"></i>
 			<p>订单</p>
 		</li>
-		<li>
+		<li @click="toProfile">
 			<i class="fa fa-user"></i>
 			<p>我的</p>
 		</li>
@@ -31,12 +31,16 @@
 				this.$router.push({
 					path: '/orderList'
 				});
+			},
+			toProfile(){
+				this.$router.push({
+					path: '/profile',
+				});
 			}
 		}
 	}
 </script>
 <style>
-	/*********底部菜单*********/
 	.wrapper .footer{
 		width: 95%;
 		height: 14vw;
