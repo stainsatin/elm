@@ -2,6 +2,7 @@ package com.neusoft.elmboot.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.neusoft.elmboot.mapper.FoodMapper;
@@ -13,6 +14,7 @@ public class FoodServiceImpl implements FoodService{
 	@Autowired
 	private FoodMapper foodMapper;
 	
+	@Cacheable(value = "foodList",key = "#businessId")
 	@Override
 	public List<Food> listFoodByBusinessId(Integer businessId){
 		return foodMapper.listFoodByBusinessId(businessId);

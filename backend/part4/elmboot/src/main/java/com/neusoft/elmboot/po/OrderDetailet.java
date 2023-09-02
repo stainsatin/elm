@@ -1,7 +1,12 @@
 package com.neusoft.elmboot.po;
 
-public class OrderDetailet {
-    private Integer odId;
+import java.io.Serializable;
+
+import lombok.Data;
+@Data
+public class OrderDetailet implements Serializable{
+    private static final long serialVersionUID = -4661123112146812414L;
+	private Integer odId;
     private Integer orderId;
     private Integer foodId;
     private Integer quantity;

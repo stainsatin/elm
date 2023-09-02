@@ -1,7 +1,12 @@
 package com.neusoft.elmboot.po;
 
-public class Business {
-        private Integer businessId;
+import java.io.Serializable;
+
+import lombok.Data;
+@Data
+public class Business implements Serializable {
+        private static final long serialVersionUID = -3387517072650584105L;
+		private Integer businessId;
         private String businessName;
         private String businessAddress;
         private String businessExplain;

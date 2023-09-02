@@ -2,6 +2,10 @@ package com.neusoft.elmboot.service.impl;
 import java.util.List;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +26,7 @@ public class OrdersServiceImpl implements OrdersService{
 	@Autowired
 	private OrderDetailetMapper orderDetailetMapper;
 	
+	@Caching(evict = {@CacheEvict(cacheNames = "ordersList",allEntries = true)})
 	@Override
 	@Transactional
 	public int createOrders(Orders orders) {
@@ -52,11 +57,13 @@ public class OrdersServiceImpl implements OrdersService{
 		return orderId;
 	}
 	
+	@Cacheable(value = "orders")
 	@Override
 	public Orders getOrdersById(Integer orderId) {
 		return ordersMapper.getOrdersById(orderId);
 	}
 	
+	@Cacheable(value = "ordersList",key = "#userId")
 	@Override
 	public List<Orders> listOrdersByUserId(String userId){
 		return ordersMapper.listOrdersByUserId(userId);
