@@ -2,6 +2,7 @@ package com.neusoft.elmboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.neusoft.elmboot.po.User;
@@ -14,7 +15,7 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("/getUserByIdByPass")
-	public User getUserByIdByPass(String userId,String password)throws Exception{
+	public User getUserByIdByPass( String userId, String password)throws Exception{
 		return userService.getUserByIdByPass(userId, password);
 	}
 	@RequestMapping("/getUserById")
