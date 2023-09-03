@@ -17,7 +17,7 @@
 				<button><i class="fa fa-lock"></i>修改密码</button>
 			</li>
 			<li @click="toUserAddress">
-				<button><i class="fa fa-map-marker"></i>收获地址</button>
+				<button><i class="fa fa-map-marker"></i>我的地址</button>
 			</li>
 			<li @click="toLogin">
 				<button><i class="fa fa-info"></i>退出登录</button>
@@ -30,6 +30,7 @@
 
 <script>
 	import defaultImage from '../assets/R-C.png'
+	import Footer from '../components/Footer.vue';
 	export default {
 		name: 'Profile',
 		data() {
@@ -40,6 +41,9 @@
 		},
 		created() {
 			this.user = this.$getSessionStorage('user');
+		},
+		components: {
+			Footer
 		},
 		methods: { 
 			setDefaultImage(e) {
