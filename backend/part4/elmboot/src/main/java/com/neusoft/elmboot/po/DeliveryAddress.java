@@ -1,7 +1,12 @@
 package com.neusoft.elmboot.po;
 
-public class DeliveryAddress {
-    private Integer daId;
+import java.io.Serializable;
+
+import lombok.Data;
+@Data
+public class DeliveryAddress implements Serializable{
+    private static final long serialVersionUID = -3607282878547901381L;
+	private Integer daId;
     private String contactName;
     private Integer contactSex;
     private String contactTel;

@@ -1,8 +1,13 @@
 package com.neusoft.elmboot.po;
 
-public class User {
+import java.io.Serializable;
 
-    private String userId;
+import lombok.Data;
+@Data
+public class User implements Serializable{
+
+    private static final long serialVersionUID = -3565823820366948318L;
+	private String userId;
     private String password;
     private String userName;
     private Integer userSex;

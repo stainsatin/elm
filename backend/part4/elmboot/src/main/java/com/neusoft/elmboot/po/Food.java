@@ -1,7 +1,12 @@
 package com.neusoft.elmboot.po;
 
-public class Food {
-    private Integer foodId;
+import java.io.Serializable;
+
+import lombok.Data;
+@Data
+public class Food implements Serializable{
+    private static final long serialVersionUID = -3861971259895392873L;
+	private Integer foodId;
     private String foodName;
     private String foodExplain;
     private String foodImg;
