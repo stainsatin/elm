@@ -77,35 +77,33 @@
 	margin: 0 3vw;
 }
 
-/****************** 底部菜单部分 ******************/
-.wrapper .footer {
-	width: 100%;
+/*********底部菜单*********/
+.wrapper .footer{
+	width: 95%;
 	height: 14vw;
-	border-top: solid 1px #DDD;
-	background-color: #fff;
+	border: solid 1.5px darkgray;
+	background-color: white;
+	border-radius: 5vw;
+	
 	position: fixed;
-	left: 0;
-	bottom: 0;
-	display: flex;
+	bottom: 3vw;
+	left: 2.5%;
+	
+	display:flex;
 	justify-content: space-around;
 	align-items: center;
 }
-
-.wrapper .footer li {
-	/*li本身的尺寸完全由内容撑起*/
-	display: flex;
+.wrapper .footer li{
+	display:flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	color: #999;
+	justify-content: center;
+	font-size:5vw;
+	
+	color: gray;
 	user-select: none;
 	cursor: pointer;
 }
-
-.wrapper .footer li p {
-	font-size: 2.8vw;
-}
-
-.wrapper .footer li i {
-	font-size: 5vw;
+.wrapper .footer li p{
+	font-size:2.8vw;
 }

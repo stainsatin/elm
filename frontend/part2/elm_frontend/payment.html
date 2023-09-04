@@ -41,13 +41,14 @@
 			<ul class="payment-method">
 				<li>
 					<img src="img/alipay.png">
-					<i class="fa fa-check-circle"></i>
+					<input type="radio" name="method" checked style="width: 6vw; height: 3.2vw;">
 				</li>
 				<li>
 					<img src="img/wechat.png">
+					<input type="radio" name="method" style="width: 6vw; height: 3.2vw;">
 				</li>
 			</ul>
-			<div class="payment-button">
+			<div class="payment-button" onclick="location.href='paymentDone.html'">
 				<button>确认支付</button>
 			</div>
 			<!--底部菜单-->
