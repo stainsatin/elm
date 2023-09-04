@@ -7,8 +7,8 @@
 		<!-- 订单列表部分 -->
 		<h3>未支付订单信息：</h3>
 		<ul class="order">
-			<li v-for="item in orderArr" v-if="item.orderState==0">
-				<div class="order-info">
+			<li v-for="item in orderArr" >
+				<div class="order-info" v-if="item.orderState==0">
 					<p>
 						{{item.business.businessName}}
 						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
@@ -32,8 +32,8 @@
 		</ul>
 		<h3>已支付订单信息：</h3>
 		<ul class="order">
-			<li v-for="item in orderArr" v-if="item.orderState==1">
-				<div class="order-info">
+			<li v-for="item in orderArr"> 
+				<div class="order-info" v-if="item.orderState==1">
 					<p>
 						{{item.business.businessName}}
 						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>

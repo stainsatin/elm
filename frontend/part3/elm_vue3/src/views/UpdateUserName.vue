@@ -119,7 +119,7 @@
 		box-sizing: border-box;
 		padding: 4vw 2vw;
 		border-radius: 3vw;
-		background-color: #F2F2F2;
+		background-color: white;
 
 		font-size: 3vw;
 		border: none;

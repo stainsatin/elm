@@ -85,10 +85,10 @@
 					return;
 				}
 				this.deliveryAddress.userId = this.user.userId;
-				this.$axios.post('DeliveryAddressController/saveDeliveryAddress',
-					this.$qs.stringify(
-						this.deliveryAddress
-					)).then(response => {
+				console.log(this.deliveryAddress);
+				this.$axios.post('DeliveryAddressController/saveDeliveryAddress', this.$qs.stringify(
+					this.deliveryAddress
+				)).then(response => {
 					if (response.data > 0) {
 						this.$router.push({
 							path: '/userAddress',
@@ -108,7 +108,7 @@
 </script>
 <style scoped>
 	/*************** 总容器 ***************/
-	.wrapper{
+	.wrapper {
 		width: 100%;
 	}
 
@@ -160,7 +160,7 @@
 		box-sizing: border-box;
 		padding: 4vw 2vw;
 		border-radius: 3vw;
-		
+
 		font-size: 3vw;
 		border: none;
 		outline: none;

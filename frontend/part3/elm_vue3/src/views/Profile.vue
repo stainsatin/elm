@@ -78,15 +78,17 @@
 	.wrapper {
 		width: 100%;
 		height: 100%;
+		background-color: #f2f2f2;
 	}
 
 	/****************** header ******************/
 	.wrapper header {
 		width: 100%;
 		height: 12vw;
-		background-color: #0097FF;
-		color: #fff;
-		font-size: 4.8vw;
+		background-color: deepskyblue;
+		color: white;
+		font-size: 5vw;
+		font-weight: 700;
 		position: fixed;
 		left: 0;
 		top: 0;

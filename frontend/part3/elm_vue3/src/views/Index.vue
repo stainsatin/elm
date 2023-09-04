@@ -315,11 +315,13 @@
 <script>
 	//导入共通组件
 	import Footer from '../components/Footer.vue';
-	
+
 	export default {
 		name: 'Index',
 		data(){
-			return{businessName:''}
+			return{
+				businessName: ''
+			}
 		},
 		mounted() {
 			document.onscroll = () => {
