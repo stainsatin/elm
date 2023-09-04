@@ -8,7 +8,7 @@
 		<ul class="addresslist">
 			<li v-for="item in deliveryAddressArr">
 				<div class="addresslist-left" @click="setDeliveryAddress(item)">
-					<h3>{{item.contactName}}{{item.contactSex | sexFilter}} {{item.contactTel}}
+					<h3>{{item.contactName}}{{sexFilter(item.contactSex)}} {{item.contactTel}}
 					</h3>
 					<p>{{item.address}}</p>
 				</div>
@@ -29,7 +29,6 @@
 </template>
 <script>
 	import Footer from '../components/Footer.vue';
-
 	export default {
 		name: 'UserAddress',
 		data() {
@@ -47,15 +46,12 @@
 		components: {
 			Footer
 		},
-		filters: {
-			sexFilter(value) {
-				return value == 1 ? '先生' : '女士';
-			}
-		},
 		methods: {
+			sexFilter(userSex) {
+				return userSex == 1 ? '先生' : '女士';
+			},
 			listDeliveryAddressByUserId() {
 				//查询送货地址
-
 				this.$axios.post('DeliveryAddressController/listDeliveryAddressByUserId', this.$qs.stringify({
 					userId: this.user.userId
 				})).then(response => {

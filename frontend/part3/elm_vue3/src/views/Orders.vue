@@ -11,7 +11,8 @@
 				<p>{{deliveryaddress!=null?deliveryaddress.address:'请选择送货地址'}}</p>
 				<i class="fa fa-angle-right"></i>
 			</div>
-			<p>{{user.userName}}{{user.userSex | sexFilter}} {{user.userId}}</p>
+			<!-- <p>{{deliveryaddress!=null?{{{{deliveryaddress.contactName}}{{sexFilter(deliveryaddress.contactSex)}} {{deliveryaddress.contactTel}}}}:':'}}</p> -->
+			<p>{{user.userName}}{{sexFilter(user.userSex)}} {{user.userId}}</p>
 		</div>
 		<h3>{{business.businessName}}</h3>
 		<!-- 订单明细部分 -->
@@ -84,12 +85,10 @@
 				return totalPrice;
 			}
 		},
-		filters: {
-			sexFilter(value) {
-				return value == 1 ? '先生' : '女士';
-			}
-		},
 		methods: {
+			sexFilter(userSex) {
+				return userSex == 1 ? '先生' : '女士';
+			},
 			toUserAddress() {
 				this.$router.push({
 					path: '/userAddress',
@@ -216,14 +215,14 @@
 	.wrapper .order-detailed li {
 		width: 100%;
 		height: 16vw;
-		box-sizing:border-box;
+		box-sizing: border-box;
 		padding: 3vw;
 		margin-top: 2vw;
 		margin-bottom: 2vw;
-		
+
 		color: gray;
 		font-size: 3.5vw;
-		
+
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

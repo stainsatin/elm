@@ -52,12 +52,9 @@
 		<div class="button-login">
 			<button @click="register">注册</button>
 		</div>
-		<!-- 底部菜单部分 -->
-		<Footer></Footer>
 	</div>
 </template>
 <script>
-	import Footer from '../components/Footer.vue';
 	export default {
 		name: 'Register',
 		data() {
@@ -107,7 +104,7 @@
 				)).then(response => {
 					if (response.data > 0) {
 						alert('注册成功！');
-						this.$router.go(-1);  //回到来的界面（登录）
+						this.$router.push('/login');
 					} else {
 						alert('注册失败！');
 					}
@@ -115,9 +112,6 @@
 					console.error(error);
 				});
 			}
-		},
-		components: {
-			Footer
 		}
 	}
 </script>
