@@ -29,6 +29,7 @@ body{
 /********* 订单信息 *********/
 .wrapper h2{
 	padding-top: 40vw;
+	padding-bottom: 20vw;
 	display: flex;
 	justify-content: center;
 	color: darkslategray;
@@ -45,7 +46,7 @@ body{
 	justify-content: center;
 	align-items: center;
 	position: fixed;
-	bottom: 2vw;
+	bottom: 0vw;
 }
 .wrapper .back-button button{
 	width: 100%;
