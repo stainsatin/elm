@@ -35,7 +35,7 @@
     \includegraphics[width=0.8\textwidth]{processmap}
     \caption{饿了么外卖平台用户点餐业务流程图}\label{fig:process}
     \vspace{\baselineskip}
-    \end{figure}
+\end{figure}
 
 \section{用户需求}
 本软件由三个用户组成，分别为用户、商家和管理员。用户角色由表~\ref{tab:table1}~所示。
@@ -82,12 +82,6 @@
 首页是本软件的主要页面。此页面展示了用户当前的收货地址、商家搜索栏、菜品分类、推荐商家列表以及其他优惠部分。首页的底部有一个菜单，显示外卖平台的【首页】、【发现】、【订单】以及【我的】按钮。用户可以点击相应的按钮跳转至对应的页面进行操作。
 \subsubsection{界面设计}
 本软件的首页界面设计如图~\ref{fig:index}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{index}
-\caption{首页界面设计}\label{fig:index}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件首页功能按钮如表~\ref{tab:table2}~所示。
 \begin{table}[htbp]
@@ -112,12 +106,6 @@
 当用户在首页点击指定的商家分类后，会跳转至指定分类的商家列表页面。此页面展示了一系列商家，其中包括他们的商家图片、商家名称、商家的起送费、配送费和菜品。
 \subsubsection{界面设计}
 本软件的商家列表界面设计如图~\ref{fig:businessList}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{businessList}
-\caption{商家列表界面设计}\label{fig:businessList}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件商家列表功能按钮如表~\ref{tab:table3}~所示。
 \begin{table}[htbp]
@@ -135,17 +123,25 @@
 \end{tabularx}
 \vspace{\baselineskip}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{index}
+    \caption{首页界面设计}\label{fig:index}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{businessList}
+    \caption{商家列表界面设计}\label{fig:businessList}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
 
 \subsection{商家信息}
 当用户在商家列表页面中点击指定的商家后，会跳转至该商家的信息页面。此页面展示了该商家的图片、名称、起送费、配送费以及该商家一系列的菜品。此页面的下方显示了当前购物车的菜品数量、总价格以及【去结算】的按钮。
 \subsubsection{界面设计}
 本软件的商家信息界面设计如图~\ref{fig:businessInfo}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{businessInfo}
-\caption{商家信息界面设计}\label{fig:businessInfo}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件商家信息功能按钮如表~\ref{tab:table4}~所示。
 \begin{table}[htbp]
@@ -167,12 +163,6 @@
 当用户在商家信息页面中点击【去结算】按钮后，会跳转至确认订单页面。此页面展示了当前用户的送货地址、用户名称和手机号。在用户信息的下方显示了商家名称、购物车中所选择的菜品图片、菜品名称、菜品数量和配送费。在此页面的底部显示了总价格和【去支付】的按钮。
 \subsubsection{界面设计}
 本软件的确认订单界面设计如图~\ref{fig:order}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{order}
-\caption{确认订单界面设计}\label{fig:order}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件确认订单功能按钮如表~\ref{tab:table5}~所示。
 \begin{table}[htbp]
@@ -188,17 +178,25 @@
 \end{tabularx}
 \vspace{\baselineskip}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{businessInfo}
+    \caption{商家信息界面设计}\label{fig:businessInfo}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{order}
+    \caption{确认订单界面设计}\label{fig:order}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
 
 \subsection{在线支付}
 当用户在确认订单页面中点击【去结算】按钮后，会跳转至确认订单页面。
 \subsubsection{界面设计}
 本软件的在线支付界面设计如图~\ref{fig:payment}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{payment}
-\caption{在线支付界面设计}\label{fig:payment}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件在线支付功能按钮如表~\ref{tab:table6}~所示。
 \begin{table}[htbp]
@@ -219,16 +217,43 @@
 \vspace{\baselineskip}
 \end{table}
 
+\subsection{在线支付成功}
+当用户在在线支付页面中点击【确认支付】按钮后，会跳转至支付成功页面。
+\subsubsection{界面设计}
+本软件的在线支付界面设计如图~\ref{fig:paymentDone}~所示。
+\subsubsection{功能按钮}
+本软件支付成功功能按钮如表~\ref{tab:table7}~所示。
+\begin{table}[htbp]
+    \caption{饿了么外卖平台在线支付功能按钮}\label{tab:table7}
+    \vspace{0.5em}\wuhao
+    \begin{tabularx}{\textwidth}{lllX}
+    \toprule[1.5pt]
+    序号 & 按钮名称 & 功能 & 功能规则 \\ 
+    \midrule[1pt]
+    1 & 返回首页 & 跳转至首页 & 点击表示该订单已支付成功，并跳转至首页。 \\
+\bottomrule[1.5pt]
+\end{tabularx}
+\vspace{\baselineskip}
+\end{table}
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{payment}
+    \caption{在线支付界面设计}\label{fig:payment}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{paymentDone}
+    \caption{支付成功界面设计}\label{fig:paymentDone}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
+
 \subsection{用户登录}
 此页面为用户登录的页面。用户需要输入手机号和密码，若两者正确无误则登陆成功并跳转至上一个页面，否则服务器将会提示信息错误。
 \subsubsection{界面设计}
 本软件的用户登录界面设计如图~\ref{fig:login}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{login}
-\caption{用户登录界面设计}\label{fig:login}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件用户登录功能按钮如表~\ref{tab:table7}~所示。
 \begin{table}[htbp]
@@ -252,12 +277,6 @@
 此页面为用户注册的页面。用户需要输入手机号、两次相同的密码、用户姓名以及选择性别。若手机号、密码和用户名都符合要求，则注册成功并跳转至登陆页面，否则服务器将会提示信息错误。
 \subsubsection{界面设计}
 本软件的用户注册界面设计如图~\ref{fig:register}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{register}
-\caption{用户注册界面设计}\label{fig:register}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件用户注册功能按钮如表~\ref{tab:table8}~所示。
 \begin{table}[htbp]
@@ -276,17 +295,25 @@
 \end{tabularx}
 \vspace{\baselineskip}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{login}
+    \caption{用户登录界面设计}\label{fig:login}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{register}
+    \caption{用户注册界面设计}\label{fig:register}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
 
 \subsection{历史订单}
 历史订单页面展示了用户之前所生成的全部订单，未支付的订单会显示在页面的上方，已支付的订单则会显示在页面的下方。
 \subsubsection{界面设计}
 本软件的历史订单界面设计如图~\ref{fig:orderList}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{orderList}
-\caption{历史订单界面设计}\label{fig:orderList}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件历史订单功能按钮如表~\ref{tab:table9}~所示。
 \begin{table}[htbp]
@@ -310,12 +337,6 @@
 当用户在首页或在确认订单页面点击送货地址按钮时，会跳转到此页面。此页面显示了用户的所有送货地址。
 \subsubsection{界面设计}
 本软件的地址管理界面设计如图~\ref{fig:userAddress}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{userAddress}
-\caption{地址管理界面设计}\label{fig:userAddress}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件地址管理功能按钮如表~\ref{tab:table10}~所示。
 \begin{table}[htbp]
@@ -336,17 +357,25 @@
 \end{tabularx}
 \vspace{\baselineskip}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{orderList}
+    \caption{历史订单界面设计}\label{fig:orderList}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{userAddress}
+    \caption{地址管理界面设计}\label{fig:userAddress}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
 
 \subsection{新增送货地址}
 用户在此页面添加新的送货地址。填写完成后，点击保存按钮跳转至地址管理页面。
 \subsubsection{界面设计}
 本软件的新增送货地址界面设计如图~\ref{fig:addUserAddress}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{addUserAddress}
-\caption{新增送货地址界面设计}\label{fig:addUserAddress}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件新增送货地址功能按钮如表~\ref{tab:table11}~所示。
 \begin{table}[htbp]
@@ -370,12 +399,6 @@
 用户在此页面编辑已选择的送货地址。填写完成后，点击保存按钮跳转至地址管理页面。
 \subsubsection{界面设计}
 本软件的编辑送货地址界面设计如图~\ref{fig:editUserAddress}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{editUserAddress}
-\caption{编辑送货地址界面设计}\label{fig:editUserAddress}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件编辑送货地址功能按钮如表~\ref{tab:table12}~所示。
 \begin{table}[htbp]
@@ -394,17 +417,25 @@
 \end{tabularx}
 \vspace{\baselineskip}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{addUserAddress}
+    \caption{新增送货地址界面设计}\label{fig:addUserAddress}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{editUserAddress}
+    \caption{编辑送货地址界面设计}\label{fig:editUserAddress}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
 
 \subsection{个人信息}
 个人信息页面显示当前用户的图片和名称。用户可以在此页面修改用户名和密码、跳转至地址管理页面以及退出登录。
 \subsubsection{界面设计}
 本软件的个人信息界面设计如图~\ref{fig:profile}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{profile}
-\caption{个人信息界面设计}\label{fig:profile}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件编辑送货地址功能按钮如表~\ref{tab:table13}~所示。
 \begin{table}[htbp]
@@ -430,12 +461,6 @@
 用户在此页面更新用户名。填写完成后，点击保存按钮跳转至个人信息页面。
 \subsubsection{界面设计}
 本软件的更新用户名界面设计如图~\ref{fig:updateUserName}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{updateUserName}
-\caption{更新用户名界面设计}\label{fig:updateUserName}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件更新用户名功能按钮如表~\ref{tab:table14}~所示。
 \begin{table}[htbp]
@@ -458,12 +483,6 @@
 用户在此页面更新密码。填写完成后，点击保存按钮跳转至个人信息页面。
 \subsubsection{界面设计}
 本软件的更新密码界面设计如图~\ref{fig:updateUserPassword}~所示。
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.4\textwidth]{updateUserPassword}
-\caption{更新密码界面设计}\label{fig:updateUserPassword}
-\vspace{\baselineskip}
-\end{figure}
 \subsubsection{功能按钮}
 本软件更新密码功能按钮如表~\ref{tab:table15}~所示。
 \begin{table}[htbp]
@@ -481,3 +500,23 @@
 \end{tabularx}
 \vspace{\baselineskip}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{profile}
+    \caption{个人信息界面设计}\label{fig:profile}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{updateUserName}
+    \caption{更新用户名界面设计}\label{fig:updateUserName}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{updateUserPassword}
+    \caption{更新密码界面设计}\label{fig:updateUserPassword}
+    \vspace{\baselineskip}
+\end{figure}
