@@ -15,6 +15,7 @@ public class Business implements Serializable {
         private double starPrice; //起送费
         private double deliveryPrice; //配送费
         private String remarks;
+        private Integer hot;
 
     public Integer getBusinessId() {
         return businessId;
@@ -87,4 +88,8 @@ public class Business implements Serializable {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    public Integer getHot() {return hot;}
+
+    public void setHot(Integer hot) {this.hot = hot;}
 }

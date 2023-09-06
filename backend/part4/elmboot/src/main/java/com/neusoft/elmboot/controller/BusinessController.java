@@ -35,4 +35,17 @@ public class BusinessController {
 	public List<Business> listBusinessByAddress(String businessAddress){
 		return businessService.listBusinessByAddress(businessAddress);
 	}
+
+	@RequestMapping("/updateBusinessHot")
+	public Integer updateBusinessHot(Integer businessId){
+		Integer hot = businessService.getBusinessById(businessId).getHot();
+		hot++;
+		return businessService.updateBusinessHot(businessId, hot);
+	}
+
+	@RequestMapping("/listBusinessByOrderTypeIdByHot")
+	public List<Business> listBusinessByOrderTypeIdByHot(Integer orderTypeId){
+		return businessService.listBusinessByOrderTypeIdByHot(orderTypeId);
+	}
+
 }

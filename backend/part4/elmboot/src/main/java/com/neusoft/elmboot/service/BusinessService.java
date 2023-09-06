@@ -9,4 +9,6 @@ public interface BusinessService {
     public Business getBusinessById(Integer businessId);
     public List<Business> listBusinessByName(String businessName);
     public List<Business> listBusinessByAddress(String businessAddress);
+    public Integer updateBusinessHot(Integer businessId,Integer hot);
+    public List<Business> listBusinessByOrderTypeIdByHot(Integer orderTypeId);
 }
