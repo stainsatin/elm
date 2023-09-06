@@ -21,4 +21,8 @@ public interface UserMapper {
 
 	@Update("update user set password = #{newPass} where userId = #{userId} and password = #{oldPass}")
 	public int updateUserPassword(String userId,String oldPass,String newPass);
+
+	@Update("update user set walletId=#{walletId} where userId=#{userId}")
+	public int updateWalletId(String userId,Integer walletId);
+
 }

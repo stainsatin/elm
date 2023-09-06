@@ -61,14 +61,14 @@
 			<version>3.0.2</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.31</version>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -82,19 +82,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
-			
+
 		<dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        
-		<dependency>
-		    <groupId>com.alibaba</groupId>
-		    <artifactId>druid-spring-boot-starter</artifactId>
-		    <version>1.1.10</version>
-		</dependency>
-		
+
 		<dependency>
 	        <groupId>com.alibaba</groupId>
 	        <artifactId>druid-spring-boot-starter</artifactId>
@@ -108,8 +102,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.1.3</version>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
 
 </project>

@@ -13,6 +13,14 @@ public class CommonUtil {
 		return sdf.format(calendar.getTime());
 	}
 
+	public static String getEndTime(int lifeSpan){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(calendar.getTime());
+		calendar.add(Calendar.DATE,lifeSpan);
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(calendar.getTime());
+	}
+
 	public static final String SALT = "afhu&9TawdhYCbsad*dawdh1dawdjhaj";
 
 	public static String encodePassword(String strValue) throws NoSuchAlgorithmException {
