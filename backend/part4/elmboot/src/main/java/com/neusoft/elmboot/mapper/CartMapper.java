@@ -13,7 +13,7 @@ public interface CartMapper {
 	@Insert("insert into cart values(null,#{foodId},#{businessId},#{userId},1)")
 	public int saveCart(Cart cart);
 	
-	@Update("update cart set quantity=#{quantity} where userId=#{userId} and businessId=#{businessId} and foodId=#{userId}")
+	@Update("update cart set quantity=#{quantity} where userId=#{userId} and businessId=#{businessId} and foodId=#{foodId}")
 	public int updateCart(Cart cart);
 	
 	public int removeCart(Cart cart);
