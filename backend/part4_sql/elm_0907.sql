@@ -37,7 +37,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'王磊','OxvrTfYELUiPvfm+WhaHKQ==');
+INSERT INTO `admin` VALUES (1,'王磊','I1ukpWaTAKZ3mcFP1n+6HQ==');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,9 +58,9 @@ CREATE TABLE `business` (
   `starPrice` decimal(5,2) DEFAULT '0.00' COMMENT '起送费',
   `deliveryPrice` decimal(5,2) DEFAULT '0.00' COMMENT '配送费',
   `remarks` varchar(40) DEFAULT NULL COMMENT '备注',
-  `password` varchar(20) DEFAULT NULL COMMENT '商家密码',
+  `password` varchar(100) DEFAULT NULL COMMENT '商家密码',
   `walletId` int DEFAULT NULL,
-  `hot` int DEFAULT 0 COMMENT '热度',
+  `hot` int DEFAULT '0' COMMENT '热度',
   PRIMARY KEY (`businessId`),
   KEY `walletId` (`walletId`),
   CONSTRAINT `business_ibfk_1` FOREIGN KEY (`walletId`) REFERENCES `virtualwallet` (`walletId`)
@@ -73,7 +73,7 @@ CREATE TABLE `business` (
 
 LOCK TABLES `business` WRITE;
 /*!40000 ALTER TABLE `business` DISABLE KEYS */;
-INSERT INTO `business` VALUES (10001,'小锅饭豆腐馆（全运店）','天津市津南区全运路99-35号(3门)','全运路小锅饭全体员工祝大家生活愉快。','https://cube.elemecdn.com/9/de/6d3512da01fa610e00c4676e4ad29jpeg.jpeg?x-oss-process=image/resize,m_mfit,w_400,h_400/format,webp/quality,q_85',1,15.00,3.00,NULL,'123',NULL,5),(10002,'齐品达烤肉饭(新市府直营店)','天津市津南区全运路99-44号3门','十四年不忘初心，只为做一碗有温度的烤肉饭。','https://cube.elemecdn.com/2/91/3794c5bc79d91d0886cb87170772bjpeg.jpeg?x-oss-process=image/resize,m_mfit,w_400,h_400/format,webp/quality,q_85',1,15.00,0.00,NULL,'123',NULL,8),(10003,'奈雪的茶(龙湖天街店)','天津市津区智慧四街5-24号A栋-1F-37号','如对口感有特别要求的顾客请选择奶盖分装','https://img.alicdn.com/imgextra/i4/2214715223183/O1CN01B4hYmz1ZNrSPXATBz_!!2214715223183-0-koubei.jpg_400x400Q85s50.jpg_.webp',5,15.00,3.50,NULL,'123',NULL,7),(10004,'瑞幸咖啡luckin coffee(全运万达广场店)','天津市津南区全运路70号2F2039','推出酱香拿铁~','https://img.alicdn.com/imgextra/i2/2209551521732/O1CN01ho0vbl1OfIkylC05f_!!2209551521732-2-koubei.png_400x400Q85s50.jpg_.webp',5,29.00,0.00,NULL,'123',NULL,4),(10005,'淮乡里·淮南牛肉汤·特色锅贴(白塔堡店)','天津市津南区红椿东路2甲-152号(13门)','饮食无忧','https://img.alicdn.com/imgextra/i2/2214583274033/O1CN01ltjNzi1ffA6iIwg6b_!!2214583274033-0-koubei.jpg_400x400Q85s50.jpg_.webp',7,15.00,7.40,NULL,'123',NULL,2),(10006,'米村拌饭(全运龙湖天街店)','天津市津南区智慧四街5-24号A-4F-32、A-4F-33','2023年8月25日起小菜不再赠送！','https://img.alicdn.com/imgextra/i1/2214698001566/O1CN01YYIlOG1NRH13Gvexq_!!2214698001566-2-koubei.png_400x400Q85s50.jpg_.webp',1,15.00,3.50,NULL,'123',NULL,1),(10007,'聚友园老菜馆(白塔店)','天津市津南区红椿东路2甲-179号1门','本店所有菜品现点现做，让您买的放心，吃的舒心','https://cube.elemecdn.com/a/60/507ab9f80ea017bc9da3e2d33871cpng.png?x-oss-process=image/resize,m_mfit,w_400,h_400/format,webp/quality,q_85',1,20.00,2.50,NULL,'123',NULL,3),(10008,'晨曦炖品鲍鱼饭(小石城店)','天津市津南区红椿东路2甲-183号8门','晨曦炖品原盅瓦罐熬制，让您每天都能享用一份热腾腾的美食！','https://cube.elemecdn.com/7/28/493841b5c8a0eb692560fdeed02bepng.png?x-oss-process=image/resize,m_mfit,w_400,h_400/format,webp/quality,q_85',1,15.00,6.00,NULL,'123',NULL,6);
+INSERT INTO `business` VALUES (10001,'小锅饭豆腐馆（全运店）','天津市津南区全运路99-35号(3门)','全运路小锅饭全体员工祝大家生活愉快。','https://cube.elemecdn.com/9/de/6d3512da01fa610e00c4676e4ad29jpeg.jpeg?x-oss-process=image/resize,m_mfit,w_400,h_400/format,webp/quality,q_85',1,15.00,3.00,NULL,'I1ukpWaTAKZ3mcFP1n+6HQ==',NULL,5),(10002,'齐品达烤肉饭(新市府直营店)','天津市津南区全运路99-44号3门','十四年不忘初心，只为做一碗有温度的烤肉饭。','https://cube.elemecdn.com/2/91/3794c5bc79d91d0886cb87170772bjpeg.jpeg?x-oss-process=image/resize,m_mfit,w_400,h_400/format,webp/quality,q_85',1,15.00,0.00,NULL,'I1ukpWaTAKZ3mcFP1n+6HQ==',NULL,8),(10003,'奈雪的茶(龙湖天街店)','天津市津区智慧四街5-24号A栋-1F-37号','如对口感有特别要求的顾客请选择奶盖分装','https://img.alicdn.com/imgextra/i4/2214715223183/O1CN01B4hYmz1ZNrSPXATBz_!!2214715223183-0-koubei.jpg_400x400Q85s50.jpg_.webp',5,15.00,3.50,NULL,'I1ukpWaTAKZ3mcFP1n+6HQ==',NULL,7),(10004,'瑞幸咖啡luckin coffee(全运万达广场店)','天津市津南区全运路70号2F2039','推出酱香拿铁~','https://img.alicdn.com/imgextra/i2/2209551521732/O1CN01ho0vbl1OfIkylC05f_!!2209551521732-2-koubei.png_400x400Q85s50.jpg_.webp',5,29.00,0.00,NULL,'I1ukpWaTAKZ3mcFP1n+6HQ==',NULL,4),(10005,'淮乡里·淮南牛肉汤·特色锅贴(白塔堡店)','天津市津南区红椿东路2甲-152号(13门)','饮食无忧','https://img.alicdn.com/imgextra/i2/2214583274033/O1CN01ltjNzi1ffA6iIwg6b_!!2214583274033-0-koubei.jpg_400x400Q85s50.jpg_.webp',7,15.00,7.40,NULL,'I1ukpWaTAKZ3mcFP1n+6HQ==',NULL,2),(10006,'米村拌饭(全运龙湖天街店)','天津市津南区智慧四街5-24号A-4F-32、A-4F-33','2023年8月25日起小菜不再赠送！','https://img.alicdn.com/imgextra/i1/2214698001566/O1CN01YYIlOG1NRH13Gvexq_!!2214698001566-2-koubei.png_400x400Q85s50.jpg_.webp',1,15.00,3.50,NULL,'I1ukpWaTAKZ3mcFP1n+6HQ==',NULL,1),(10007,'聚友园老菜馆(白塔店)','天津市津南区红椿东路2甲-179号1门','本店所有菜品现点现做，让您买的放心，吃的舒心','https://cube.elemecdn.com/a/60/507ab9f80ea017bc9da3e2d33871cpng.png?x-oss-process=image/resize,m_mfit,w_400,h_400/format,webp/quality,q_85',1,20.00,2.50,NULL,'I1ukpWaTAKZ3mcFP1n+6HQ==',NULL,3),(10008,'晨曦炖品鲍鱼饭(小石城店)','天津市津南区红椿东路2甲-183号8门','晨曦炖品原盅瓦罐熬制，让您每天都能享用一份热腾腾的美食！','https://cube.elemecdn.com/7/28/493841b5c8a0eb692560fdeed02bepng.png?x-oss-process=image/resize,m_mfit,w_400,h_400/format,webp/quality,q_85',1,15.00,6.00,NULL,'I1ukpWaTAKZ3mcFP1n+6HQ==',NULL,6);
 /*!40000 ALTER TABLE `business` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -401,7 +401,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('123','OxvrTfYELUiPvfm+WhaHKQ==','123',1,'https://img2.baidu.com/it/u=2484555436,2349420889&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400',1,NULL);
+INSERT INTO `user` VALUES ('123','OxvrTfYELUiPvfm+WhaHKQ==','123',1,'https://img2.baidu.com/it/u=2484555436,2349420889&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400',1,NULL),('18186889323','I1ukpWaTAKZ3mcFP1n+6HQ==','小亮',1,NULL,1,NULL),('19330531351','I1ukpWaTAKZ3mcFP1n+6HQ==','小忆',0,NULL,1,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -437,4 +437,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-07 21:25:00
+-- Dump completed on 2023-09-07 21:34:00

@@ -1,5 +1,8 @@
 package com.neusoft.elmboot.po;
 
+import lombok.Data;
+
+@Data
 public class CreditRulePo {
     private Integer id;
     private String ruleCode;

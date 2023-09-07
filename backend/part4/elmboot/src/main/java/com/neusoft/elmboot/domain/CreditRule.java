@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.domain;
 
-public abstract class CreditRule extends Rule{
+public abstract class CreditRule implements Rule{
     private Integer lifeSpan;
     public CreditRule(int lifeSpan){
         this.lifeSpan=lifeSpan;
