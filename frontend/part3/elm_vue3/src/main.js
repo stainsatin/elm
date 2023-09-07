@@ -17,7 +17,7 @@ import {
 const app = createApp(App)
 app.config.productionTip=false
 //设置axios的基础url部分
-axios.defaults.baseURL = 'http://localhost:8080/elm/';
+axios.defaults.baseURL = 'http://localhost:8080/elm/'; 
 //将axios挂载到vue实例上，使用时就可以 this.$axios 这样使用了
 app.config.globalProperties.$axios = axios;
 app.config.globalProperties.$qs = qs;
@@ -34,7 +34,7 @@ router.beforeEach(function(to,from,next){
 	if(!(to.path=='/'||to.path=='/index'||to.path=='/businessList'||to.path=='/businessInfo'||to.path=='/login'||to.path=='/register')){
 		if(user==null){
 			router.push('/login');
-			location.reload();
+			// location.reload();
 		}
 	}
 	next();

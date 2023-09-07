@@ -12,7 +12,7 @@
 					旧密码:
 				</div>
 				<div class="content">
-					<input type="text" v-model="oldPass" placeholder="旧密码">
+					<input type="password" v-model="oldPass" placeholder="旧密码">
 				</div>
 			</li>
 			<li>
@@ -20,7 +20,7 @@
 					新密码:
 				</div>
 				<div class="content">
-					<input type="text" v-model="newPass" placeholder="新密码">
+					<input type="password" v-model="newPass" placeholder="新密码">
 				</div>
 			</li>
 		</div>
@@ -68,7 +68,8 @@
 					newPass:this.newPass
 				})).then(response => {
 					if (response.data > 0) {
-						// console.log(response.data)
+						this.user.password=this.newPass;
+						this.$setSessionStorage('user', this.user);
 						alert('修改密码成功！');
 					} else {
 						alert('修改密码失败！');
