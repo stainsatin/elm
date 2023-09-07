@@ -14,7 +14,7 @@ public class User implements Serializable {
     private Integer userSex;
     private String userImg;
     private Integer delTag;
-
+    private Integer walletId;
 
     public void setUserId(String userId) {
         this.userId = userId;
@@ -63,4 +63,12 @@ public class User implements Serializable {
     public Integer getDelTag() {
         return delTag;
     }
+
+	public Integer getWalletId() {
+		return walletId;
+	}
+
+	public void setWalletId(Integer walletId) {
+		this.walletId = walletId;
+	}
 }

@@ -36,14 +36,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Caching(evict = {@CacheEvict(cacheNames = "userList", allEntries = true)},
-            put = {@CachePut(cacheNames = "user", key = "#user.userId")})
+            put = {@CachePut(cacheNames = "user", key = "#userId")})
     @Override
     public int updateUserMsg(String userId, String userName) {
         return userMapper.updateUserMsg(userId, userName);
     }
 
     @Caching(evict = {@CacheEvict(cacheNames = "userList", allEntries = true)},
-            put = {@CachePut(cacheNames = "user", key = "#user.userId")})
+            put = {@CachePut(cacheNames = "user", key = "#userId")})
     @Override
     public int updateUserPassword(String userId, String oldPass, String newPass) {
         return userMapper.updateUserPassword(userId, oldPass, newPass);
