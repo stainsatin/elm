@@ -44,7 +44,9 @@ public class BusinessServiceImpl implements BusinessService {
 	 public List<Business> listBusinessByAddress(String businessAddress){
 		return businessMapper.listBusinessByAddress(businessAddress);
 	}
-
+	
+	@Caching(evict = {@CacheEvict(value = "Business",allEntries = true)},
+            put = {@CachePut(value = "BusinessList",key = "#businessId")})
 	@Override
 	public Integer updateBusinessHot(Integer businessId, Integer hot) {
 		return businessMapper.updateBusinessHot(businessId, hot);
