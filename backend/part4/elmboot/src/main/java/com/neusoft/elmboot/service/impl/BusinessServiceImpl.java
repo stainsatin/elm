@@ -44,4 +44,16 @@ public class BusinessServiceImpl implements BusinessService {
 	 public List<Business> listBusinessByAddress(String businessAddress){
 		return businessMapper.listBusinessByAddress(businessAddress);
 	}
+
+	@Override
+	public Integer updateBusinessHot(Integer businessId, Integer hot) {
+		return businessMapper.updateBusinessHot(businessId, hot);
+	}
+
+	@Cacheable(value = "BusinessList",key = "#orderTypeId")
+	@Override
+	public List<Business> listBusinessByOrderTypeIdByHot(Integer orderTypeId){
+		return businessMapper.listBusinessByOrderTypeId(orderTypeId);
+	}
+
 }
