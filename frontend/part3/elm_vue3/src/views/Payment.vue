@@ -34,7 +34,7 @@
 				<img src="../assets/wechat.png">
 			</li>
 		</ul>
-		<div class="payment-button">
+		<div class="payment-button" @click="toPaymentDone">
 			<button>确认支付</button>
 		</div>
 		<!-- 底部菜单部分 -->
@@ -43,6 +43,7 @@
 </template>
 <script>
 	import Footer from '../components/Footer.vue';
+	import { onMounted, onBeforeUnmount } from 'vue';
 	export default {
 		name: 'Payment',
 		data() {
@@ -63,23 +64,31 @@
 				console.error(error);
 			});
 		},
-		mounted() {
-			//这里的代码是实现：一旦路由到在线支付组件，就不能回到订单确认组件。
-			//先将当前url添加到history对象中
-			history.pushState(null, null, document.URL);
-			//popstate事件能够监听history对象的变化
-			window.onpopstate = () => {
-				this.$router.push({
-					path: '/index'
-				});
-			}
-		},
-		destroyed() {
-			window.onpopstate = null;
-		},
+		setup() {
+		    onMounted(() => {
+		      // 这里的代码是实现：一旦路由到在线支付组件，就不能回到订单确认组件。
+		      // 先将当前url添加到history对象中
+		      history.pushState(null, null, document.URL);
+		      // popstate事件能够监听history对象的变化
+		      window.onpopstate = () => {
+		        router.push({
+		          path: '/index'
+		        });
+		      };
+		    });
+		
+		    onBeforeUnmount(() => {
+		      window.onpopstate = null;
+		    });
+		  },
 		methods: {
 			detailetShow() {
 				this.isShowDetailet = !this.isShowDetailet;
+			},
+			toPaymentDone() {
+				this.$router.push({
+					path: '/paymentDone'
+				});
 			}
 		},
 		components: {

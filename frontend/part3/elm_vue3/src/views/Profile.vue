@@ -19,9 +19,13 @@
 			<li @click="toUserAddress">
 				<button><i class="fa fa-map-marker"></i>我的地址</button>
 			</li>
+			<li >
+				<button><i class="fa fa-info"></i>我的积分</button>
+			</li>
 			<li @click="toLogin">
 				<button><i class="fa fa-info"></i>退出登录</button>
 			</li>
+			
 		</ul>
 		<!-- 底部菜单部分 -->
 		<Footer></Footer>
@@ -29,7 +33,7 @@
 </template>
 
 <script>
-	import defaultImage from '../assets/R-C.png'
+	import defaultImage from '../assets/profile_photo.png'
 	import Footer from '../components/Footer.vue';
 	export default {
 		name: 'Profile',
@@ -65,6 +69,7 @@
 				});
 			},
 			toLogin(){
+				this.$removeSessionStorage('user')
 				this.$router.push({
 					path: '/login'
 				});
@@ -78,7 +83,6 @@
 	.wrapper {
 		width: 100%;
 		height: 100%;
-		background-color: #f2f2f2;
 	}
 
 	/****************** header ******************/

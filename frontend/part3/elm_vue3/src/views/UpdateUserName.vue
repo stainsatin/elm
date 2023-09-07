@@ -54,6 +54,8 @@
 					userName: this.newName
 				})).then(response => {
 					if (response.data > 0) {
+						this.user.userName=this.newName;
+						this.$setSessionStorage('user', this.user);
 						alert('修改用户名成功！');
 					} else {
 						alert('修改用户名失败！');

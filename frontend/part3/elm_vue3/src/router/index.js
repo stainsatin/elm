@@ -14,6 +14,7 @@ import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
 import UpdateUserName from '../views/UpdateUserName.vue'
 import UpdateUserPassword from '../views/UpdateUserPassword.vue'
+import PaymentDone from '../views/PaymentDone.vue'
 const routes = [{
 	 path: '/',
 	 name: 'Home',
@@ -74,6 +75,10 @@ const routes = [{
  	 path: '/updateUserPassword',
  	 name: 'UpdateUserPassword',
  	 component: UpdateUserPassword
+ },{
+ 	 path: '/paymentDone',
+ 	 name: 'PaymentDone',
+ 	 component: PaymentDone
  }
 
 ]
