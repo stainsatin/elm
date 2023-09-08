@@ -156,7 +156,7 @@
 			</li>
 		</ul>
 		<!-- </div> -->
-		<h3>-------------------我是有底线的-------------------</h3>
+		<h3 class="bottom">-------------------我是有底线的-------------------</h3>
 		<!-- 底部菜单部分 -->
 		<Footer></Footer>
 	</div>
@@ -249,6 +249,9 @@
 	};
 </script>
 <style scoped>
+	body{
+		background-color: #f2f2f2;
+	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;
@@ -326,5 +329,8 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+	.wrapper .bottom{
+		padding-bottom: 20vw;
 	}
 </style>
