@@ -83,6 +83,7 @@
 				businessId: this.businessId
 			})).then(response => {
 				this.business = response.data;
+				// console.log(this.business);
 			}).catch(error => {
 				console.error(error);
 			});

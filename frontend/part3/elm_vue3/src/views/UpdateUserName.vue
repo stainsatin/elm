@@ -53,6 +53,7 @@
 					userId: this.user.userId,
 					userName: this.newName
 				})).then(response => {
+					console.log(response.data);
 					if (response.data > 0) {
 						this.user.userName=this.newName;
 						this.$setSessionStorage('user', this.user);
