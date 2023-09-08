@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<!-- header部分 -->
 		<header>
-			<div class="header1" @click="toUserAddress">
+			<div class="header1" onclick="location.href = 'userAddress.html'">
 				<div class="location-icon"><i class="fa fa-map-marker"></i></div>
 				<div class="location-box">
 					<div class="location-text">
@@ -106,7 +106,7 @@
 		</ul>
 		<!-- 推荐商家列表部分 -->
 		<ul class="merchant">
-			<li @click="toBusinessInfo(10001)">
+			<li>
 				<img src="../assets/sj01.png">
 				<div class="merchant-info">
 					<div class="merchant-info-h">
@@ -146,7 +146,7 @@
 					</div>
 				</div>
 			</li>
-			<li @click="toBusinessInfo(10002)">
+			<li>
 				<img src="../assets/sj02.png">
 				<div class="merchant-info">
 					<div class="merchant-info-h">
@@ -186,7 +186,7 @@
 					</div>
 				</div>
 			</li>
-			<li @click="toBusinessInfo(10003)">
+			<li>
 				<img src="../assets/sj03.png">
 				<div class="merchant-info">
 					<div class="merchant-info-h">
@@ -226,10 +226,10 @@
 					</div>
 				</div>
 			</li>
-			<li @click="toBusinessInfo(10004)">
+			<li>
 				<img src="../assets/sj04.png">
 				<div class="merchant-info">
-					<div class="merchant-info-h" @click="toBusinessInfo(item.businessId)">
+					<div class="merchant-info-h">
 						<h3>米村拌饭（浑南店）</h3>
 						<div class="more-info">&#8226;</div>
 					</div>
@@ -266,7 +266,7 @@
 					</div>
 				</div>
 			</li>
-			<li @click="toBusinessInfo(10005)">
+			<li>
 				<img src="../assets/sj05.png">
 				<div class="merchant-info">
 					<div class="merchant-info-h">
@@ -318,8 +318,8 @@
 
 	export default {
 		name: 'Index',
-		data() {
-			return {
+		data(){
+			return{
 				businessName: ''
 			}
 		},
@@ -353,11 +353,6 @@
 			Footer
 		},
 		methods: {
-			toUserAddress(){
-				this.$router.push({
-					path: '/userAddress'
-				});
-			},
 			toBusinessList(orderTypeId) {
 				this.$router.push({
 					path: '/businessList',
@@ -366,15 +361,7 @@
 					}
 				});
 			},
-			toBusinessInfo(businessId) {
-				this.$router.push({
-					path: '/businessInfo',
-					query: {
-						businessId: businessId
-					}
-				});
-			},
-			listBusinessByName() {
+			listBusinessByName(){
 				this.$router.push({
 					path: '/businessList',
 					query: {

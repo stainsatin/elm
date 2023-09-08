@@ -15,7 +15,7 @@
 					</p>
 					<div class="order-info-right">
 						<p>&#165;{{item.orderTotal}}</p>
-						<div class="order-info-right-icon" @click="toPay(item.orderId)">去支付</div>
+						<div class="order-info-right-icon">去支付</div>
 					</div>
 				</div>
 				<ul class="order-detailet" v-show="item.isShowDetailet">
@@ -76,12 +76,10 @@
 				userId: this.user.userId
 			})).then(response => {
 				let result = response.data;
-				//console.log(result);
 				for (let orders of result) {
 					orders.isShowDetailet = false;
 				}
 				this.orderArr = result;
-				console.log(result);
 			}).catch(error => {
 				console.error(error);
 			});
@@ -89,14 +87,6 @@
 		methods: {
 			detailetShow(orders) {
 				orders.isShowDetailet = !orders.isShowDetailet;
-			},
-			toPay(orderId){
-				this.$router.push({
-					path: '/payment',
-					query: {
-						orderId: orderId
-					}
-				});
 			}
 		},
 		components: {
@@ -151,7 +141,7 @@
 	.wrapper .order li .order-info {
 		box-sizing: border-box;
 		padding: 2vw 4vw;
-		font-size: 3.5vw;
+		font-size: 4vw;
 		color: #666;
 		display: flex;
 		justify-content: space-between;
@@ -180,7 +170,7 @@
 		box-sizing: border-box;
 		padding: 1vw 4vw;
 		color: #666;
-		font-size: 2.5vw;
+		font-size: 3vw;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

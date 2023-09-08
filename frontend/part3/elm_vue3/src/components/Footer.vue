@@ -4,9 +4,9 @@
 			<i class="fa fa-home"></i>
 			<p>首页</p>
 		</li>
-		<li @click="toWallet">
+		<li>
 			<i class="fa fa-compass"></i>
-			<p>钱包</p>
+			<p>发现</p>
 		</li>
 		<li @click="toOrderList">
 			<i class="fa fa-file-text"></i>
@@ -25,11 +25,6 @@
 			toIndex() {
 				this.$router.push({
 					path: '/index'
-				});
-			},
-			toWallet() {
-				this.$router.push({
-					path: '/wallet'
 				});
 			},
 			toOrderList() {
