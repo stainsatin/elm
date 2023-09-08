@@ -32,14 +32,19 @@
 	</div>
 </template>
 <script>
-
 	export default {
 		name: 'Login',
 		data() {
 			return {
 				userId: '',
-				password: ''
+				password: '',
+				frompath: ''
 			}
+		},
+		beforeRouteEnter(to, from, next) {
+			next(vm => {
+				vm.frompath = from.path;
+			})
 		},
 		methods: {
 			login() {
@@ -64,7 +69,13 @@
 						//sessionstorage有容量限制，为了防止数据溢出，所以不将userImg数据放入session中						
 						user.userImg = '';
 						this.$setSessionStorage('user', user);
-						this.$router.go(-1);
+						if (this.frompath == '/register') {
+							this.$router.push({
+								path: "/index"
+							})
+						} else {
+							this.$router.go(-1);
+						}
 					}
 				}).catch(error => {
 					console.error(error);
