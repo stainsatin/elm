@@ -348,6 +348,7 @@ export default {
 
 .wrapper .form-box li .content {
   flex: 1;
+  font-size: 3vw;
 }
 
 .wrapper .form-box li .content input {
