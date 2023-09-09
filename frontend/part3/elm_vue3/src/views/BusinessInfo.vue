@@ -36,6 +36,17 @@
 				</div>
 			</li>
 		</ul>
+		<!--推荐商家按钮-->
+		<div class="merchant-button" @click="toBusinessInfo(commendId)">
+			<button>
+				<div class="button-left">
+					<h3>推荐商家</h3>
+				</div>
+				<div class="button-right">
+					点击进入 &gt;
+				</div>
+			</button>
+		</div>
 		<!-- 购物车部分 -->
 		<div class="cart">
 			<div class="cart-left">
@@ -71,6 +82,7 @@
 		data() {
 			return {
 				businessId: this.$route.query.businessId,
+				commendId:10001,
 				business: {},
 				foodArr: [],
 				user: {}
@@ -83,7 +95,8 @@
 				businessId: this.businessId
 			})).then(response => {
 				this.business = response.data;
-				// console.log(this.business);
+				this.commendId =10001 +(this.business.businessId+2)%8
+				console.log(this.commendId);
 			}).catch(error => {
 				console.error(error);
 			});
@@ -215,6 +228,14 @@
 						businessId: this.business.businessId
 					}
 				});
+			},
+			toBusinessInfo(businessId) {
+				this.$router.push({
+					path: '/businessInfo',
+					query: {
+						businessId: businessId
+					}
+				});
 			}
 		},
 		computed: {
@@ -242,53 +263,52 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
-	.wrapper{
+	.wrapper {
 		width: 100%;
 		height: 100%;
+		background-color: #f2f2f2;
 	}
 
 	/****************** header部分 ******************/
-	.wrapper header{
+	.wrapper header {
 		width: 100%;
 		height: 12vw;
 		background-color: deepskyblue;
-		
+
 		position: fixed;
 		top: 0;
 		left: 0;
 		z-index: 1000;
-		
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		
+
 		color: white;
 		font-size: 5vw;
 		font-weight: 700;
 	}
 
 	/****************** 商家logo部分 ******************/
-	.wrapper .merchant-logo{
+	.wrapper .merchant-logo {
 		width: 100%;
 		padding-top: 15vw;
 		display: flex;
 		justify-content: center;
 		margin-bottom: 3vw;
 	}
-	.wrapper .merchant-logo img{
+
+	.wrapper .merchant-logo img {
 		height: 35vw;
 		width: 35vw;
 		border-radius: 6vw;
 	}
-	
+
 
 
 	/****************** 商家信息部分 ******************/
-	.wrapper .merchant-info{
+	.wrapper .merchant-info {
 		width: 100%;
 		height: 20vw;
 		display: flex;
@@ -296,72 +316,84 @@
 		justify-content: center;
 		align-items: center;
 	}
-	.wrapper .merchant-info h1{
+
+	.wrapper .merchant-info h1 {
 		color: black;
 		font-size: 5.5vw;
 		margin-bottom: 1.5vw;
 	}
-	.wrapper .merchant-info p{
+
+	.wrapper .merchant-info p {
 		color: darkslategray;
 		font-size: 3vw;
 		margin-bottom: 1.5vw;
 	}
+
 	/****************** 食品列表部分 ******************/
 	.wrapper .food {
 		width: 100%;
 		/*使用下外边距避开footer部分*/
-		margin-bottom: 14vw;
+		/* margin-bottom: 14vw; */
 	}
 
-	.wrapper .food li{
+	.wrapper .food li {
 		padding: 3vw;
 		margin: 2vw;
-		user-select:none;
+		user-select: none;
 		background-color: white;
 		border-radius: 5vw;
-		
+
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	.wrapper .food li .left{
+
+	.wrapper .food li .left {
 		display: flex;
 		align-items: center;
 	}
-	.wrapper .food li .left img{
+
+	.wrapper .food li .left img {
 		width: 20vw;
 		height: 20vw;
 	}
-	.wrapper .food li .left .left-info{
+
+	.wrapper .food li .left .left-info {
 		margin-left: 3vw;
 	}
-	.wrapper .food li .left .left-info h3{
+
+	.wrapper .food li .left .left-info h3 {
 		margin-bottom: 2vw;
 		font-size: 4vw;
 		color: darkslategray;
 	}
-	.wrapper .food li .left .left-info p{
+
+	.wrapper .food li .left .left-info p {
 		margin-bottom: 2vw;
 		font-size: 3.5vw;
 		color: gray;
 	}
-	.wrapper .food li .right{
+
+	.wrapper .food li .right {
 		width: 16vw;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
-	.wrapper .food li .right .fa-minus-circle{
+
+	.wrapper .food li .right .fa-minus-circle {
 		font-size: 4.5vw;
 		color: gray;
 		cursor: pointer;
 	}
-	.wrapper .food li .right .fa-plus-circle{
+
+	.wrapper .food li .right .fa-plus-circle {
 		font-size: 4.5vw;
 		color: deepskyblue;
 		cursor: pointer;
 	}
-	.wrapper .food li .right p{
+
+	.wrapper .food li .right p {
 		font-size: 3.5vw;
 		color: darkslategray;
 	}
@@ -444,20 +476,38 @@
 		align-items: center;
 	}
 
-	/*不够起送费时的样式（只有背景色和鼠标样式的区别）*/
-	/*
-	.wrapper .cart .cart-right .cart-right-item{
+	/*********推荐商家按钮*********/
+	.wrapper .merchant-button {
 		width: 100%;
-		height: 100%;
-		background-color: #535356;
-		color: #fff;
-		font-size: 4.5vw;
-		font-weight: 700;
-		user-select: none;
+		box-sizing: border-box;
+		padding: 4vw 10vw 22vw;
+	}
+
+	.wrapper .merchant-button button {
+		width: 100%;
+		height: 15vw;
+		background-color: deepskyblue;
+		border-radius: 5vw;
 
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
+
+		color: white;
+		border: none;
+		outline: none;
 	}
- */
+
+	.wrapper .merchant-button button .button-left {
+		font-size: 3.5vw;
+		margin-left: 4vw;
+		align-items: center;
+		user-select: none;
+	}
+
+	.wrapper .merchant-button button .button-right {
+		font-size: 3.5vw;
+		margin-right: 4vw;
+		cursor: pointer;
+	}
 </style>

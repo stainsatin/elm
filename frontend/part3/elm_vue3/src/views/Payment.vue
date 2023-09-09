@@ -97,7 +97,7 @@
 				.then((response) => {
 					this.creditNum = response.data;
 					let money = Math.floor((this.orders.orderTotal));
-					this.queryConsumeCreditByPaying(this.user.userId, money, this.creditNum);
+					this.queryConsumeCreditByPaying(this.user.userId, money, this.creditNum);					
 				})
 				.catch((error) => {
 					console.error(error);
@@ -227,9 +227,6 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;

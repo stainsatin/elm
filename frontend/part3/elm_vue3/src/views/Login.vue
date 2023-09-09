@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<!-- header部分 -->
 		<header>
-			<p>用户登录</p>
+			<p>用户登陆</p>
 		</header>
 		<!-- 表单部分 -->
 		<ul class="form-box">
@@ -24,7 +24,7 @@
 			</li>
 		</ul>
 		<div class="button-login">
-			<button @click="login">登陆</button>
+			<button @click="login">登录</button>
 		</div>
 		<div class="button-register">
 			<button @click="register">去注册</button>
@@ -63,6 +63,7 @@
 					password: this.password
 				})).then(response => {
 					let user = response.data;
+					console.log('user',user);
 					if (user == null) {
 						alert('用户名或密码不正确！');
 					} else {
@@ -90,9 +91,6 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;

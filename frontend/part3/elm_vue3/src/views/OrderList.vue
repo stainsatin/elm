@@ -105,13 +105,11 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;
 	}
+
 
 	/****************** header部分 ******************/
 	.wrapper header {
@@ -145,9 +143,11 @@
 	.wrapper .unpaid-order {
 		width: 100%;
 	}
+
 	.wrapper .unpaid-order li {
 		width: 100%;
 	}
+
 	.wrapper .unpaid-order li .order-info {
 		box-sizing: border-box;
 		padding: 2vw 4vw;
@@ -157,9 +157,11 @@
 		justify-content: space-between;
 		align-items: center;
 	}
+
 	.wrapper .unpaid-order li .order-info .order-info-right {
 		display: flex;
 	}
+
 	.wrapper .unpaid-order li .order-info .order-info-right .order-info-right-icon {
 		background-color: #f90;
 		color: #fff;
@@ -168,9 +170,11 @@
 		user-select: none;
 		cursor: pointer;
 	}
+
 	.wrapper .unpaid-order li .order-detailet {
 		width: 100%;
 	}
+
 	.wrapper .unpaid-order li .order-detailet li {
 		width: 100%;
 		box-sizing: border-box;
@@ -181,14 +185,15 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-	
 	.wrapper .paid-order {
 		width: 100%;
-		padding-bottom: 20vw;
+		margin-bottom: 20vw;
 	}
+	
 	.wrapper .paid-order li {
 		width: 100%;
 	}
+	
 	.wrapper .paid-order li .order-info {
 		box-sizing: border-box;
 		padding: 2vw 4vw;
@@ -198,9 +203,11 @@
 		justify-content: space-between;
 		align-items: center;
 	}
+	
 	.wrapper .paid-order li .order-info .order-info-right {
 		display: flex;
 	}
+	
 	.wrapper .paid-order li .order-info .order-info-right .order-info-right-icon {
 		background-color: #f90;
 		color: #fff;
@@ -209,9 +216,11 @@
 		user-select: none;
 		cursor: pointer;
 	}
+	
 	.wrapper .paid-order li .order-detailet {
 		width: 100%;
 	}
+	
 	.wrapper .paid-order li .order-detailet li {
 		width: 100%;
 		box-sizing: border-box;

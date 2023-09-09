@@ -84,9 +84,6 @@
 </script>
 
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;
@@ -97,7 +94,7 @@
 	.wrapper header {
 		width: 100%;
 		height: 12vw;
-		background-color: #0097FF;
+		background-color: deepskyblue;
 		color: #fff;
 		font-size: 4.8vw;
 		position: fixed;
