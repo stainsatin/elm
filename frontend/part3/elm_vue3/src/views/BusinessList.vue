@@ -41,10 +41,11 @@
 			this.user = this.$getSessionStorage('user');
 
 			//根据orderTypeId查询商家信息
-			this.$axios.post('BusinessController/listBusinessByOrderTypeId', this.$qs.stringify({
+			this.$axios.post('BusinessController/listBusinessByOrderTypeIdByHot', this.$qs.stringify({
 				orderTypeId: this.orderTypeId
 			})).then(response => {
 				this.businessArr = response.data;
+				// console.log(response.data);
 				//判断是否登录
 				if (this.user != null) {
 					this.listCart();
@@ -77,7 +78,7 @@
 					let cartArr = response.data;
 					//遍历所有食品列表
 					for (let businessItem of this.businessArr) {
-						businessItem.quantity = 0;
+						businessItem.quantity = 0;//某个商家
 						for (let cartItem of cartArr) {
 							if (cartItem.businessId == businessItem.businessId) {
 								businessItem.quantity += cartItem.quantity;
@@ -101,12 +102,10 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/********* 总容器 *********/
 	.wrapper {
 		width: 100%;
+		background-color: #f2f2f2;
 	}
 
 	/********* 头部 *********/

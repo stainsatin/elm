@@ -2,94 +2,13 @@
 	<div class="wrapper">
 		<!-- header部分 -->
 		<header>
-			<p>流水记录</p>
+			<p>积分明细</p>
 		</header>
 		<!-- 订单列表部分 -->
-		<h3>支付记录：</h3>
-
-		<ul class="order">
-			<li v-for="item in transactionArr" >
-				<div class="order-info" v-if="item.type == 2">
-					<p>
-						{{ item.businessName }}
-						<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
-					</p>
-
-					<div class="order-info-right">
-						<p>&#165;{{ item.money }}</p>
-					</div>
-				</div>
-
-				<ul class="order-detailet" v-show="item.isShowDetailet">
-					<!-- time -->
-					<li>
-						<p>下单时间</p>
-						<p>{{ item.time }}</p>
-					</li>
-
-					<!-- id -->
-					<li>
-						<p>交易流水ID</p>
-						<p>{{ item.transactionId }}</p>
-					</li>
-				</ul>
-			</li>
-		</ul>
-
-		<h3>充值记录：</h3>
-
-		<ul class="order">
-			<li v-for="item in transactionArr" >
-				<div class="order-info" v-if="item.type == 0">
-					<p>&#165;{{ item.money }}</p>
-					<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
-				</div>
-
-				<ul class="order-detailet" v-show="item.isShowDetailet">
-					<!-- time -->
-					<li>
-						<p>充值时间</p>
-						<p>{{ item.time }}</p>
-					</li>
-
-					<!-- id -->
-					<li>
-						<p>交易流水ID</p>
-						<p>{{ item.transactionId }}</p>
-					</li>
-				</ul>
-			</li>
-		</ul>
-
-		<h3>提现记录：</h3>
-
-		<ul class="order">
-			<li v-for="item in transactionArr" >
-				<div class="order-info" v-if="item.type == 1">
-					<p>&#165;{{ item.money }}</p>
-					<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
-				</div>
-
-				<ul class="order-detailet" v-show="item.isShowDetailet">
-					<!-- time -->
-					<li>
-						<p>提现时间</p>
-						<p>{{ item.time }}</p>
-					</li>
-
-					<!-- id -->
-					<li>
-						<p>交易流水ID</p>
-						<p>{{ item.transactionId }}</p>
-					</li>
-				</ul>
-			</li>
-		</ul>
-
 		<h3>获取积分记录：</h3>
 
 		<ul class="order">
-			<li v-for="item in creditArr" >
+			<li v-for="item in creditArr">
 				<div class="order-info" v-if="item.credit > 0">
 					<p>积分{{ item.credit }}</p>
 					<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
@@ -124,7 +43,7 @@
 		<h3>消费积分记录：</h3>
 
 		<ul class="order">
-			<li v-for="item in creditArr" >
+			<li v-for="item in creditArr">
 				<div class="order-info" v-if="item.credit < 0">
 					<p>积分{{ -1*item.credit }}</p>
 					<i class="fa fa-caret-down" @click="detailetShow(item)"></i>
@@ -184,7 +103,7 @@
 				)
 				.then((response) => {
 					let result = response.data;
-					console.log("array",result);
+					console.log("array", result);
 					for (let orders of result) {
 						orders.isShowDetailet = false;
 						if (orders.type == 2) {
@@ -196,7 +115,7 @@
 						}
 					}
 					this.transactionArr = result;
-					
+
 				})
 				.catch((error) => {
 					console.error(error);
@@ -249,9 +168,6 @@
 	};
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;
@@ -262,7 +178,7 @@
 	.wrapper header {
 		width: 100%;
 		height: 12vw;
-		background-color: #0097ff;
+		background-color: deepskyblue;
 		color: #fff;
 		font-size: 4.8vw;
 		position: fixed;
@@ -330,7 +246,13 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-	.wrapper .bottom{
-		padding-bottom: 20vw;
-	}
+	.wrapper .bottom {
+	margin-bottom: 20vw;
+	  margin-top: 12vw;
+	  box-sizing: border-box;
+	  padding: 4vw;
+	  font-size: 4vw;
+	  font-weight: 300;
+	  color: #999;
+	 }
 </style>

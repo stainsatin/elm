@@ -15,7 +15,7 @@
 					</p>
 					<div class="order-info-right">
 						<p>&#165;{{item.orderTotal}}</p>
-						<div class="order-info-right-icon">去支付</div>
+						<div class="order-info-right-icon" @click="toPay(item.orderId)">去支付</div>
 					</div>
 				</div>
 				<ul class="order-detailet" v-show="item.isShowDetailet">
@@ -76,10 +76,12 @@
 				userId: this.user.userId
 			})).then(response => {
 				let result = response.data;
+				//console.log(result);
 				for (let orders of result) {
 					orders.isShowDetailet = false;
 				}
 				this.orderArr = result;
+				console.log(result);
 			}).catch(error => {
 				console.error(error);
 			});
@@ -87,6 +89,14 @@
 		methods: {
 			detailetShow(orders) {
 				orders.isShowDetailet = !orders.isShowDetailet;
+			},
+			toPay(orderId){
+				this.$router.push({
+					path: '/payment',
+					query: {
+						orderId: orderId
+					}
+				});
 			}
 		},
 		components: {
@@ -95,13 +105,11 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;
 	}
+
 
 	/****************** header部分 ******************/
 	.wrapper header {
@@ -135,21 +143,25 @@
 	.wrapper .unpaid-order {
 		width: 100%;
 	}
+
 	.wrapper .unpaid-order li {
 		width: 100%;
 	}
+
 	.wrapper .unpaid-order li .order-info {
 		box-sizing: border-box;
 		padding: 2vw 4vw;
-		font-size: 4vw;
+		font-size: 3.5vw;
 		color: #666;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
+
 	.wrapper .unpaid-order li .order-info .order-info-right {
 		display: flex;
 	}
+
 	.wrapper .unpaid-order li .order-info .order-info-right .order-info-right-icon {
 		background-color: #f90;
 		color: #fff;
@@ -158,9 +170,11 @@
 		user-select: none;
 		cursor: pointer;
 	}
+
 	.wrapper .unpaid-order li .order-detailet {
 		width: 100%;
 	}
+
 	.wrapper .unpaid-order li .order-detailet li {
 		width: 100%;
 		box-sizing: border-box;
@@ -171,14 +185,15 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-	
 	.wrapper .paid-order {
 		width: 100%;
-		padding-bottom: 20vw;
+		margin-bottom: 20vw;
 	}
+	
 	.wrapper .paid-order li {
 		width: 100%;
 	}
+	
 	.wrapper .paid-order li .order-info {
 		box-sizing: border-box;
 		padding: 2vw 4vw;
@@ -188,9 +203,11 @@
 		justify-content: space-between;
 		align-items: center;
 	}
+	
 	.wrapper .paid-order li .order-info .order-info-right {
 		display: flex;
 	}
+	
 	.wrapper .paid-order li .order-info .order-info-right .order-info-right-icon {
 		background-color: #f90;
 		color: #fff;
@@ -199,15 +216,17 @@
 		user-select: none;
 		cursor: pointer;
 	}
+	
 	.wrapper .paid-order li .order-detailet {
 		width: 100%;
 	}
+	
 	.wrapper .paid-order li .order-detailet li {
 		width: 100%;
 		box-sizing: border-box;
 		padding: 1vw 4vw;
 		color: #666;
-		font-size: 3vw;
+		font-size: 2.5vw;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

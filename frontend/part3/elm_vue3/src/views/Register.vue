@@ -102,6 +102,7 @@
 				this.$axios.post('UserController/saveUser', this.$qs.stringify(
 					this.user
 				)).then(response => {
+					// console.log(response.data);
 					if (response.data > 0) {
 						alert('注册成功！');
 						this.$router.push('/login');
@@ -116,9 +117,6 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;

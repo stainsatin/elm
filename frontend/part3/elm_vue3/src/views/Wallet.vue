@@ -34,7 +34,7 @@
       <button @click="withdrawMoney">提现</button>
     </div>
     <div class="button-register">
-      <button @click="router2tans">流水记录</button>
+      <button @click="router2tans">积分明细</button>
     </div>
     <div class="button-login" v-if="creditEarningBySign!=0">
       <button @click="sign(user.userId,creditEarningBySign)">今天签到可以拿{{creditEarningBySign}}积分</button>
@@ -57,7 +57,7 @@ export default {
       creditNum: 0,
       creditEarningBySign:0,
       creditEarningByRecharge:0,
-      balance: null,
+      balance: 0,
       userId: "",
       money: "",
       reg: /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/,
@@ -82,7 +82,58 @@ export default {
     this.queryEarningCreditBySign(this.user.userId);
   },
   methods: {
-    queryEarnCreditByRecharge(userId,money){
+	queryBalance() {  //查询余额
+	  // console.log("查询余额",this.user);
+	  if (this.user.walletId == null) {
+	    this.balance = null;
+	  } else {
+	    this.$axios
+	      .post(
+	        "VirtualWalletController/queryBalance",
+	        this.$qs.stringify({
+	          walletId: this.user.walletId,
+	        })
+	      )
+	      .then((response) => {
+	        this.balance = response.data;
+	      })
+	      .catch((error) => {
+	        console.error(error);
+	      });
+	  }
+	},
+	queryAvailableCredit(userId) {  //查询可用积分
+	  this.$axios
+	    .post(
+	      "CreditController/queryAvailableCredit",
+	      this.$qs.stringify({
+	        userId: userId,
+	      })
+	    )
+	    .then((response) => {
+	      this.creditNum=response.data;
+	    })
+	    .catch((error) => {
+	      console.error(error);
+	    });
+	
+	},
+	queryEarningCreditBySign(userId){ //查询签到积分
+	  this.$axios
+	    .post(
+	      "CreditController/queryEarningCreditBySign",
+	      this.$qs.stringify({
+	        userId: userId,
+	      })
+	    )
+	    .then((response) => {
+	      this.creditEarningBySign=response.data;
+	    })
+	    .catch((error) => {
+	      console.error(error);
+	    });
+	},
+    queryEarnCreditByRecharge(userId,money){ //查询充值所获积分
       money=Math.floor((money));
       this.$axios
         .post(
@@ -99,22 +150,7 @@ export default {
           console.error(error);
         });
     },
-    queryEarningCreditBySign(userId){
-      this.$axios
-        .post(
-          "CreditController/queryEarningCreditBySign",
-          this.$qs.stringify({
-            userId: userId,
-          })
-        )
-        .then((response) => {
-          this.creditEarningBySign=response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
-    sign(userId,creditNum){
+    sign(userId,creditNum){   //签到后更新积分
       this.$axios
         .post(
           "CreditController/earnCreditBySign",
@@ -133,23 +169,7 @@ export default {
           console.error(error);
         });
     },
-    queryAvailableCredit(userId) {
-      this.$axios
-        .post(
-          "CreditController/queryAvailableCredit",
-          this.$qs.stringify({
-            userId: userId,
-          })
-        )
-        .then((response) => {
-          this.creditNum=response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-
-    },
-    createWallet() {
+    createWallet() { //创建钱包
       this.$axios
         .post(
           "VirtualWalletController/userCreateVirtualWallet",
@@ -162,7 +182,7 @@ export default {
           this.$setSessionStorage("user", this.user);
           // 钱包创建成功，更新余额
           // console.log("after create wallet")
-          // console.log(this.user.walletId)
+          // console.log("创建钱包",this.user)
           this.$axios
             .post(
               "VirtualWalletController/queryBalance",
@@ -181,14 +201,14 @@ export default {
           console.error(error);
         });
     },
-    router2tans() {
+    router2tans() { //查看流水
       if (this.user.walletId == null || this.balance == null) {
         alert("您未开通虚拟钱包!请开通!");
       } else {
         this.$router.push({ path: "/transaction" });
       }
     },
-    recharge() {
+    recharge() {  //充值
       if (!this.reg.test(this.money)) {
         alert("充值金额错误!");
       } else if (this.user.walletId == null || this.balance == null) {
@@ -244,7 +264,7 @@ export default {
         
       }
     },
-    withdrawMoney() {
+    withdrawMoney() {  //提现
       if (!this.reg.test(this.money)) {
         alert("提现金额错误!");
       } else if (this.user.walletId == null || this.balance == null) {
@@ -273,27 +293,7 @@ export default {
             console.error(error);
           });
       }
-    },
-    queryBalance() {
-      // console.log(this.user.walletId)
-      if (this.user.walletId == null) {
-        this.balance = null;
-      } else {
-        this.$axios
-          .post(
-            "VirtualWalletController/queryBalance",
-            this.$qs.stringify({
-              walletId: this.user.walletId,
-            })
-          )
-          .then((response) => {
-            this.balance = response.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
-    },
+    }
   },
   components: {
     Footer,
@@ -301,9 +301,6 @@ export default {
 };
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 /****************** 总容器 ******************/
 .wrapper {
   width: 100%;

@@ -113,13 +113,11 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/*************** 总容器 ***************/
 	.wrapper {
 		width: 100%;
 		height: 100%;
+		background-color: #F5F5F5;
 	}
 
 	/*************** header ***************/

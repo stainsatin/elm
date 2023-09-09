@@ -19,9 +19,6 @@
 			<li @click="toUserAddress">
 				<button><i class="fa fa-map-marker"></i>我的地址</button>
 			</li>
-			<li >
-				<button><i class="fa fa-info"></i>我的积分</button>
-			</li>
 			<li @click="toLogin">
 				<button><i class="fa fa-info"></i>退出登录</button>
 			</li>
@@ -79,9 +76,6 @@
 </script>
 
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;

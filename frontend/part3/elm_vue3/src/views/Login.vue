@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<!-- header部分 -->
 		<header>
-			<p>用户登录</p>
+			<p>用户登陆</p>
 		</header>
 		<!-- 表单部分 -->
 		<ul class="form-box">
@@ -24,7 +24,7 @@
 			</li>
 		</ul>
 		<div class="button-login">
-			<button @click="login">登陆</button>
+			<button @click="login">登录</button>
 		</div>
 		<div class="button-register">
 			<button @click="register">去注册</button>
@@ -32,14 +32,19 @@
 	</div>
 </template>
 <script>
-
 	export default {
 		name: 'Login',
 		data() {
 			return {
 				userId: '',
-				password: ''
+				password: '',
+				frompath: ''
 			}
+		},
+		beforeRouteEnter(to, from, next) {
+			next(vm => {
+				vm.frompath = from.path;
+			})
 		},
 		methods: {
 			login() {
@@ -58,13 +63,20 @@
 					password: this.password
 				})).then(response => {
 					let user = response.data;
+					console.log('user',user);
 					if (user == null) {
 						alert('用户名或密码不正确！');
 					} else {
 						//sessionstorage有容量限制，为了防止数据溢出，所以不将userImg数据放入session中						
 						user.userImg = '';
 						this.$setSessionStorage('user', user);
-						this.$router.go(-1);
+						if (this.frompath == '/register') {
+							this.$router.push({
+								path: "/index"
+							})
+						} else {
+							this.$router.go(-1);
+						}
 					}
 				}).catch(error => {
 					console.error(error);
@@ -79,9 +91,6 @@
 	}
 </script>
 <style scoped>
-	body{
-		background-color: #f2f2f2;
-	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;
