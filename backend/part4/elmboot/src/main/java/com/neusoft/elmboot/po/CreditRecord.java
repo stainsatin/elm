@@ -1,11 +1,11 @@
 package com.neusoft.elmboot.po;
 
 public class CreditRecord {
-    private int id;
+    private Integer id;
     private String userId;
-    private int ruleCode;
+    private Integer ruleCode;
     private Integer eventId;
-    private int credit;
+    private Integer credit;
     private String createTime;
     private String expiredTime;
 
