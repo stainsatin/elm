@@ -1,8 +1,10 @@
+body{
+	background-color: #f2f2f2;
+}
+
 /****************** 总容器 ******************/
 .wrapper {
 	width: 100%;
-	height: 100%;
-	background-color: #f2f2f2;
 }
 
 /****************** header ******************/
@@ -58,7 +60,7 @@
 .wrapper .save-button{
 	width: 100%;
 	box-sizing: border-box;
-	padding: 4vw 10vw 0;
+	padding: 4vw 10vw 20vw;
 }
 .wrapper .save-button button{
 	width: 100%;

@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<!-- header部分 -->
 		<header>
-			<p>用户登陆</p>
+			<p>用户登录</p>
 		</header>
 		<!-- 表单部分 -->
 		<ul class="form-box">
@@ -79,6 +79,9 @@
 	}
 </script>
 <style scoped>
+	body{
+		background-color: #f2f2f2;
+	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;

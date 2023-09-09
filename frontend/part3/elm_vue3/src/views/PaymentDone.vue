@@ -27,6 +27,9 @@
 </script>
 
 <style>
+	body{
+		background-color: #f2f2f2;
+	}
 	/********* 总容器 *********/
 	.wrapper {
 		width: 100%;

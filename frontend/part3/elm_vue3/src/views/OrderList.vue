@@ -6,7 +6,7 @@
 		</header>
 		<!-- 订单列表部分 -->
 		<h3>未支付订单信息：</h3>
-		<ul class="order">
+		<ul class="unpaid-order">
 			<li v-for="item in orderArr" >
 				<div class="order-info" v-if="item.orderState==0">
 					<p>
@@ -31,7 +31,7 @@
 			</li>
 		</ul>
 		<h3>已支付订单信息：</h3>
-		<ul class="order">
+		<ul class="paid-order">
 			<li v-for="item in orderArr"> 
 				<div class="order-info" v-if="item.orderState==1">
 					<p>
@@ -95,11 +95,13 @@
 	}
 </script>
 <style scoped>
+	body{
+		background-color: #f2f2f2;
+	}
 	/****************** 总容器 ******************/
 	.wrapper {
 		width: 100%;
 	}
-
 
 	/****************** header部分 ******************/
 	.wrapper header {
@@ -130,15 +132,13 @@
 		color: #999;
 	}
 
-	.wrapper .order {
+	.wrapper .unpaid-order {
 		width: 100%;
 	}
-
-	.wrapper .order li {
+	.wrapper .unpaid-order li {
 		width: 100%;
 	}
-
-	.wrapper .order li .order-info {
+	.wrapper .unpaid-order li .order-info {
 		box-sizing: border-box;
 		padding: 2vw 4vw;
 		font-size: 4vw;
@@ -147,12 +147,10 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-
-	.wrapper .order li .order-info .order-info-right {
+	.wrapper .unpaid-order li .order-info .order-info-right {
 		display: flex;
 	}
-
-	.wrapper .order li .order-info .order-info-right .order-info-right-icon {
+	.wrapper .unpaid-order li .order-info .order-info-right .order-info-right-icon {
 		background-color: #f90;
 		color: #fff;
 		border-radius: 3px;
@@ -160,12 +158,51 @@
 		user-select: none;
 		cursor: pointer;
 	}
-
-	.wrapper .order li .order-detailet {
+	.wrapper .unpaid-order li .order-detailet {
 		width: 100%;
 	}
-
-	.wrapper .order li .order-detailet li {
+	.wrapper .unpaid-order li .order-detailet li {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 1vw 4vw;
+		color: #666;
+		font-size: 2.5vw;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.wrapper .paid-order {
+		width: 100%;
+		padding-bottom: 20vw;
+	}
+	.wrapper .paid-order li {
+		width: 100%;
+	}
+	.wrapper .paid-order li .order-info {
+		box-sizing: border-box;
+		padding: 2vw 4vw;
+		font-size: 3.5vw;
+		color: #666;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.wrapper .paid-order li .order-info .order-info-right {
+		display: flex;
+	}
+	.wrapper .paid-order li .order-info .order-info-right .order-info-right-icon {
+		background-color: #f90;
+		color: #fff;
+		border-radius: 3px;
+		margin-left: 2vw;
+		user-select: none;
+		cursor: pointer;
+	}
+	.wrapper .paid-order li .order-detailet {
+		width: 100%;
+	}
+	.wrapper .paid-order li .order-detailet li {
 		width: 100%;
 		box-sizing: border-box;
 		padding: 1vw 4vw;
