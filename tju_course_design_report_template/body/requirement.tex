@@ -95,8 +95,9 @@
     2 & 搜索框 & 用户搜索商家名称 & 输入商家名称可根据商家名称查找商家。 \\
     3 & 商家分类 & 用户选择商家分类 & 点击跳转指定商家分类。 \\
     4 & 首页 & 刷新页面 & 点击跳转至首页。 \\
-    5 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
-    6 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    5 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    6 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    7 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -116,9 +117,10 @@
     序号 & 按钮名称 & 功能 & 功能规则 \\ 
     \midrule[1pt]
     1 & 商家信息 & 用户选择指定商家 & 点击跳转至指定商家信息页面。 \\
-    2 & 首页 & 刷新页面 & 点击跳转至首页。 \\
-    3 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
-    4 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    2 & 首页 & 进入首页 & 点击跳转至首页。 \\
+    3 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    4 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    5 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -207,11 +209,12 @@
     序号 & 按钮名称 & 功能 & 功能规则 \\ 
     \midrule[1pt]
     1 & 箭头 & 用户展开订单明细 & 点击展开已生成的订单明细，包括菜品的数量和价格。 \\
-    2 & 选择支付方式 & 用户选择第三方的支付方式 & 点击选择任一第三方支付方式。 \\
+    2 & 选择是否使用积分 & 用户选择是否使用积分支付订单 & 点击选择是否花费积分来支付订单。 \\
     3 & 确认支付 & 用户支付订单 & 点击完成点餐流程。 \\
     4 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    5 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
-    6 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    5 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    6 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    7 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -250,14 +253,76 @@
     \vspace{\baselineskip}
 \end{figure}
 
+\subsection{钱包}
+此页面为用户登录的页面。用户需要输入手机号和密码，若两者正确无误则登陆成功并跳转至上一个页面，否则服务器将会提示信息错误。
+\subsubsection{界面设计}
+本软件的用户登录界面设计如图~\ref{fig:wallet}~所示。
+\subsubsection{功能按钮}
+本软件用户登录功能按钮如表~\ref{tab:table8}~所示。
+\begin{table}[htbp]
+    \caption{饿了么外卖平台钱包功能按钮}\label{tab:table8}
+    \vspace{0.5em}\wuhao
+    \begin{tabularx}{\textwidth}{lllX}
+    \toprule[1.5pt]
+    序号 & 按钮名称 & 功能 & 功能规则 \\ 
+    \midrule[1pt]
+    1 & 充值 & 用户充值 & 点击向钱包余额增加所充值的数额。 \\
+    2 & 积分明细 & 进入积分明细 & 点击跳转至积分明细页面。 \\
+    3 & 今天签到可以拿 10 积分 & 用户签到 & 点击向积分增加 10。 \\
+    4 & 首页 & 进入首页 & 点击跳转至首页。 \\
+    5 & 钱包 & 刷新页面 & 点击跳转至钱包页面。 \\
+    6 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    7 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+\bottomrule[1.5pt]
+\end{tabularx}
+\vspace{\baselineskip}
+\end{table}
+
+\subsection{积分明细}
+此页面为用户注册的页面。用户需要输入手机号、两次相同的密码、用户姓名以及选择性别。若手机号、密码和用户名都符合要求，则注册成功并跳转至登陆页面，否则服务器将会提示信息错误。
+\subsubsection{界面设计}
+本软件的用户注册界面设计如图~\ref{fig:history}~所示。
+\subsubsection{功能按钮}
+本软件用户注册功能按钮如表~\ref{tab:table9}~所示。
+\begin{table}[htbp]
+    \caption{饿了么外卖平台积分明细功能按钮}\label{tab:table9}
+    \vspace{0.5em}\wuhao
+    \begin{tabularx}{\textwidth}{lllX}
+    \toprule[1.5pt]
+    序号 & 按钮名称 & 功能 & 功能规则 \\ 
+    \midrule[1pt]
+    1 & 箭头 & 用户展开积分记录明细 & 点击展开获取积分或消费积分的记录明细。 \\
+    2 & 首页 & 进入首页 & 点击跳转至首页。 \\
+    3 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    4 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    5 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+\bottomrule[1.5pt]
+\end{tabularx}
+\vspace{\baselineskip}
+\end{table}
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{wallet}
+    \caption{钱包界面设计}\label{fig:wallet}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{history}
+    \caption{积分明细界面设计}\label{fig:history}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
+
 \subsection{用户登录}
 此页面为用户登录的页面。用户需要输入手机号和密码，若两者正确无误则登陆成功并跳转至上一个页面，否则服务器将会提示信息错误。
 \subsubsection{界面设计}
 本软件的用户登录界面设计如图~\ref{fig:login}~所示。
 \subsubsection{功能按钮}
-本软件用户登录功能按钮如表~\ref{tab:table7}~所示。
+本软件用户登录功能按钮如表~\ref{tab:table10}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台用户登录功能按钮}\label{tab:table7}
+    \caption{饿了么外卖平台用户登录功能按钮}\label{tab:table10}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -266,8 +331,9 @@
     1 & 登录 & 用户登录 & 若手登陆成功则跳转至上一个页面，否则服务器将会显示错误提示。 \\
     2 & 去注册 & 用户注册 & 点击跳转至用户注册页面。 \\
     3 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    4 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
-    5 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    4 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    5 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    6 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -278,9 +344,9 @@
 \subsubsection{界面设计}
 本软件的用户注册界面设计如图~\ref{fig:register}~所示。
 \subsubsection{功能按钮}
-本软件用户注册功能按钮如表~\ref{tab:table8}~所示。
+本软件用户注册功能按钮如表~\ref{tab:table11}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台用户注册功能按钮}\label{tab:table8}
+    \caption{饿了么外卖平台用户注册功能按钮}\label{tab:table11}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -289,8 +355,9 @@
     1 & 性别 & 用户选择性别 & 点击选择任一性别。 \\
     2 & 注册 & 用户注册 & 若注册成功则跳转至登陆页面，否则服务器将显示错误提示。 \\
     3 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    4 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
-    5 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    4 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    5 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    6 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -315,9 +382,9 @@
 \subsubsection{界面设计}
 本软件的历史订单界面设计如图~\ref{fig:orderList}~所示。
 \subsubsection{功能按钮}
-本软件历史订单功能按钮如表~\ref{tab:table9}~所示。
+本软件历史订单功能按钮如表~\ref{tab:table12}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台历史订单功能按钮}\label{tab:table9}
+    \caption{饿了么外卖平台历史订单功能按钮}\label{tab:table12}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -326,8 +393,9 @@
     1 & 箭头 & 用户展开订单明细 & 点击展开已生成的订单明细，包括菜品的数量和价格。 \\
     2 & 去支付 & 用户支付未支付的订单 & 点击跳转至未支付的订单页面。 \\
     3 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    4 & 订单 & 刷新页面 & 点击跳转至历史订单页面。 \\
-    5 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    4 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    5 & 订单 & 刷新页面 & 点击跳转至历史订单页面。 \\
+    6 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -338,9 +406,9 @@
 \subsubsection{界面设计}
 本软件的地址管理界面设计如图~\ref{fig:userAddress}~所示。
 \subsubsection{功能按钮}
-本软件地址管理功能按钮如表~\ref{tab:table10}~所示。
+本软件地址管理功能按钮如表~\ref{tab:table13}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台地址管理功能按钮}\label{tab:table10}
+    \caption{饿了么外卖平台地址管理功能按钮}\label{tab:table13}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -351,8 +419,9 @@
     3 & 打叉图标 & 用户删除该送货地址 & 点击删除该送货地址，地址管理页面减少该送货地址。 \\
     4 & 新增收货地址 & 用户添加送货地址 & 点击跳转至新增送货地址页面。 \\
     5 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    6 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
-    7 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    6 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    7 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    8 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -377,9 +446,9 @@
 \subsubsection{界面设计}
 本软件的新增送货地址界面设计如图~\ref{fig:addUserAddress}~所示。
 \subsubsection{功能按钮}
-本软件新增送货地址功能按钮如表~\ref{tab:table11}~所示。
+本软件新增送货地址功能按钮如表~\ref{tab:table14}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台新增送货地址功能按钮}\label{tab:table11}
+    \caption{饿了么外卖平台新增送货地址功能按钮}\label{tab:table14}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -388,8 +457,9 @@
     1 & 性别 & 用户选择性别 & 点击选择任一性别。 \\
     2 & 保存 & 用户保存当前送货地址 & 点击跳转至地址管理页面。 \\
     3 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    4 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
-    5 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    4 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    5 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    6 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -400,9 +470,9 @@
 \subsubsection{界面设计}
 本软件的编辑送货地址界面设计如图~\ref{fig:editUserAddress}~所示。
 \subsubsection{功能按钮}
-本软件编辑送货地址功能按钮如表~\ref{tab:table12}~所示。
+本软件编辑送货地址功能按钮如表~\ref{tab:table15}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台编辑送货地址功能按钮}\label{tab:table12}
+    \caption{饿了么外卖平台编辑送货地址功能按钮}\label{tab:table15}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -411,8 +481,9 @@
     1 & 性别 & 用户选择性别 & 点击选择任一性别。 \\
     2 & 保存 & 用户保存当前送货地址 & 点击跳转至地址管理页面。 \\
     3 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    4 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
-    5 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
+    4 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    5 & 订单 & 进入历史订单 & 点击跳转至历史订单页面。 \\
+    6 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -437,9 +508,9 @@
 \subsubsection{界面设计}
 本软件的个人信息界面设计如图~\ref{fig:profile}~所示。
 \subsubsection{功能按钮}
-本软件编辑送货地址功能按钮如表~\ref{tab:table13}~所示。
+本软件编辑送货地址功能按钮如表~\ref{tab:table16}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台编辑送货地址功能按钮}\label{tab:table13}
+    \caption{饿了么外卖平台编辑送货地址功能按钮}\label{tab:table16}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -450,8 +521,9 @@
     3 & 收货地址 & 进入地址管理页面 & 点击跳转至地址管理页面。 \\
     4 & 退出登录 & 进入首页 & 点击退出登录，跳转至首页。 \\
     5 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    6 & 订单 & 进入历史订单页面 & 点击跳转至历史订单页面。 \\
-    7 & 我的 & 刷新页面 & 点击跳转至用户信息页面。 \\
+    6 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    7 & 订单 & 进入历史订单页面 & 点击跳转至历史订单页面。 \\
+    8 & 我的 & 刷新页面 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -462,9 +534,9 @@
 \subsubsection{界面设计}
 本软件的更新用户名界面设计如图~\ref{fig:updateUserName}~所示。
 \subsubsection{功能按钮}
-本软件更新用户名功能按钮如表~\ref{tab:table14}~所示。
+本软件更新用户名功能按钮如表~\ref{tab:table17}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台更新用户名功能按钮}\label{tab:table14}
+    \caption{饿了么外卖平台更新用户名功能按钮}\label{tab:table17}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -472,8 +544,9 @@
     \midrule[1pt]
     1 & 保存 & 用户保存当前用户名 & 点击跳转至个人信息页面。 \\
     2 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    3 & 订单 & 进入历史订单页面 & 点击跳转至历史订单页面。 \\
-    4 & 我的 & 刷新页面 & 点击跳转至用户信息页面。 \\
+    3 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    4 & 订单 & 进入历史订单页面 & 点击跳转至历史订单页面。 \\
+    5 & 我的 & 刷新页面 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
@@ -484,9 +557,9 @@
 \subsubsection{界面设计}
 本软件的更新密码界面设计如图~\ref{fig:updateUserPassword}~所示。
 \subsubsection{功能按钮}
-本软件更新密码功能按钮如表~\ref{tab:table15}~所示。
+本软件更新密码功能按钮如表~\ref{tab:table18}~所示。
 \begin{table}[htbp]
-    \caption{饿了么外卖平台更新密码功能按钮}\label{tab:table15}
+    \caption{饿了么外卖平台更新密码功能按钮}\label{tab:table18}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\textwidth}{lllX}
     \toprule[1.5pt]
@@ -494,8 +567,9 @@
     \midrule[1pt]
     1 & 保存 & 用户保存当前密码 & 点击跳转至个人信息页面。 \\
     2 & 首页 & 进入首页 & 点击跳转至首页。 \\
-    3 & 订单 & 进入历史订单页面 & 点击跳转至历史订单页面。 \\
-    4 & 我的 & 刷新页面 & 点击跳转至用户信息页面。 \\
+    3 & 钱包 & 进入钱包 & 点击跳转至钱包页面。 \\
+    4 & 订单 & 进入历史订单页面 & 点击跳转至历史订单页面。 \\
+    5 & 我的 & 进入用户信息 & 点击跳转至用户信息页面。 \\
 \bottomrule[1.5pt]
 \end{tabularx}
 \vspace{\baselineskip}
