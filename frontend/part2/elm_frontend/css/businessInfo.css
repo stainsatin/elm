@@ -41,7 +41,7 @@ body{
 	width: 35vw;
 	border-radius: 6vw;
 }
-.wrapper .merchant-info{
+.wrapper .merchant-detail{
 	width: 100%;
 	height: 20vw;
 	display: flex;
@@ -49,12 +49,12 @@ body{
 	justify-content: center;
 	align-items: center;
 }
-.wrapper .merchant-info h1{
+.wrapper .merchant-detail h1{
 	color: black;
 	font-size: 5.5vw;
 	margin-bottom: 1.5vw;
 }
-.wrapper .merchant-info p{
+.wrapper .merchant-detail p{
 	color: darkslategray;
 	font-size: 3vw;
 	margin-bottom: 1.5vw;
@@ -63,7 +63,6 @@ body{
 /********* 商品 *********/
 .wrapper .food{
 	width: 100%;
-	padding-bottom: 20vw;
 }
 .wrapper .food li{
 	padding: 3vw;
@@ -115,6 +114,158 @@ body{
 }
 .wrapper .food li .right p{
 	font-size: 3.5vw;
+	color: darkslategray;
+}
+
+/*********推荐商家*********/
+.wrapper .recommend-merchant{
+	width: 100%;
+	height: 10vw;
+	margin-top: 2vw;
+	
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	
+	font-size: 4vw;
+	color: darkslategrey;
+}
+.wrapper .recommend-merchant p{
+	margin: 0 4vw 0 4vw;
+}
+
+/*********推荐商家列表*********/
+.wrapper .merchant{
+	width: 100%;
+	padding-bottom: 20vw;
+}
+.wrapper .merchant li{
+	display:flex;
+	padding: 2.5vw;
+	margin: 2vw;
+	background-color: white;
+	user-select:none;
+	cursor:pointer;
+	border-radius: 5vw;
+}
+.wrapper .merchant li img{
+	width: 20vw;
+	height: 20vw;
+	border-radius: 6vw;
+}
+.wrapper .merchant li .merchant-info{
+	width: 100%;
+	margin-left: 2.5vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-h{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 2vw;
+	color: darkslategrey;
+}
+.wrapper .merchant li .merchant-info .merchant-info-h h3{
+	font-size: 4vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-h .more-info{
+	background-color: gray;
+	color: white;
+	font-size: 4vw;
+	margin-right: 2vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1vw;
+	font-size: 3vw;
+	color: darkslategrey;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating .left{
+	display: flex;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating .left p{
+	margin-left: 1vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating .left .fa-star{
+	display: flex;
+	align-items: center;
+	font-size: 2.5vw;
+	color: gold;
+	margin-right: 0.5vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-rating .right{
+	display: flex;
+	background-color: deepskyblue;
+	color: white;
+	font-size: 2.8vw;
+	border-radius: 1vw;
+	padding: 0 0.6vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-delivery{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1vw;
+	font-size: 3vw;
+	color: darkslategrey;
+}
+.wrapper .merchant li .merchant-info .merchant-info-label{
+	display: flex;
+	align-items: center;
+	margin: 1vw 0 1vw 0;
+}
+.wrapper .merchant li .merchant-info .merchant-info-label p{
+	font-size: 2.8vw;
+	color: gray;
+	border: solid 1px gray;
+	border-radius: 1vw;
+	padding: 0 0.6vw;	
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.8vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .left{
+	display: flex;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .left .icon{
+	font-size: 3vw;
+	margin-right: 2vw;
+	color: white;
+	background-color: limegreen;
+	padding: 0 0.6vw;
+	border-radius: 1vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .left p{
+	font-size: 3vw;
+	color: darkslategray;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .right{
+	font-size: 3vw;
+	color: darkslategray;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion .right .fa-caret-down{
+	margin-left: 1vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion2{
+	display: flex;
+	align-items: center;
+	margin-bottom: 1.8vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion2{
+	display: flex;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion2 .icon{
+	font-size: 3vw;
+	margin-right: 2vw;
+	color: white;
+	background-color: indianred;
+	padding: 0 0.6vw;
+	border-radius: 1vw;
+}
+.wrapper .merchant li .merchant-info .merchant-info-promotion2 p{
+	font-size: 3vw;
 	color: darkslategray;
 }
 
