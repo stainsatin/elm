@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="积分修复了，把单例模式改成Mapper注入了">
+      <change beforePath="$PROJECT_DIR$/elmboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/CreditServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/CreditServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <list id="80ad86d6-a583-4b15-8ee5-3fc0a5b27001" name="不用提交" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="ae61f455ab4df461b770aff1afc900273b997c2a" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="2Us1AvpATx9VawbT3gaDSGJmtai" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="17" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../frontend/part3/elm_vue3" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot\controller" />
+      <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot" />
+      <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot\service\impl" />
+      <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot\service" />
+      <recent name="D:\program\elm\backend\part4\elmboot\src\main\resources\mapper" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.neusoft.elmboot.po" />
+      <recent name="com.neusoft.elmboot.creditRuleMap" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ElmbootApplication">
+    <configuration name="ElmbootApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="elmboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.neusoft.elmboot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.neusoft.elmboot" />
+      <option name="MAIN_CLASS_NAME" value="com.neusoft.elmboot.ElmbootApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElmbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="elmboot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.neusoft.elmboot.ElmbootApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ElmbootApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="" />
+      <changelist id="80ad86d6-a583-4b15-8ee5-3fc0a5b27001" name="不用提交" comment="" />
+      <created>1693713333696</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1693713333696</updated>
+      <workItem from="1693713334873" duration="8216000" />
+      <workItem from="1693830516225" duration="1126000" />
+      <workItem from="1693983563326" duration="3595000" />
+      <workItem from="1693989413617" duration="544000" />
+      <workItem from="1693990002205" duration="2415000" />
+      <workItem from="1693992519887" duration="203000" />
+      <workItem from="1693993098546" duration="3109000" />
+      <workItem from="1694006947284" duration="1078000" />
+      <workItem from="1694008973552" duration="28000" />
+      <workItem from="1694009013581" duration="150000" />
+      <workItem from="1694009180149" duration="2074000" />
+      <workItem from="1694012647664" duration="668000" />
+      <workItem from="1694062788386" duration="6823000" />
+      <workItem from="1694070766798" duration="2029000" />
+      <workItem from="1694072966547" duration="27000" />
+      <workItem from="1694073665947" duration="31624000" />
+      <workItem from="1694187083981" duration="2926000" />
+      <workItem from="1694222532202" duration="3676000" />
+    </task>
+    <task id="LOCAL-00001" summary="1) 加了一个GlobalHandler,方便看调用栈。 2) 数据库存储方式变成加盐加密">
+      <created>1693727709522</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693727709522</updated>
+    </task>
+    <task id="LOCAL-00002" summary="完成了钱包系统和积分系统">
+      <created>1694007806249</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1694007806249</updated>
+    </task>
+    <task id="LOCAL-00003" summary="完成了按照热度降序排序以及热度接口">
+      <created>1694010317308</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1694010317308</updated>
+    </task>
+    <task id="LOCAL-00004" summary="修复了运行不了的bug">
+      <created>1694063735496</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1694063735496</updated>
+    </task>
+    <task id="LOCAL-00005" summary="调整了业务实现层">
+      <created>1694069891323</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1694069891323</updated>
+    </task>
+    <task id="LOCAL-00006" summary="积分修复了，把单例模式改成Mapper注入了">
+      <created>1694108819753</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1694108819753</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1) 加了一个GlobalHandler,方便看调用栈。 2) 数据库存储方式变成加盐加密" />
+    <MESSAGE value="完成了钱包系统和积分系统" />
+    <MESSAGE value="完成了按照热度降序排序以及热度接口" />
+    <MESSAGE value="修复了运行不了的bug" />
+    <MESSAGE value="调整了业务实现层" />
+    <MESSAGE value="积分修复了，把单例模式改成Mapper注入了" />
+    <option name="LAST_COMMIT_MESSAGE" value="积分修复了，把单例模式改成Mapper注入了" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/CreditServiceImpl.java</url>
+          <line>178</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
