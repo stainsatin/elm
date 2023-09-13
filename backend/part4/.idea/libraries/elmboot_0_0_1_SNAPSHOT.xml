@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="elmboot-0.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/elmboot/target/elmboot-0.0.1-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
