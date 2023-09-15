@@ -7,7 +7,7 @@
     <insert id="insertCreditRecord" parameterType="CreditRecord" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO creditrecord
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            id,userId,ruleCode,credit,createTime,
+           		userId,ruleCode,credit,createTime,
             <if test="eventId != null and eventId != ''">
                 eventId,
             </if>
@@ -16,7 +16,7 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            #{id},#{userId},#{ruleCode},#{credit},#{createTime},
+            	#{userId},#{ruleCode},#{credit},#{createTime},
             <if test="eventId != null and eventId != ''">
                 #{eventId},
             </if>

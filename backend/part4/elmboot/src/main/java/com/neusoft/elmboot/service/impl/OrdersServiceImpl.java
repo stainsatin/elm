@@ -57,13 +57,11 @@ public class OrdersServiceImpl implements OrdersService{
 		return orderId;
 	}
 	
-	@Cacheable(value = "orders")
 	@Override
 	public Orders getOrdersById(Integer orderId) {
 		return ordersMapper.getOrdersById(orderId);
 	}
 	
-	@Cacheable(value = "ordersList",key = "#userId")
 	@Override
 	public List<Orders> listOrdersByUserId(String userId){
 		return ordersMapper.listOrdersByUserId(userId);

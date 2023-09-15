@@ -1,7 +1,7 @@
 package com.neusoft.elmboot.po;
 
 public class ConsumeCredit {
-    private int creditNum;
+    private Integer creditNum;
     private double deductionMoney;
 
     public ConsumeCredit() {
