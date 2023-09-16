@@ -422,3 +422,70 @@ public class OrdersServiceImpl implements OrdersService{
 \end{lstlisting}
 
 其中，"association"表示一对一连接，而"collection"表示一对多连接。
+
+\section{测试}
+此次项目，我们依旧对正常点餐流程、“注册” “登录” “订单” “我的”等页面进行了测试，具体测试过程与servlet项目中的“测试”部分一致。
+
+此外，由于新增了积分系统，我们对其进行了单独的功能测试，具体结果如下。~\\
+\subsection{积分支付选择}
+“在线支付”页面中，系统会根据用户的订单金额和剩余积分，按照最优原则，尽可能最大化用户抵扣金额，减少支付金额。支付时，用户可以自行选择是否使用积分，再点击“确认支付”。如图~\ref{fig:creditPay}~所示。
+支付时，若余额不足，会显示“您没钱了，请去充值!”，然后跳转至“钱包”页面，充值后即可再次支付。如图~\ref{fig:noMoney}~所示。~\\
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{creditPay}
+        \caption{积分支付页面}\label{fig:creditPay}
+    \end{minipage}
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=0.3\textheight]{noMoney}
+        \caption{余额不足}\label{fig:noMoney}
+    \end{minipage}
+    \vspace{\baselineskip}
+\end{figure}
+\begin{itemize}
+    \item {使用积分支付}：支付成功后，返回“钱包”页面，发现积分被抵扣了，余额减少的部分为订单金额-抵扣金额，点击“积分明细”，也有相应的积分消费记录。如图~\ref{fig:creditPayment}~所示~\\
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.8\textwidth]{creditPayment}
+        \caption{积分支付详情}\label{fig:creditPayment}
+        \vspace{\baselineskip}
+    \end{figure}
+
+    \item {不使用积分支付}：支付成功后，返回“钱包”页面，发现积分没有变动，余额减少的部分为订单金额数。如图~\ref{fig:notCredit}~所示~\\
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.9\textwidth,height=0.25\textheight]{notCredit}
+        \caption{不使用积分支付详情}\label{fig:notCredit}
+        \vspace{\baselineskip}
+    \end{figure}
+\end{itemize}
+\subsection{“钱包”页面}
+\begin{enumerate}
+\item {充值提现}：输入操作金额后，点击“充值”或“提现”，即可进行操作，若无操作金额或为负数，显示“充值（或提现）金额错误”。如图~\ref{fig:errorMoney}~所示。若充值成功，则更新钱包页面的金额、积分数量。如图~\ref{fig:recharge}~所示。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{errorMoney}
+    \caption{操作金额错误时报错}\label{fig:errorMoney}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{recharge}
+    \caption{充值成功前后对比}\label{fig:recharge}
+\end{figure} 
+\item {积分明细}：点击“积分明细”，可以查看获取或消费积分记录，积分来源，创建或过期时间。如图~\ref{fig:creditDetail}~所示。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth,height=0.25\textheight]{creditDetail}
+    \caption{查看积分明细}\label{fig:creditDetail}
+\end{figure} 
+\item {签到领积分}：点击“今天签到可以拿10积分”，可以领取积分，且一天只能领一次。如图~\ref{fig:sign}~所示。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth,height=0.25\textheight]{sign}
+    \caption{签到前后对比}\label{fig:sign}
+\end{figure} 
+\end{enumerate}
+
+
