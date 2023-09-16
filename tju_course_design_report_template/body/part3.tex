@@ -703,10 +703,18 @@ DispatcherServlet/doPost
               \item {解决办法}：向sessionStorage中存储新的user对象
           \end{itemize}
           \begin{figure}[htbp]
-              \centering
-              \includegraphics[width=0.4\textwidth,height=0.1\textheight]{updateName}
-              \caption{更改用户名成功图}\label{fig:updateName}
-          \end{figure}
+            \centering
+            \begin{minipage}{0.4\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{setNewName}
+                \caption{SessionStorage修改}\label{fig:setNewName}
+            \end{minipage}
+            \begin{minipage}{0.4\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{updateName}
+                \caption{更改用户名成功图}\label{fig:updateName}
+            \end{minipage}
+        \end{figure}
           \begin{itemize}
               \item{操作说明}:点击“修改密码”，第一次在“旧密码”中输入错误密码；第二次在“旧密码”中输入正确密码。
               \item {预期结果}：第一次修改密码失败；第二次修改密码成功。
