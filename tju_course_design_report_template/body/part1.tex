@@ -21,58 +21,58 @@ Food(商品):私有变量(商品ID:foodId(Integer)、商品名:foodName(String)�
 
 DBUtil(数据库连接工具):私有静态变量:DataSource(连接池工具，用来实现数据库持久连接)
 
+
 \subsection{数据库设计}
-\subsubsection{admin表}
-    \begin{tabular}{c|c|c}
-    	\hline
-    	字段 & 类型 & 说明 \\
-    	\hline
-    	adminId & INT & 管理员ID \\
-    	\hline
-    	adminName & varchar & 管理员用户名 \\
-    	\hline
-    	password & varchar & 密码 \\
-    \end{tabular}
+   \begin{table}[htbp]
+    	\caption{admin表}\label{tab:table_6_10}
+    	\vspace{0.5em}\wuhao
+    	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+    		\toprule[1.5pt]
+    		字段名          &  数据类型  &   说明 \\ 
+    		\midrule[1pt]
+    		adminId & INT & 管理员ID \\
+    		adminName & varchar & 管理员用户名 \\
+    		password & varchar & 密码 \\
+    		\bottomrule[1.5pt]
+    	\end{tabularx}
+    	\vspace{\baselineskip}
+    \end{table}
     
-    
-    
-    \subsubsection{business表}
-    \begin{tabular}{c|c|c}
-    	\hline
-    	字段 & 类型 & 说明 \\
-    	\hline
-    	businessId & INT & 商家ID \\
-    	\hline
-    	businessName & varchar & 商家名 \\
-    	\hline
-    	password & varchar & 密码 \\
-    	\hline
-    	businessAddress & varchar & 商家地址 \\
-    	\hline
-    	businessExplain & varchar & 商家描述信息 \\
-    	\hline
-    	deliveryPrice & decimal & 配送费 \\
-    	\hline
-    	starPrice & decimal & 起送费 \\
-    \end{tabular}
-    
-    
-    
-    \subsubsection{food表}
-    \begin{tabular}{c|c|c}
-    	\hline
-    	字段 & 类型 & 说明 \\
-    	\hline
-    	foodId & INT & 商品ID \\
-    	\hline
-    	businessId & INT & 所属商家ID \\
-    	\hline
-    	foodName & varchar & 商品名 \\
-    	\hline
-    	foodExplain & varchar & 商品描述信息 \\
-    	\hline
-    	foodPrice & decimal & 商品价格 \\
-    \end{tabular}
+    \begin{table}[htbp]
+    	\caption{business表}\label{tab:table_6_10}
+    	\vspace{0.5em}\wuhao
+    	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+    		\toprule[1.5pt]
+    		字段名          &  数据类型  &   说明 \\ 
+    		\midrule[1pt]
+    		businessId & INT & 商家ID \\
+    		businessName & varchar & 商家名 \\
+    		password & varchar & 密码 \\
+    		businessAddress & varchar & 商家地址 \\
+    		businessExplain & varchar & 商家描述信息 \\
+    		deliveryPrice & decimal & 配送费 \\
+    		starPrice & decimal & 起送费 \\
+    		\bottomrule[1.5pt]
+    	\end{tabularx}
+    	\vspace{\baselineskip}
+    \end{table}
+ 
+     \begin{table}[htbp]
+    	\caption{business表}\label{tab:table_6_10}
+    	\vspace{0.5em}\wuhao
+    	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+    		\toprule[1.5pt]
+    		字段名          &  数据类型  &   说明 \\ 
+    		\midrule[1pt]
+    		foodId & INT & 商品ID \\
+    		businessId & INT & 所属商家ID \\
+    		foodName & varchar & 商品名 \\
+    		foodExplain & varchar & 商品描述信息 \\
+    		foodPrice & decimal & 商品价格 \\
+    		\bottomrule[1.5pt]
+    	\end{tabularx}
+    	\vspace{\baselineskip}
+    \end{table}
 \subsection{程序结构}
 应用一共分成三个层次:
 
@@ -85,6 +85,12 @@ Dao层:实现对数据库的操作
 其中Dao层和View层分成抽象接口和继承接口的Impl对象来实现解耦操作。
 \subsection{结构图}
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{jdbc}
+	\caption{jdbc结构图}
+	\vspace{\baselineskip}
+\end{figure}
 \subsection{操作数据库接口描述}
 \subsubsection{Admin}
 \textbf{获取管理员对象}
@@ -232,7 +238,11 @@ ElmBusinessEntry
 
 功能:输入用户名和密码登录商家，并能够选择对应数据库的操作。
 
-\section{测试}
-
-
 \section{部署}
+通过打包成jar包，可以在windows控制台直接运行，具体情况如图
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{jdbcres}
+	\caption{运行情况}
+	\vspace{\baselineskip}
+\end{figure}
