@@ -31,9 +31,7 @@ JDK17 MySQL SpringBoot Maven3.6.3
 \subsection{数据库设计}
 
 \subsubsection{后台管理数据库设计}
-由于阶段一要实现饿了么管理员对于每一个商家得管理，每个商家又要对自身的基本信息(例如起送费、配送费)进行管理。因此我们要有一张商家表以及管理员表。商家表的设计如表\ref{tab:table_6_1} 所示，管理员表的设计如表\ref{tab:table_6_2}所示。这里特别需要提出的是，由于起送费和配送费小数点后边不会超过两位，我们这里特地把~starPrice~和~deliveryPrice~字段的数据类型设置为~decimal~。
-
-\begin{table}[htbp]
+由于阶段一要实现饿了么管理员对于每一\begin{table}[htbp]
     \caption{商家列表}\label{tab:table_6_1}
     \vspace{0.5em}\wuhao
     \begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
@@ -50,7 +48,9 @@ JDK17 MySQL SpringBoot Maven3.6.3
     \bottomrule[1.5pt]
     \end{tabularx}
 \vspace{\baselineskip}
-\end{table}
+\end{table}个商家得管理，每个商家又要对自身的基本信息(例如起送费、配送费)进行管理。因此我们要有一张商家表以及管理员表。商家表的设计如表\ref{tab:table_6_1} 所示，管理员表的设计如表\ref{tab:table_6_2}所示。这里特别需要提出的是，由于起送费和配送费小数点后边不会超过两位，我们这里特地把~starPrice~和~deliveryPrice~字段的数据类型设置为~decimal~。
+
+
 
 \begin{table}[htbp]
     \caption{管理员表}\label{tab:table_6_2}

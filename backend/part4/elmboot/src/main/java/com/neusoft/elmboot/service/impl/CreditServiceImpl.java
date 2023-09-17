@@ -40,8 +40,6 @@ public class CreditServiceImpl implements CreditService {
         int count = creditRecordMapper.todaySignRecord(userId, ruleId, today);
         SignCreditRule signCreditRule = null;
         synchronized (creditRuleMap) {
-
-
             signCreditRule = (SignCreditRule) creditRuleMap.getRule(ruleId);
             if (signCreditRule == null) {
                 CreditRulePo creditRulePo = creditRuleMapper.getRule(ruleId);
