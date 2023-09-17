@@ -488,4 +488,58 @@ public class OrdersServiceImpl implements OrdersService{
 \end{figure} 
 \end{enumerate}
 
+\section{服务器部署}
+\subsection{环境}
+\subsubsection{服务器选择}
+阿里云服务器(2核4G centos系统) 
 
+\subsubsection{服务器环境配置}
+MySQL8.0 nginx	redis jdk17
+
+\subsection{项目部署过程}
+\subsubsection{后端部署}
+修改springboot配置文件,将localhost改为服务器内网IP
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{aliyunsjk}
+	\caption{修改url}
+	\vspace{\baselineskip}
+\end{figure}
+
+将springboot程序打包成jar包,通过脚本运行
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{jiaoben}
+	\caption{sh脚本}
+	\vspace{\baselineskip}
+\end{figure}
+通过netstat命令查看运行情况,运行结果如下:
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{jar}
+	\caption{运行情况}
+	\vspace{\baselineskip}
+\end{figure}
+
+\subsubsection{前端部署}
+将前端项目打包成dist文件放在home目录。
+
+修改nginx.conf配置文件如图6-14所示
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{nginx}
+	\caption{nginx配置文件修改}
+	\vspace{\baselineskip}
+\end{figure}
+
+\subsubsection{最终合并}
+重启nginx,同时禁止80端口和8081端口的防火墙,现在前后端就可以进行交互了。
+
+输入服务器公网IP就能进入网页进行操作，最终效果如图6-15所示。
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{result}
+	\caption{最终效果}
+	\vspace{\baselineskip}
+\end{figure}

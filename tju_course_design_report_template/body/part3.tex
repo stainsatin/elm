@@ -97,139 +97,138 @@ OrderDetailet(订单明细)
 DBUtil(数据库连接工具):私有静态变量:DataSource(连接池工具，用来实现数据库持久连接)
 
 CommonUtil(获取时间工具)
+
 \subsection{数据库设计}
 
-\subsubsection{business表}
-\begin{tabular}{c|c|c}
-    \hline
-    字段              & 类型      & 说明     \\
-    \hline
-    businessId      & INT     & 商家ID   \\
-    \hline
-    businessName    & varchar & 商家名    \\
-    \hline
-    password        & varchar & 密码     \\
-    \hline
-    businessAddress & varchar & 商家地址   \\
-    \hline
-    businessExplain & varchar & 商家描述信息 \\
-    \hline
-    deliveryPrice   & decimal & 配送费    \\
-    \hline
-    starPrice       & decimal & 起送费    \\
-    \hline
-    orderTypeId     & int     & 点餐分类   \\
-    \hline
-    remarks         & varchar & 备注     \\
-\end{tabular}
+\begin{table}[htbp]
+	\caption{商家表(点餐业务)}
+	\vspace{0.5em}\wuhao
+	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+		\toprule[1.5pt]
+		字段名          &  数据类型  &   说明 \\ 
+		\midrule[1pt]
+		businessId   & int  & 商家编号 \\
+		businessName    & varchar  & 商家名称   \\
+		businessAddress  & varchar & 商家地址 \\
+		businessExplain     & varchar     & 商家介绍 \\
+		businessImg      & mediumtext     & 商家图片 \\
+		orderTypeId      & int     & 共用10种点餐分类 \\
+		starPrice      & decimal     & 起送费 \\
+		deliveryPrice      & decimal     & 配送费 \\
+		remarks     & varchar     & 备注 \\
+		\bottomrule[1.5pt]
+	\end{tabularx}
+	\vspace{\baselineskip}
+\end{table}
 
-\subsubsection{food表}
-\begin{tabular}{c|c|c}
-    \hline
-    字段          & 类型         & 说明     \\
-    \hline
-    foodId      & int        & 商品ID   \\
-    \hline
-    businessId  & int        & 所属商家ID \\
-    \hline
-    foodName    & varchar    & 商品名    \\
-    \hline
-    foodExplain & varchar    & 商品描述信息 \\
-    \hline
-    foodPrice   & decimal    & 商品价格   \\
-    \hline
-    foodImg     & mediumtext & 商品图片   \\
-    \hline
-    remakrs     & varcahr    & 备注     \\
-\end{tabular}
+\begin{table}[htbp]
+	\caption{食品表(点餐业务)}
+	\vspace{0.5em}\wuhao
+	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+		\toprule[1.5pt]
+		字段名          &  数据类型  &   说明 \\ 
+		\midrule[1pt]
+		foodId      & int     & 食品编号 \\
+		foodName   & varchar  & 食品名称 \\
+		foodExplain    & varchar  & 食品介绍   \\
+		foodImg      & mediumtext     & 食品图片 \\
+		foodPrice      & decimal     & 食品价格 \\
+		businessId      & int     & 所属商家编号 \\
+		businessId      & varchar     & 备注 \\
+		\bottomrule[1.5pt]
+	\end{tabularx}
+	\vspace{\baselineskip}
+\end{table}
 
-\subsubsection{cart表}
-\begin{tabular}{c|c|c}
-    \hline
-    字段         & 类型      & 说明       \\
-    \hline
-    cartId     & int     & 主键，购物车编号 \\
-    \hline
-    foodId     & int     & 商品ID     \\
-    \hline
-    businessId & int     & 所属商家ID   \\
-    \hline
-    userId     & varchar & 所属用户编号   \\
-    \hline
-    quantity   & int     & 同一食品购买数量 \\
-\end{tabular}
+\begin{table}[htbp]
+	\caption{购物车表}
+	\vspace{0.5em}\wuhao
+	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+		\toprule[1.5pt]
+		字段名          &  数据类型  &   说明 \\ 
+		\midrule[1pt]
+		cardId      & int     & 无意义编号 \\
+		foodId   & int  & 食品名称 \\
+		businessId    & int  & 所属商家编号   \\
+		userId      & varchar     & 所属用户编号 \\
+		quantity      & int     & 同一类型食品的购买数量 \\
+		\bottomrule[1.5pt]
+	\end{tabularx}
+	\vspace{\baselineskip}
+\end{table}
 
-\subsubsection{deliveryaddress表}
-\begin{tabular}{c|c|c}
-    \hline
-    字段          & 类型      & 说明      \\
-    \hline
-    daId        & int     & 主键,地址编号 \\
-    \hline
-    contactName & varchar & 联系人姓名   \\
-    \hline
-    contactSex  & int     & 联系人性别   \\
-    \hline
-    contactTel  & varchar & 联系人电话   \\
-    \hline
-    address     & varchar & 配送地址    \\
-    \hline
-    userId      & varchar & 所属用户编号  \\
-\end{tabular}
+\begin{table}[htbp]
+	\caption{送货地址表}
+	\vspace{0.5em}\wuhao
+	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+		\toprule[1.5pt]
+		字段名          &  数据类型  &   说明 \\ 
+		\midrule[1pt]
+		daId      & int     & 送货地址编号 \\
+		contactName   & varchar  & 联系人姓名 \\
+		contactSex    & int  & 联系人性别   \\
+		contactTel   & varchar     & 联系人电话 \\
+		address      & varchar     & 送货地址 \\
+		userId      & varchar     & 所属用户编号 \\
+		\bottomrule[1.5pt]
+	\end{tabularx}
+	\vspace{\baselineskip}
+\end{table}
 
-\subsubsection{orders表}
-\begin{tabular}{c|c|c}
-    \hline
-    字段         & 类型      & 说明      \\
-    \hline
-    orderId    & int     & 主键，订单编号 \\
-    \hline
-    daId       & int     & 配送地址ID  \\
-    \hline
-    businessId & int     & 所属商家ID  \\
-    \hline
-    userId     & varchar & 所属用户编号  \\
-    \hline
-    orderDate  & varchar & 订单日期    \\
-    \hline
-    orderTotal & decimal & 订单总价    \\
-    \hline
-    orderState & int     & 订单状态    \\
-\end{tabular}
+\begin{table}[htbp]
+	\caption{订单表}
+	\vspace{0.5em}\wuhao
+	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+		\toprule[1.5pt]
+		字段名          &  数据类型  &   说明 \\ 
+		\midrule[1pt]
+		orderId      & int     & 订单编号 \\
+		userId   & varchar  & 所属用户编号 \\
+		businessId    & int  & 所属商家编号   \\
+		orderDate   & varchar     & 订购日期 \\
+		orderTotal      & decimal     & 订单总价 \\
+		daId      & int     & 所属送货地址编号 \\
+		orderState      & int     & 订单状态(0未支付,1已支付) \\
+		\bottomrule[1.5pt]
+	\end{tabularx}
+	\vspace{\baselineskip}
+\end{table}
 
 
-\subsubsection{orderdetailet表}
-\begin{tabular}{c|c|c}
-    \hline
-    字段       & 类型  & 说明        \\
-    \hline
-    odId     & int & 主键，订单明细编号 \\
-    \hline
-    orderId  & int & 订单编号      \\
-    \hline
-    foodId   & int & 商品ID      \\
-    \hline
-    quantity & int & 数量        \\
-\end{tabular}
+\begin{table}[htbp]
+	\caption{订单明细表}
+	\vspace{0.5em}\wuhao
+	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+		\toprule[1.5pt]
+		字段名          &  数据类型  &   说明 \\ 
+		\midrule[1pt]
+		odId      & int     & 订单明细编号 \\
+		orderId   & int  & 所属订单编号 \\
+		foodId    & int  & 所属食品编号   \\
+		quantity   & int     & 数量 \\
+		\bottomrule[1.5pt]
+	\end{tabularx}
+	\vspace{\baselineskip}
+\end{table}
 
+\begin{table}[htbp]
+	\caption{用户表}
+	\vspace{0.5em}\wuhao
+	\begin{tabularx}{\hsize}{@{\extracolsep{\fill}}c c c}
+		\toprule[1.5pt]
+		字段名          &  数据类型  &   说明 \\ 
+		\midrule[1pt]
+		userId      & varchar     & 用户ID \\
+		password   & varchar  & 密码 \\
+		userName    & varchar  & 用户名   \\
+		userSex      & int     & 性别 \\
+		userImg      & mediumtext     & 用户头像 \\
+		delTag      & int     & 删除标记 \\
+		\bottomrule[1.5pt]
+	\end{tabularx}
+	\vspace{\baselineskip}
+\end{table}
 
-\subsubsection{user表}
-\begin{tabular}{c|c|c}
-    \hline
-    字段       & 类型         & 说明      \\
-    \hline
-    userId   & varchar    & 主键，用户ID \\
-    \hline
-    password & varchar    & 密码      \\
-    \hline
-    userName & varchar    & 用户名     \\
-    \hline
-    userSex  & int        & 性别      \\
-    \hline
-    userImg  & mediumtext & 用户头像    \\
-    \hline
-    delTag   & int        & 删除标记    \\
-\end{tabular}
 \subsection{程序结构}
 项目三采用的MVC架构方式。
 
@@ -253,6 +252,8 @@ Dao:对数据库进行相关操作，返回对应信息的层。
 DB:后台数据库。
 
 \subsection{结构图}
+
+程序的结构图如图5-2所示:
 
 \begin{figure}[htbp]
     \centering
