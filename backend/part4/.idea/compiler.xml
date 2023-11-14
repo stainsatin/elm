@@ -10,8 +10,8 @@
         <module name="elmboot" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="elmboot" target="16" />
+    <bytecodeTargetLevel target="14">
+      <module name="elmboot" target="14" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
