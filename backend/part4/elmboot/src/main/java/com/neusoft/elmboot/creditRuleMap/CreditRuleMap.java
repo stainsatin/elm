@@ -28,15 +28,15 @@ public class CreditRuleMap {
             CreditRulePo rulePo = ruleMapper.getRule(ruleId);
             Rule rule = null;
             switch (rulePo.getId()){
-                case 1->{
+                case 1:{
                     rule=new SignCreditRule(rulePo.getLifespan(),rulePo.getCredit(),rulePo.getDailyCap());
                     ruleMap.put(ruleId,rule);
                 }
-                case 2->{
+                case 2:{
                     rule=new RechargeCreditRule(rulePo.getLifespan(),rulePo.getFormula());
                     ruleMap.put(ruleId,rule);
                 }
-                case 3->{
+                case 3:{
                     rule = new TransferMoneyCreditRule(rulePo.getFormula());
                     ruleMap.put(ruleId,rule);
                 }

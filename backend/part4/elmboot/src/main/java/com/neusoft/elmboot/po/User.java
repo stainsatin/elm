@@ -9,7 +9,7 @@ public class User implements Serializable {
 
     private String userId;
     private String password;
-    private String userName;
+    private String username;
     private Integer userSex;
     private String userImg;
     private Integer delTag;
@@ -23,8 +23,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setUserSex(Integer userSex) {
@@ -47,8 +47,8 @@ public class User implements Serializable {
         return password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public Integer getUserSex() {

@@ -176,7 +176,7 @@ public class CreditServiceImpl implements CreditService {
         Integer ruleId = creditRule.getId();
         Rule rule = creditRuleMap.getRule(ruleId);
         switch (ruleId) {
-            case 1 -> {
+            case 1 : {
                 SignCreditRule signCreditRule = (SignCreditRule) rule;
                 System.out.println(signCreditRule);
                 signCreditRule.setLifeSpan(creditRule.getLifespan());
@@ -184,13 +184,13 @@ public class CreditServiceImpl implements CreditService {
                 signCreditRule.setDailyCap(creditRule.getDailyCap());
                 creditRuleMap.writeMap(1, signCreditRule);
             }
-            case 2 -> {
+            case 2 : {
                 RechargeCreditRule rechargeCreditRule = (RechargeCreditRule) rule;
                 rechargeCreditRule.setLifeSpan(creditRule.getLifespan());
                 rechargeCreditRule.setFormula(creditRule.getFormula());
                 creditRuleMap.writeMap(2, rechargeCreditRule);
             }
-            case 3 -> {
+            case 3 : {
                 rule = (TransferMoneyCreditRule) rule;
                 ((TransferMoneyCreditRule) rule).setFormula(creditRule.getFormula());
                 creditRuleMap.writeMap(3, rule);

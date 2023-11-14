@@ -14,16 +14,19 @@ public interface UserMapper {
     @Select("select count(*) from user where userId=#{userId}")
     public int getUserById(String userId);
 
-    @Insert("insert into user values(#{userId},#{password},#{userName},#{userSex},null,1,null)")
+    @Insert("insert into user values(#{userId},#{password},#{username},#{userSex},null,1,null)")
 	public int saveUser(User user);
 
-    @Update("update user set userName = #{userName} where userId = #{userId}")
-    public int updateUserMsg(String userId, String userName);
+    @Update("update user set username = #{username} where userId = #{userId}")
+    public int updateUserMsg(String userId, String username);
 
     @Update("update user set password = #{newPass} where userId = #{userId} and password = #{oldPass}")
     public int updateUserPassword(String userId, String oldPass, String newPass);
 
     @Update("update user set walletId=#{walletId} where userId=#{userId}")
     public int updateWalletId(String userId, Integer walletId);
+
+    @Select("select * from user where username=#{username} and password=#{password}")
+    User getUserByUserNamePassword(String username, String password);
 
 }

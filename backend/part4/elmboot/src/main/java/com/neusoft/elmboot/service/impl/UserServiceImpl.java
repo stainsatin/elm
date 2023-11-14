@@ -1,5 +1,8 @@
 package com.neusoft.elmboot.service.impl;
 
+import com.neusoft.elmboot.jwt.JwtUtil;
+import com.neusoft.elmboot.util.CommonUtil;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -10,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.neusoft.elmboot.mapper.UserMapper;
 import com.neusoft.elmboot.po.User;
 import com.neusoft.elmboot.service.UserService;
+
+import java.security.NoSuchAlgorithmException;
 
 
 @Service
@@ -38,8 +43,8 @@ public class UserServiceImpl implements UserService {
     @Caching(evict = {@CacheEvict(cacheNames = "userList", allEntries = true)},
             put = {@CachePut(cacheNames = "user", key = "#userId")})
     @Override
-    public int updateUserMsg(String userId, String userName) {
-        return userMapper.updateUserMsg(userId, userName);
+    public int updateUserMsg(String userId, String username) {
+        return userMapper.updateUserMsg(userId, username);
     }
 
     @Caching(evict = {@CacheEvict(cacheNames = "userList", allEntries = true)},
@@ -47,5 +52,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateUserPassword(String userId, String oldPass, String newPass) {
         return userMapper.updateUserPassword(userId, oldPass, newPass);
+    }
+
+    @Resource
+    private JwtUtil jwtUtil;
+
+    @Override
+    public String login(String username, String password) throws NoSuchAlgorithmException {
+        password = CommonUtil.encodePassword(password);
+        User user = userMapper.getUserByUserNamePassword(username, password);
+        if (user == null) {
+            throw new NoSuchAlgorithmException();
+        }
+        return jwtUtil.generateToken(user);
     }
 }

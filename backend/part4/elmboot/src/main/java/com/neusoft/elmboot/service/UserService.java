@@ -11,7 +11,9 @@ public interface UserService {
 
     public int saveUser(User user) throws NoSuchAlgorithmException;
 
-    public int updateUserMsg(String userId, String userName);
+    public int updateUserMsg(String userId, String username);
 
     public int updateUserPassword(String userId, String oldPass, String newPass) throws NoSuchAlgorithmException;
+
+    String login(String username,String password) throws NoSuchAlgorithmException;
 }

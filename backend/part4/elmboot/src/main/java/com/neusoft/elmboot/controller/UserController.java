@@ -34,8 +34,8 @@ public class UserController {
     	return userService.saveUser(user);
     }
 	@RequestMapping("/updateUserMsg")
-    public int updateUserMsg(String userId,String userName){
-    	return userService.updateUserMsg(userId, userName);
+    public int updateUserMsg(String userId,String username){
+    	return userService.updateUserMsg(userId, username);
     }
 	@RequestMapping("/updateUserPassword")
     public int updateUserPassword(String userId,String oldPass,String newPass) throws NoSuchAlgorithmException {
