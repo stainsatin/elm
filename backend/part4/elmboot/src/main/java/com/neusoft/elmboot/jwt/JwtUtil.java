@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.jwt;
 
-import com.neusoft.elmboot.po.User;
+import com.neusoft.elmboot.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;

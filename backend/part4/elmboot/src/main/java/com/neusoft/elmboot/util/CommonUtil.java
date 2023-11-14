@@ -23,8 +23,14 @@ public class CommonUtil {
 
 	public static final String SALT = "afhu&9TawdhYCbsad*dawdh1dawdjhaj";
 
-	public static String encodePassword(String strValue) throws NoSuchAlgorithmException {
-		MessageDigest md5 = MessageDigest.getInstance("MD5");
+	public static String encodePassword(String strValue) {
+		MessageDigest md5 = null;
+		try {
+			md5 = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			throw new RuntimeException("MD5加密出错");
+		}
 		return Base64.encodeBase64String(md5.digest((strValue + CommonUtil.SALT).getBytes()));
 
 	}

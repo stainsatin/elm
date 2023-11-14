@@ -4,41 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] 删除了redis和druid的配置，目前能够正常跑通接口">
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/configuration/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/dto/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/dto/SimpleUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/filter/TokenFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/jwt/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_lettuce_lettuce_core_6_2_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_1_97_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_1_97_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_1_97_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_handler_4_1_97_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_4_1_97_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_4_1_97_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_native_unix_common_4_1_97_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_projectreactor_reactor_core_3_5_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_11_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_reactivestreams_reactive_streams_1_0_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_cache_3_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_redis_3_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_keyvalue_3_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_redis_3_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_6_0_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_oxm_6_0_11.xml" beforeDir="false" />
+    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] 增加了用户token登录与验证">
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/dto/RegisterUserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/BaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/UsernamePasswordNotMatchException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/UsernameUserIdRepeatedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/handler/BaseExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/ErrorConfigurar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/GlobalHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/configuration/WebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/DeliveryAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/DeliveryAddressController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/creditRuleMap/CreditRuleMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/creditRuleMap/CreditRuleMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/jwt/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/jwt/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/CreditServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/CreditServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/util/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/util/CommonUtil.java" afterDir="false" />
     </list>
     <list id="80ad86d6-a583-4b15-8ee5-3fc0a5b27001" name="不用提交" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -115,6 +99,9 @@
       <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot\service" />
       <recent name="D:\program\elm\backend\part4\elmboot\src\main\resources\mapper" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.neusoft.elmboot.entity" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.neusoft.elmboot.po" />
       <recent name="com.neusoft.elmboot.creditRuleMap" />
@@ -138,7 +125,7 @@
       <module name="elmboot" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.neusoft.elmboot.*" />
+          <option name="PATTERN" value="com.neusoft.elmboot.configuration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -193,7 +180,7 @@
       <workItem from="1699922959419" duration="1589000" />
       <workItem from="1699924778864" duration="2512000" />
       <workItem from="1699967336291" duration="2018000" />
-      <workItem from="1699969541754" duration="5493000" />
+      <workItem from="1699969541754" duration="9789000" />
     </task>
     <task id="LOCAL-00001" summary="1) 加了一个GlobalHandler,方便看调用栈。 2) 数据库存储方式变成加盐加密">
       <created>1693727709522</created>
@@ -244,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699926889726</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[new] 增加了用户token登录与验证">
+      <created>1699975134707</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699975134707</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +281,8 @@
     <MESSAGE value="调整了业务实现层" />
     <MESSAGE value="积分修复了，把单例模式改成Mapper注入了" />
     <MESSAGE value="[new] 删除了redis和druid的配置，目前能够正常跑通接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="[new] 删除了redis和druid的配置，目前能够正常跑通接口" />
+    <MESSAGE value="[new] 增加了用户token登录与验证" />
+    <option name="LAST_COMMIT_MESSAGE" value="[new] 增加了用户token登录与验证" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

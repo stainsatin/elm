@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.mapper;
 
-import com.neusoft.elmboot.po.User;
+import com.neusoft.elmboot.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Insert;
@@ -28,5 +28,8 @@ public interface UserMapper {
 
     @Select("select * from user where username=#{username} and password=#{password}")
     User getUserByUserNamePassword(String username, String password);
+
+    @Select("select count(*) from user where username=#{username}")
+    int countUserByUsername(String username);
 
 }
