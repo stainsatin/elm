@@ -1,9 +1,9 @@
 package com.neusoft.elmboot.mapper;
 
-import java.util.List;
+import com.neusoft.elmboot.dto.OrderDetailet;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.neusoft.elmboot.po.OrderDetailet;
+import java.util.List;
 @Mapper
 public interface OrderDetailetMapper {
 	public int saveOrderDetailetBatch(List<OrderDetailet> list);

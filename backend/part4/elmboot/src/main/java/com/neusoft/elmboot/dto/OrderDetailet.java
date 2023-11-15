@@ -1,4 +1,4 @@
-package com.neusoft.elmboot.po;
+package com.neusoft.elmboot.dto;
 
 import com.neusoft.elmboot.entity.Food;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.Data;
 import java.io.Serializable;
 @Data
 public class OrderDetailet implements Serializable{
-    private static final long serialVersionUID = -4661123112146812414L;
 	private Integer odId;
     private Integer orderId;
     private Integer foodId;

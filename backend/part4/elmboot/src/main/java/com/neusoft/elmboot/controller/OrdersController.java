@@ -1,28 +1,31 @@
 package com.neusoft.elmboot.controller;
 
-import java.util.List;
+import com.neusoft.elmboot.dto.Result;
+import com.neusoft.elmboot.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neusoft.elmboot.po.Orders;
-import com.neusoft.elmboot.service.OrdersService;
 @RestController
-@RequestMapping("/OrdersController")
+@RequestMapping("/orders")
 public class OrdersController {
 	@Autowired
 	private OrdersService ordersService;
-	
-	@RequestMapping("/createOrders")
-	public int createOrders(Orders orders)throws Exception{
-		return ordersService.createOrders(orders);
+
+	@PostMapping
+	public Result createOrders(Integer businessId, Integer daId, double orderTotal) throws Exception {
+		return Result.success(ordersService.createOrders(businessId, daId, orderTotal));
 	}
-	@RequestMapping("/getOrdersById")
-    public Orders getOrdersById(Integer orderId)throws Exception{
-    	return ordersService.getOrdersById(orderId);
-    }
-	@RequestMapping("/listOrdersByUserId")
-    public List<Orders> listOrdersByUserId(String userId)throws Exception{
-    	return ordersService.listOrdersByUserId(userId);
-    }
+
+	@GetMapping
+	public Result getOrdersById(Integer orderId) throws Exception {
+		return Result.success(ordersService.getOrdersById(orderId));
+	}
+
+	@GetMapping("/user-id")
+	public Result listOrdersByUserId(String userId) throws Exception {
+		return Result.success(ordersService.listOrdersByUserId(userId));
+	}
 }

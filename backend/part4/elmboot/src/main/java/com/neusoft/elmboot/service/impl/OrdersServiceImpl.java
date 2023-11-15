@@ -1,22 +1,22 @@
 package com.neusoft.elmboot.service.impl;
-import java.util.List;
-import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.neusoft.elmboot.po.Orders;
+import com.neusoft.elmboot.dto.OrderDetailet;
+import com.neusoft.elmboot.entity.Orders;
 import com.neusoft.elmboot.mapper.CartMapper;
 import com.neusoft.elmboot.mapper.OrderDetailetMapper;
 import com.neusoft.elmboot.mapper.OrdersMapper;
 import com.neusoft.elmboot.po.Cart;
-import com.neusoft.elmboot.po.OrderDetailet;
 import com.neusoft.elmboot.service.OrdersService;
 import com.neusoft.elmboot.util.CommonUtil;
+import com.neusoft.elmboot.util.UserUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 @Service
 public class OrdersServiceImpl implements OrdersService{
 	@Autowired
@@ -25,24 +25,34 @@ public class OrdersServiceImpl implements OrdersService{
 	private OrdersMapper ordersMapper;	
 	@Autowired
 	private OrderDetailetMapper orderDetailetMapper;
-	
-	@Caching(evict = {@CacheEvict(cacheNames = "ordersList",allEntries = true)})
+
+	@Caching(evict = {@CacheEvict(cacheNames = "ordersList", allEntries = true)})
 	@Override
 	@Transactional
-	public int createOrders(Orders orders) {
+	public int createOrders(Integer businessId, Integer daId, double orderTotal) {
 		//查询当前购物车当前商家所有食品
 		Cart cart = new Cart();
-		cart.setUserId(orders.getUserId());
-		cart.setBusinessId(orders.getBusinessId());
+		String userId = UserUtil.getUserId();
+		cart.setUserId(userId);
+		cart.setBusinessId(businessId);
 		List<Cart> cartList = cartMapper.listCart(cart);
-		
+
+		Orders orders = new Orders(
+				null,
+				userId,
+				businessId,
+				CommonUtil.getCurrentDate(),
+				orderTotal,
+				daId,
+				0, null
+		);
 		//创建订单
-		orders.setOrderDate(CommonUtil.getCurrentDate());
 		ordersMapper.saveOrders(orders);
 		int orderId = orders.getOrderId();
-		
+		System.out.println(orderId);
+		System.out.println("123");
 		List<OrderDetailet> list = new ArrayList<>();
-		for(Cart c: cartList) {
+		for (Cart c : cartList) {
 			OrderDetailet od = new OrderDetailet();
 			od.setOrderId(orderId);
 			od.setFoodId(c.getFoodId());

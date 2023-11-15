@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] 更新gitignore">
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/entity/Food.java" afterDir="false" />
+    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] food表和接口重构完成">
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/util/UserUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/FoodController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/FoodController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/FoodMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/FoodMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/Food.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/OrderDetailet.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/OrderDetailet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/FoodService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/FoodService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/FoodServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/FoodServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/DeliveryAddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/DeliveryAddressController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/OrdersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrderDetailetMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrderDetailetMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrdersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrdersMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/OrderDetailet.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/dto/OrderDetailet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/entity/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/OrdersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/OrdersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/OrdersServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <list id="80ad86d6-a583-4b15-8ee5-3fc0a5b27001" name="不用提交" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +73,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../frontend/part3/elm_vue3" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
@@ -172,7 +174,7 @@
       <workItem from="1699922959419" duration="1589000" />
       <workItem from="1699924778864" duration="2512000" />
       <workItem from="1699967336291" duration="2018000" />
-      <workItem from="1699969541754" duration="25205000" />
+      <workItem from="1699969541754" duration="28805000" />
     </task>
     <task id="LOCAL-00001" summary="1) 加了一个GlobalHandler,方便看调用栈。 2) 数据库存储方式变成加盐加密">
       <created>1693727709522</created>
@@ -293,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700060562615</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="[new] food表和接口重构完成">
+      <created>1700061580099</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1700061580099</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +353,8 @@
     <MESSAGE value="[new] 删除了调试信息" />
     <MESSAGE value="[new] 完成所有商家接口的重构和数据类的迁移" />
     <MESSAGE value="[new] 更新gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="[new] 更新gitignore" />
+    <MESSAGE value="[new] food表和接口重构完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="[new] food表和接口重构完成" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
