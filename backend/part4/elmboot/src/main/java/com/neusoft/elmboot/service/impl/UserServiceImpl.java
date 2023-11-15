@@ -1,22 +1,29 @@
 package com.neusoft.elmboot.service.impl;
 
 import com.neusoft.elmboot.dto.RegisterUserInfo;
-import com.neusoft.elmboot.exception.UsernamePasswordNotMatchException;
-import com.neusoft.elmboot.exception.UsernameUserIdRepeatedException;
+import com.neusoft.elmboot.exception.user.UserIdNotFoundException;
+import com.neusoft.elmboot.exception.user.UsernameNotFoundException;
+import com.neusoft.elmboot.exception.user.UsernamePasswordNotMatchException;
+import com.neusoft.elmboot.exception.user.UsernameUserIdRepeatedException;
 import com.neusoft.elmboot.jwt.JwtUtil;
 import com.neusoft.elmboot.util.CommonUtil;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.neusoft.elmboot.mapper.UserMapper;
 import com.neusoft.elmboot.entity.User;
 import com.neusoft.elmboot.service.UserService;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.UUID;
 
@@ -92,4 +99,74 @@ public class UserServiceImpl implements UserService {
             throw new UsernameUserIdRepeatedException();
         }
     }
+
+    @Override
+    public String getUserIdByUsername(String username) throws UsernameNotFoundException {
+        int count = userMapper.countUserByUsername(username);
+        if (count != 1) {
+            throw new UsernameNotFoundException();
+        }
+        String userId = userMapper.getUserIdByUsername(username);
+        return userId;
+    }
+
+
+    @Value("${jwt.header}")
+    private String headerName;
+
+    @Override
+    public String updateUserInfo(RegisterUserInfo user) throws UsernameUserIdRepeatedException, UserIdNotFoundException {
+        String userId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println("userId:" + userId);
+        User userData = this.getUserByUserId(userId);
+        String usernameOld = userData.getUsername();
+        String usernameNew = user.getUsername();
+        String usernamePut = usernameOld;
+        if (!usernameNew.equals("") && !usernameOld.equals(usernameNew)) {
+            int count = userMapper.countUserByUsername(usernameNew);
+            if (count > 0) {
+                throw new UsernameUserIdRepeatedException();
+            }
+            usernamePut = usernameNew;
+        }
+        System.out.println("usernamePut:" + usernamePut);
+        String passwordPut = user.getPassword();
+        if (passwordPut.equals("")) {
+            passwordPut = userData.getPassword();
+        }else{
+            passwordPut = CommonUtil.encodePassword(passwordPut);
+        }
+
+        System.out.println("passwordPut:" + passwordPut);
+
+        Integer userSexPut = user.getUserSex();
+        if (userSexPut == null) {
+            userSexPut = userData.getUserSex();
+        }
+        System.out.println("userSexPut:" + userSexPut);
+
+        String userImgPut = user.getUserImg();
+        if (userImgPut == null || userImgPut.equals("")) {
+            userImgPut = userData.getUserImg();
+        }
+        System.out.println("userImgPut:" + userImgPut);
+        try {
+            userMapper.updateUserInfo(userId,usernamePut,passwordPut,userSexPut,userImgPut);
+            return "success";
+        } catch (DuplicateKeyException e) {
+            throw new UsernameUserIdRepeatedException();
+        }
+    }
+
+    @Override
+    public User getUserByUserId(String userId) throws UserIdNotFoundException {
+        try {
+            User user = userMapper.getUserByUserId(userId);
+            return user;
+        } catch (Exception e) {
+            throw new UserIdNotFoundException();
+        }
+    }
+
+
 }

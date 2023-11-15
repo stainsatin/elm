@@ -32,4 +32,13 @@ public interface UserMapper {
     @Select("select count(*) from user where username=#{username}")
     int countUserByUsername(String username);
 
+    @Select("select userId from user where username=#{username}")
+    String getUserIdByUsername(String username);
+
+    @Update("update user set username=#{username},password=#{password},userImg=#{userImg},userSex=#{userSex} where userId=#{userId}")
+    void updateUserInfo(String userId,String username,String password,Integer userSex,String userImg);
+
+    @Select("select * from user where userId=#{userId}")
+    User getUserByUserId(String userId);
+
 }

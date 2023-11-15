@@ -1,5 +1,10 @@
 package com.neusoft.elmboot.controller;
 
+import com.neusoft.elmboot.dto.RegisterUserInfo;
+import com.neusoft.elmboot.dto.Result;
+import com.neusoft.elmboot.exception.user.UserIdNotFoundException;
+import com.neusoft.elmboot.exception.user.UsernameNotFoundException;
+import com.neusoft.elmboot.exception.user.UsernameUserIdRepeatedException;
 import com.neusoft.elmboot.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,4 +50,10 @@ public class UserController {
 		newPass = CommonUtil.encodePassword(newPass);
     	return userService.updateUserPassword(userId, oldPass, newPass);
     }
+
+    @PutMapping("/userInfo")
+	public Result updateUserInfo(RegisterUserInfo user) throws UsernameUserIdRepeatedException, UserIdNotFoundException {
+		return Result.success(userService.updateUserInfo(user));
+	}
+
 }
