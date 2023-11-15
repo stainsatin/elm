@@ -2,6 +2,8 @@ package com.neusoft.elmboot.service.impl;
 
 import com.neusoft.elmboot.domain.VirtualWallet;
 import com.neusoft.elmboot.domain.impl.VirtualWalletImpl;
+import com.neusoft.elmboot.exception.wallet.CreateWalletFailedException;
+import com.neusoft.elmboot.exception.wallet.UserHasCreatedWalletException;
 import com.neusoft.elmboot.mapper.OrdersMapper;
 import com.neusoft.elmboot.mapper.TransactionMapper;
 import com.neusoft.elmboot.mapper.UserMapper;
@@ -92,14 +94,22 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
 
     @Override
     @Transactional
-    public int userCreateVirtualWallet(String userId) {
-        VirtualWalletPo virtualWalletPo=new VirtualWalletPo();
-        int done1=virtualWalletMapper.createVirtualWallet(virtualWalletPo);
-        int done2=userMapper.updateWalletId(userId,virtualWalletPo.getWalletId());
-        if(done2==1&&done1==1)
-            return virtualWalletPo.getWalletId();
-        else
-            return -1;
+    public int userCreateVirtualWallet(String userId) throws UserHasCreatedWalletException, CreateWalletFailedException {
+
+        Integer walletId = userMapper.getWalletIdByUserId(userId);
+        if (walletId != null) {
+            throw new UserHasCreatedWalletException();
+        }
+
+        VirtualWalletPo virtualWalletPo = new VirtualWalletPo();
+        int done = virtualWalletMapper.createVirtualWallet(virtualWalletPo);
+        walletId = virtualWalletPo.getWalletId();
+
+        int finish = userMapper.updateWalletId(userId, walletId);
+
+        if (finish == 1 && done == 1)
+            return walletId;
+        else throw new CreateWalletFailedException();
     }
 
     @Override

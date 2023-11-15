@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] 购物车相关接口和功能重构完成">
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/order/BusinessInOrderNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/order/DeliveryAddressInOrderNotFoundException.java" afterDir="false" />
+    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] 订单相关接口重构完成">
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/wallet/CreateWalletFailedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/wallet/UserHasCreatedWalletException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/OrdersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/dto/OrderDetailet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/entity/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/entity/Orders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrderDetailetMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrdersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrdersMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/OrdersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/OrdersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/OrdersServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/VirtualWalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/VirtualWalletController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/VirtualWalletMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/VirtualWalletMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/VirtualWalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/VirtualWalletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/VirtualWalletServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/VirtualWalletServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/resources/mapper/BusinessMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/resources/mapper/CartMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/resources/mapper/OrderDetailetMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/resources/mapper/OrdersMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/resources/mapper/VirtualWalletMapper.xml" beforeDir="false" />
     </list>
     <list id="80ad86d6-a583-4b15-8ee5-3fc0a5b27001" name="不用提交" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +80,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="ReactorSettings">
@@ -173,7 +176,7 @@
       <workItem from="1699922959419" duration="1589000" />
       <workItem from="1699924778864" duration="2512000" />
       <workItem from="1699967336291" duration="2018000" />
-      <workItem from="1699969541754" duration="34382000" />
+      <workItem from="1699969541754" duration="37318000" />
     </task>
     <task id="LOCAL-00001" summary="1) 加了一个GlobalHandler,方便看调用栈。 2) 数据库存储方式变成加盐加密">
       <created>1693727709522</created>
@@ -315,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700068680691</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="[new] 订单相关接口重构完成">
+      <created>1700070867660</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1700070867660</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,7 +379,8 @@
     <MESSAGE value="[new] food表和接口重构完成" />
     <MESSAGE value="[new] 配送地址相关接口重构完成" />
     <MESSAGE value="[new] 购物车相关接口和功能重构完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="[new] 购物车相关接口和功能重构完成" />
+    <MESSAGE value="[new] 订单相关接口重构完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="[new] 订单相关接口重构完成" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -389,6 +400,14 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/VirtualWalletServiceImpl.java</url>
+          <line>96</line>
+          <properties class="com.neusoft.elmboot.service.impl.VirtualWalletServiceImpl" method="userCreateVirtualWallet">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

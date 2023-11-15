@@ -1,9 +1,9 @@
 package com.neusoft.elmboot.mapper;
 
 import com.neusoft.elmboot.entity.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Update;
 
 @Mapper
@@ -36,9 +36,13 @@ public interface UserMapper {
     String getUserIdByUsername(String username);
 
     @Update("update user set username=#{username},password=#{password},userImg=#{userImg},userSex=#{userSex} where userId=#{userId}")
-    void updateUserInfo(String userId,String username,String password,Integer userSex,String userImg);
+    void updateUserInfo(String userId, String username, String password, Integer userSex, String userImg);
 
     @Select("select * from user where userId=#{userId}")
     User getUserByUserId(String userId);
+
+    @Select("select walletId from user where userId=#{userId}")
+    Integer getWalletIdByUserId(String userId);
+
 
 }
