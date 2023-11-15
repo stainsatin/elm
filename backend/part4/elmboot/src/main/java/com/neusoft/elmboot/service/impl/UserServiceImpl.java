@@ -117,7 +117,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUserInfo(RegisterUserInfo user) throws UsernameUserIdRepeatedException, UserIdNotFoundException {
         String userId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("userId:" + userId);
         User userData = this.getUserByUserId(userId);
         String usernameOld = userData.getUsername();
         String usernameNew = user.getUsername();
@@ -129,7 +128,6 @@ public class UserServiceImpl implements UserService {
             }
             usernamePut = usernameNew;
         }
-        System.out.println("usernamePut:" + usernamePut);
         String passwordPut = user.getPassword();
         if (passwordPut.equals("")) {
             passwordPut = userData.getPassword();
@@ -137,19 +135,16 @@ public class UserServiceImpl implements UserService {
             passwordPut = CommonUtil.encodePassword(passwordPut);
         }
 
-        System.out.println("passwordPut:" + passwordPut);
 
         Integer userSexPut = user.getUserSex();
         if (userSexPut == null) {
             userSexPut = userData.getUserSex();
         }
-        System.out.println("userSexPut:" + userSexPut);
 
         String userImgPut = user.getUserImg();
         if (userImgPut == null || userImgPut.equals("")) {
             userImgPut = userData.getUserImg();
         }
-        System.out.println("userImgPut:" + userImgPut);
         try {
             userMapper.updateUserInfo(userId,usernamePut,passwordPut,userSexPut,userImgPut);
             return "success";
