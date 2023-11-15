@@ -51,7 +51,7 @@ public class UserController {
     	return userService.updateUserPassword(userId, oldPass, newPass);
     }
 
-    @PutMapping("/userInfo")
+    @PutMapping
 	public Result updateUserInfo(RegisterUserInfo user) throws UsernameUserIdRepeatedException, UserIdNotFoundException {
 		return Result.success(userService.updateUserInfo(user));
 	}

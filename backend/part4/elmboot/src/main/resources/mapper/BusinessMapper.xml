@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.neusoft.elmboot.mapper.BusinessMapper">
-    <resultMap type="com.neusoft.elmboot.po.Business" id="businessResultMap">
+    <resultMap type="com.neusoft.elmboot.entity.Business" id="businessResultMap">
         <id column="businessId" property="businessId"/>
         <result column="businessName" property="businessName"/>
         <result column="businessAddress" property="businessAddress"/>
@@ -16,7 +16,7 @@
         <result column="remarks" property="remarks"/>
     </resultMap>
 
-    <select id="listBusinessByUserId" parameterType="com.neusoft.elmboot.po.Business" resultMap="businessResultMap">
+    <select id="listBusinessByUserId" parameterType="com.neusoft.elmboot.entity.Business" resultMap="businessResultMap">
         SELECT * FROM (
                           SELECT COUNT(o.orderId) num,b.businessId,b.businessAddress,b.businessExplain,b.businessImg,b.businessName,b.deliveryPrice,b.orderTypeId,b.remarks,b.starPrice,o.orderId
                           FROM business b LEFT OUTER JOIN (

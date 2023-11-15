@@ -1,5 +1,5 @@
 package com.neusoft.elmboot.service;
-import com.neusoft.elmboot.po.Business;
+import com.neusoft.elmboot.entity.Business;
 
 import java.util.List;
 

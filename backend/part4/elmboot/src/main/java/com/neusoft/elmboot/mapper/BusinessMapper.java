@@ -3,7 +3,7 @@ package com.neusoft.elmboot.mapper;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import com.neusoft.elmboot.po.Business;
+import com.neusoft.elmboot.entity.Business;
 import org.apache.ibatis.annotations.Update;
 
 @Mapper

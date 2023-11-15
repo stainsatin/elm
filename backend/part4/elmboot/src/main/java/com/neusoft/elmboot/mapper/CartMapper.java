@@ -17,5 +17,6 @@ public interface CartMapper {
 	public int updateCart(Cart cart);
 	
 	public int removeCart(Cart cart);
+
 	public List<Cart> listCart(Cart cart);
 }

@@ -3,6 +3,7 @@ package com.neusoft.elmboot.po;
 import java.io.Serializable;
 import java.util.List;
 
+import com.neusoft.elmboot.entity.Business;
 import lombok.Data;
 @Data
 public class Orders implements Serializable{

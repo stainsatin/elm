@@ -2,6 +2,7 @@ package com.neusoft.elmboot.po;
 
 import java.io.Serializable;
 
+import com.neusoft.elmboot.entity.Business;
 import lombok.Data;
 @Data
 public class Cart implements Serializable{

@@ -2,50 +2,54 @@ package com.neusoft.elmboot.controller;
 
 import java.util.List;
 
+import com.neusoft.elmboot.dto.Result;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neusoft.elmboot.po.Business;
+import com.neusoft.elmboot.entity.Business;
 import com.neusoft.elmboot.service.BusinessService;
 
 @RestController
-@RequestMapping("/BusinessController")
+@RequestMapping("/business")
 public class BusinessController {
 	
 	@Autowired
 	private BusinessService businessService;
 	
-	@RequestMapping("/listBusinessByOrderTypeId")
-	public List<Business> listBusinessByOrderTypeId(Business business)throws Exception{
-		return businessService.listBusinessByOrderTypeId(business.getOrderTypeId());
+	@GetMapping("/order-type-id")
+	public Result listBusinessByOrderTypeId(Integer orderTypeId)throws Exception{
+		return Result.success(businessService.listBusinessByOrderTypeId(orderTypeId));
 	}
 	
-	@RequestMapping("/getBusinessById")
-	public Business getBusinessById(Integer businessId)throws Exception{
-		return businessService.getBusinessById(businessId);
+	@GetMapping
+	public Result getBusinessById(Integer businessId)throws Exception{
+		return Result.success(businessService.getBusinessById(businessId));
 	}
 	
-	@RequestMapping("/listBusinessByName")
-	public List<Business> listBusinessByName(String businessName)throws Exception{
-		return businessService.listBusinessByName(businessName);
+	@RequestMapping("/name")
+	public Result listBusinessByName(String businessName)throws Exception{
+		return Result.success(businessService.listBusinessByName(businessName));
 	}
 	
-	@RequestMapping("/listBusinessByAddress")
-	public List<Business> listBusinessByAddress(String businessAddress){
-		return businessService.listBusinessByAddress(businessAddress);
+	@RequestMapping("/address")
+	public Result listBusinessByAddress(String businessAddress){
+		return Result.success(businessService.listBusinessByAddress(businessAddress));
 	}
 
-	@RequestMapping("/updateBusinessHot")
-	public Integer updateBusinessHot(Integer businessId){
+	@PutMapping("/hot")
+	public Result updateBusinessHot(Integer businessId){
 		Integer hot = businessService.getBusinessById(businessId).getHot();
 		hot++;
-		return businessService.updateBusinessHot(businessId, hot);
+		return Result.success(businessService.updateBusinessHot(businessId, hot));
 	}
 
-	@RequestMapping("/listBusinessByOrderTypeIdByHot")
-	public List<Business> listBusinessByOrderTypeIdByHot(Integer orderTypeId){
-		return businessService.listBusinessByOrderTypeIdByHot(orderTypeId);
+	@GetMapping("/hot")
+	public Result listBusinessByOrderTypeIdByHot(Integer orderTypeId){
+		return Result.success(businessService.listBusinessByOrderTypeIdByHot(orderTypeId));
 	}
 
 }
