@@ -1,32 +1,32 @@
 package com.neusoft.elmboot.controller;
-import java.util.List;
+
+import com.neusoft.elmboot.dto.Result;
+import com.neusoft.elmboot.entity.Cart;
+import com.neusoft.elmboot.exception.cart.FoodIdBusinessIdNotMatchException;
+import com.neusoft.elmboot.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.neusoft.elmboot.po.Cart;
-import com.neusoft.elmboot.service.CartService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/cart")
 public class CartController {
 	@Autowired
 	private CartService cartService;
-	
+
 	@GetMapping
-    public List<Cart> listCart(Cart cart)throws Exception{
-		return cartService.listCart(cart);
+	public List<Cart> getCartByUserId(String userId) {
+		return cartService.getCartByUserId(userId);
 	}
-	
+
 	@PostMapping
-	public int saveCart(Cart cart)throws Exception{
-		return cartService.saveCart(cart);
+	public Result saveCart(Integer businessId, Integer foodId) {
+		return Result.success(cartService.saveCart(businessId, foodId));
 	}
-	@PutMapping
-    public int updateCart(Cart cart)throws Exception{
-    	return cartService.updateCart(cart);
-    }
-	@RequestMapping
-    public int removeCart(Cart cart)throws Exception{
-    	return cartService.removeCart(cart);
-    }
+
+	@DeleteMapping
+	public Result removeCart(Integer businessId, Integer foodId) throws FoodIdBusinessIdNotMatchException {
+		return Result.success(cartService.removeCart(businessId, foodId));
+	}
 }

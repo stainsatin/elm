@@ -1,11 +1,11 @@
 package com.neusoft.elmboot.service.impl;
 
 import com.neusoft.elmboot.dto.OrderDetailet;
+import com.neusoft.elmboot.entity.Cart;
 import com.neusoft.elmboot.entity.Orders;
 import com.neusoft.elmboot.mapper.CartMapper;
 import com.neusoft.elmboot.mapper.OrderDetailetMapper;
 import com.neusoft.elmboot.mapper.OrdersMapper;
-import com.neusoft.elmboot.po.Cart;
 import com.neusoft.elmboot.service.OrdersService;
 import com.neusoft.elmboot.util.CommonUtil;
 import com.neusoft.elmboot.util.UserUtil;
@@ -35,7 +35,7 @@ public class OrdersServiceImpl implements OrdersService{
 		String userId = UserUtil.getUserId();
 		cart.setUserId(userId);
 		cart.setBusinessId(businessId);
-		List<Cart> cartList = cartMapper.listCart(cart);
+		List<Cart> cartList = cartMapper.getCartByUserId("");
 
 		Orders orders = new Orders(
 				null,

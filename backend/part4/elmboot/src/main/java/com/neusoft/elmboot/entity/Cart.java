@@ -1,10 +1,9 @@
-package com.neusoft.elmboot.po;
+package com.neusoft.elmboot.entity;
 
-import com.neusoft.elmboot.entity.Business;
-import com.neusoft.elmboot.entity.Food;
 import lombok.Data;
 
 import java.io.Serializable;
+
 @Data
 public class Cart implements Serializable{
         private static final long serialVersionUID = 1203532745189077918L;
@@ -14,10 +13,6 @@ public class Cart implements Serializable{
         private String userId;
         private Integer quantity;
 
-        //多对一：所属食品
-        private Food food;
-        //多对一：所属商家
-        private Business business;
 
     public Integer getCartId() {
         return cartId;
@@ -59,19 +54,4 @@ public class Cart implements Serializable{
         this.quantity = quantity;
     }
 
-    public Food getFood() {
-        return food;
-    }
-
-    public void setFood(Food food) {
-        this.food = food;
-    }
-
-    public Business getBusiness() {
-        return business;
-    }
-
-    public void setBusiness(Business business) {
-        this.business = business;
-    }
 }
