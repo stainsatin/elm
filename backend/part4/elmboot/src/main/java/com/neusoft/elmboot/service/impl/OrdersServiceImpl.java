@@ -1,41 +1,43 @@
 package com.neusoft.elmboot.service.impl;
 
-import com.neusoft.elmboot.dto.OrderDetailet;
 import com.neusoft.elmboot.entity.Cart;
 import com.neusoft.elmboot.entity.Orders;
+import com.neusoft.elmboot.exception.order.BusinessInOrderNotFoundException;
+import com.neusoft.elmboot.exception.order.DeliveryAddressInOrderNotFoundException;
 import com.neusoft.elmboot.mapper.CartMapper;
-import com.neusoft.elmboot.mapper.OrderDetailetMapper;
+import com.neusoft.elmboot.mapper.DeliveryAddressMapper;
 import com.neusoft.elmboot.mapper.OrdersMapper;
+import com.neusoft.elmboot.po.DeliveryAddress;
 import com.neusoft.elmboot.service.OrdersService;
 import com.neusoft.elmboot.util.CommonUtil;
 import com.neusoft.elmboot.util.UserUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
 @Service
-public class OrdersServiceImpl implements OrdersService{
-	@Autowired
-	private CartMapper cartMapper;	
-	@Autowired
-	private OrdersMapper ordersMapper;	
-	@Autowired
-	private OrderDetailetMapper orderDetailetMapper;
+public class OrdersServiceImpl implements OrdersService {
+	@Resource
+	private CartMapper cartMapper;
+	@Resource
+	private OrdersMapper ordersMapper;
+	@Resource
+	private DeliveryAddressMapper deliveryAddressMapper;
 
 	@Caching(evict = {@CacheEvict(cacheNames = "ordersList", allEntries = true)})
 	@Override
 	@Transactional
-	public int createOrders(Integer businessId, Integer daId, double orderTotal) {
-		//查询当前购物车当前商家所有食品
-		Cart cart = new Cart();
+	public int createOrders(Integer businessId, Integer daId, double orderTotal) throws BusinessInOrderNotFoundException, DeliveryAddressInOrderNotFoundException {
 		String userId = UserUtil.getUserId();
-		cart.setUserId(userId);
-		cart.setBusinessId(businessId);
-		List<Cart> cartList = cartMapper.getCartByUserId("");
+		List<Cart> cartList = cartMapper.getCartByUserId(userId);
+
+		DeliveryAddress da = deliveryAddressMapper.getDeliveryAddressById(daId);
+		if (da == null) throw new DeliveryAddressInOrderNotFoundException();
 
 		Orders orders = new Orders(
 				null,
@@ -44,27 +46,21 @@ public class OrdersServiceImpl implements OrdersService{
 				CommonUtil.getCurrentDate(),
 				orderTotal,
 				daId,
-				0, null
+				0
 		);
-		//创建订单
 		ordersMapper.saveOrders(orders);
-		int orderId = orders.getOrderId();
-		System.out.println(orderId);
-		System.out.println("123");
-		List<OrderDetailet> list = new ArrayList<>();
-		for (Cart c : cartList) {
-			OrderDetailet od = new OrderDetailet();
-			od.setOrderId(orderId);
-			od.setFoodId(c.getFoodId());
-			od.setQuantity(c.getQuantity());
-			list.add(od);
+		AtomicReference<Boolean> hasFound = new AtomicReference<>(false);
+		cartList.forEach(
+				cart -> {
+					if (cart.getBusinessId().equals(businessId)) {
+						hasFound.set(true);
+						cartMapper.removeCart(cart);
+					}
+				});
+		if (!hasFound.get()) {
+			throw new BusinessInOrderNotFoundException();
 		}
-		orderDetailetMapper.saveOrderDetailetBatch(list);
-	
-		//remove cart
-		cartMapper.removeCart(cart);
-		
-		return orderId;
+		return orders.getOrderId();
 	}
 	
 	@Override
