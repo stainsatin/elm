@@ -1,9 +1,10 @@
 package com.neusoft.elmboot.po;
 
-import java.io.Serializable;
-
 import com.neusoft.elmboot.entity.Business;
+import com.neusoft.elmboot.entity.Food;
 import lombok.Data;
+
+import java.io.Serializable;
 @Data
 public class Cart implements Serializable{
         private static final long serialVersionUID = 1203532745189077918L;

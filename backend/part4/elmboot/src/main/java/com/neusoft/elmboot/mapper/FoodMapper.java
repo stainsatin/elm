@@ -1,9 +1,10 @@
 package com.neusoft.elmboot.mapper;
 
-import java.util.List;
+import com.neusoft.elmboot.entity.Food;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import com.neusoft.elmboot.po.Food;
+
+import java.util.List;
 
 @Mapper
 public interface FoodMapper {
