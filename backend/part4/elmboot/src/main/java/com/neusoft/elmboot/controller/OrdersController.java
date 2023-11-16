@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.controller;
 
-import com.neusoft.elmboot.dto.Result;
+import com.neusoft.elmboot.bo.Result;
 import com.neusoft.elmboot.exception.order.BusinessInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.DeliveryAddressInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.OrderHasPayedException;

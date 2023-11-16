@@ -1,8 +1,8 @@
 package com.neusoft.elmboot.controller;
 
 
-import com.neusoft.elmboot.dto.Result;
-import com.neusoft.elmboot.po.DeliveryAddress;
+import com.neusoft.elmboot.bo.Result;
+import com.neusoft.elmboot.entity.DeliveryAddress;
 import com.neusoft.elmboot.service.DeliveryAddressService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.neusoft.elmboot.po;
+package com.neusoft.elmboot.entity;
 
 public class CreditRecord {
     private Integer id;

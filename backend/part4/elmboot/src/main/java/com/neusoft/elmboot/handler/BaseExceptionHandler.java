@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.handler;
 
-import com.neusoft.elmboot.dto.Result;
+import com.neusoft.elmboot.bo.Result;
 import com.neusoft.elmboot.exception.BaseException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

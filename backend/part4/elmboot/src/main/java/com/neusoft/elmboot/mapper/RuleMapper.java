@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.mapper;
 
-import com.neusoft.elmboot.po.CreditRulePo;
+import com.neusoft.elmboot.bo.CreditRuleBo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Select;
 public interface RuleMapper {
 
     @Select("select * from creditrule where id=#{ruleId}")
-    CreditRulePo getRule(Integer ruleId);
+    CreditRuleBo getRule(Integer ruleId);
 }

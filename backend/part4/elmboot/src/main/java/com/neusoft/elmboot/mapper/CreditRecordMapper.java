@@ -1,7 +1,7 @@
 package com.neusoft.elmboot.mapper;
 
-import com.neusoft.elmboot.po.CreditRecord;
-import com.neusoft.elmboot.po.UsableCredit;
+import com.neusoft.elmboot.entity.CreditRecord;
+import com.neusoft.elmboot.entity.UsableCredit;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

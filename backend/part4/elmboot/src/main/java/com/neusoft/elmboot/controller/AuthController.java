@@ -1,8 +1,8 @@
 package com.neusoft.elmboot.controller;
 
-import com.neusoft.elmboot.dto.RegisterUserInfo;
-import com.neusoft.elmboot.dto.Result;
-import com.neusoft.elmboot.dto.SimpleUser;
+import com.neusoft.elmboot.bo.RegisterUserInfo;
+import com.neusoft.elmboot.bo.Result;
+import com.neusoft.elmboot.bo.SimpleUser;
 import com.neusoft.elmboot.exception.user.UsernamePasswordNotMatchException;
 import com.neusoft.elmboot.exception.user.UsernameUserIdRepeatedException;
 import com.neusoft.elmboot.service.UserService;

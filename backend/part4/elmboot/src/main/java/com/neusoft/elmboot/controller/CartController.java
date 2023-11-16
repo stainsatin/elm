@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.controller;
 
-import com.neusoft.elmboot.dto.Result;
+import com.neusoft.elmboot.bo.Result;
 import com.neusoft.elmboot.entity.Cart;
 import com.neusoft.elmboot.exception.cart.FoodIdBusinessIdNotMatchException;
 import com.neusoft.elmboot.service.CartService;

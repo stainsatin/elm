@@ -1,8 +1,11 @@
 package com.neusoft.elmboot.service.impl;
 
+import com.neusoft.elmboot.bo.TransactionBo;
+import com.neusoft.elmboot.bo.VirtualWalletBo;
 import com.neusoft.elmboot.domain.VirtualWallet;
 import com.neusoft.elmboot.domain.impl.VirtualWalletImpl;
 import com.neusoft.elmboot.entity.Cart;
+import com.neusoft.elmboot.entity.DeliveryAddress;
 import com.neusoft.elmboot.entity.Orders;
 import com.neusoft.elmboot.exception.order.BusinessInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.DeliveryAddressInOrderNotFoundException;
@@ -12,9 +15,6 @@ import com.neusoft.elmboot.exception.wallet.BalanceRemainNotEnoughException;
 import com.neusoft.elmboot.exception.wallet.PayOrdersFailedException;
 import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
 import com.neusoft.elmboot.mapper.*;
-import com.neusoft.elmboot.po.DeliveryAddress;
-import com.neusoft.elmboot.po.TransactionPo;
-import com.neusoft.elmboot.po.VirtualWalletPo;
 import com.neusoft.elmboot.service.OrdersService;
 import com.neusoft.elmboot.util.CommonUtil;
 import com.neusoft.elmboot.util.UserUtil;
@@ -103,11 +103,11 @@ public class OrdersServiceImpl implements OrdersService {
 
 		Integer outputWalletId = userMapper.getWalletIdByUserId(userId);
 		if (outputWalletId == null) throw new UserHasNotCreatedWalletIdException();
-		VirtualWalletPo outputVirtualWalletPo = virtualWalletMapper.getVirtualWalletById(outputWalletId);
-		VirtualWallet outputVirtualWallet = new VirtualWalletImpl(outputVirtualWalletPo.getWalletId(), outputVirtualWalletPo.getBalance());
+		VirtualWalletBo outputVirtualWalletBo = virtualWalletMapper.getVirtualWalletById(outputWalletId);
+		VirtualWallet outputVirtualWallet = new VirtualWalletImpl(outputVirtualWalletBo.getWalletId(), outputVirtualWalletBo.getBalance());
 		if (outputVirtualWallet.decreaseBalance(orderTotal) == 1) {
-			TransactionPo transactionPo = new TransactionPo(CommonUtil.getCurrentDate(), orderTotal, 1, null, outputWalletId);
-			int done1 = virtualWalletMapper.updateBalance(outputVirtualWalletPo);
+			TransactionBo transactionPo = new TransactionBo(CommonUtil.getCurrentDate(), orderTotal, 1, null, outputWalletId);
+			int done1 = virtualWalletMapper.updateBalance(outputVirtualWalletBo);
 			int done2 = transactionMapper.writeTransaction(transactionPo);
 			int done3 = ordersMapper.payOrders(orderId);
 			if (done1 == 1 && done2 == 1 && done3 == 1) {

@@ -1,4 +1,4 @@
-package com.neusoft.elmboot.dto;
+package com.neusoft.elmboot.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

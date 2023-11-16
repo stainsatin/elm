@@ -1,13 +1,9 @@
 package com.neusoft.elmboot.mapper;
+
+import com.neusoft.elmboot.entity.DeliveryAddress;
+import org.apache.ibatis.annotations.*;
+
 import java.util.List;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Update;
-
-import com.neusoft.elmboot.po.DeliveryAddress;
-
-import org.apache.ibatis.annotations.Delete;
 
 @Mapper
 public interface DeliveryAddressMapper {

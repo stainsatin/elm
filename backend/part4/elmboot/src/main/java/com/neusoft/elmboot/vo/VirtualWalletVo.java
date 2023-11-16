@@ -1,4 +1,4 @@
-package com.neusoft.elmboot.po;
+package com.neusoft.elmboot.vo;
 
 public class VirtualWalletVo {
     private double money;

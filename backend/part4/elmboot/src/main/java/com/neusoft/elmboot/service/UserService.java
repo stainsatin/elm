@@ -1,11 +1,11 @@
 package com.neusoft.elmboot.service;
 
-import com.neusoft.elmboot.dto.RegisterUserInfo;
+import com.neusoft.elmboot.bo.RegisterUserInfo;
+import com.neusoft.elmboot.entity.User;
 import com.neusoft.elmboot.exception.user.UserIdNotFoundException;
 import com.neusoft.elmboot.exception.user.UsernameNotFoundException;
 import com.neusoft.elmboot.exception.user.UsernamePasswordNotMatchException;
 import com.neusoft.elmboot.exception.user.UsernameUserIdRepeatedException;
-import com.neusoft.elmboot.entity.User;
 
 import java.security.NoSuchAlgorithmException;
 

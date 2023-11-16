@@ -1,5 +1,7 @@
 package com.neusoft.elmboot.service.impl;
 
+import com.neusoft.elmboot.bo.TransactionBo;
+import com.neusoft.elmboot.bo.VirtualWalletBo;
 import com.neusoft.elmboot.domain.VirtualWallet;
 import com.neusoft.elmboot.domain.impl.VirtualWalletImpl;
 import com.neusoft.elmboot.entity.User;
@@ -8,8 +10,6 @@ import com.neusoft.elmboot.mapper.OrdersMapper;
 import com.neusoft.elmboot.mapper.TransactionMapper;
 import com.neusoft.elmboot.mapper.UserMapper;
 import com.neusoft.elmboot.mapper.VirtualWalletMapper;
-import com.neusoft.elmboot.po.TransactionPo;
-import com.neusoft.elmboot.po.VirtualWalletPo;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import com.neusoft.elmboot.util.CommonUtil;
 import com.neusoft.elmboot.util.UserUtil;
@@ -45,11 +45,11 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
         VirtualWallet inputVirtualWallet = new VirtualWalletImpl(inputWalletId, inputBalance);
         VirtualWallet outputVirtualWallet = new VirtualWalletImpl(outputWalletId, outputBalance);
         if (outputVirtualWallet.decreaseBalance(money) == 1 && inputVirtualWallet.increaseBalance(money) == 1) {
-            VirtualWalletPo inputVirtualWalletPo = new VirtualWalletPo(inputWalletId, inputVirtualWallet.getBalance());
-            VirtualWalletPo outputVirtualWalletPo = new VirtualWalletPo(outputWalletId, outputVirtualWallet.getBalance());
-            TransactionPo transactionPo = new TransactionPo(CommonUtil.getCurrentDate(), money, 2, inputWalletId, outputWalletId);
-            int done1 = virtualWalletMapper.updateBalance(inputVirtualWalletPo);
-            int done2 = virtualWalletMapper.updateBalance(outputVirtualWalletPo);
+            VirtualWalletBo inputVirtualWalletBo = new VirtualWalletBo(inputWalletId, inputVirtualWallet.getBalance());
+            VirtualWalletBo outputVirtualWalletBo = new VirtualWalletBo(outputWalletId, outputVirtualWallet.getBalance());
+            TransactionBo transactionPo = new TransactionBo(CommonUtil.getCurrentDate(), money, 2, inputWalletId, outputWalletId);
+            int done1 = virtualWalletMapper.updateBalance(inputVirtualWalletBo);
+            int done2 = virtualWalletMapper.updateBalance(outputVirtualWalletBo);
             int done3 = transactionMapper.writeTransaction(transactionPo);
             if (done1 == 1 && done2 == 1 && done3 == 1)
                 return 1;
@@ -67,9 +67,9 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
         double balance = virtualWalletMapper.queryBalance(walletId);
         VirtualWallet virtualWallet = new VirtualWalletImpl(walletId, balance);
         if (virtualWallet.decreaseBalance(money) == 1) {
-            VirtualWalletPo virtualWalletPo = new VirtualWalletPo(walletId, virtualWallet.getBalance());
-            TransactionPo transactionPo = new TransactionPo(CommonUtil.getCurrentDate(), money, 1, null, walletId);
-            int done1 = virtualWalletMapper.updateBalance(virtualWalletPo);
+            VirtualWalletBo virtualWalletBo = new VirtualWalletBo(walletId, virtualWallet.getBalance());
+            TransactionBo transactionPo = new TransactionBo(CommonUtil.getCurrentDate(), money, 1, null, walletId);
+            int done1 = virtualWalletMapper.updateBalance(virtualWalletBo);
             int done2 = transactionMapper.writeTransaction(transactionPo);
             if (done2 == 1 && done1 == 1)
                 return 1;
@@ -90,9 +90,9 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
         double balance = virtualWalletMapper.queryBalance(walletId);
         VirtualWallet virtualWallet = new VirtualWalletImpl(walletId, balance);
         if (virtualWallet.increaseBalance(money) == 1) {
-            VirtualWalletPo virtualWalletPo = new VirtualWalletPo(walletId, virtualWallet.getBalance());
-            TransactionPo transactionPo = new TransactionPo(CommonUtil.getCurrentDate(), money, 0, walletId, null);
-            int done1 = virtualWalletMapper.updateBalance(virtualWalletPo);
+            VirtualWalletBo virtualWalletBo = new VirtualWalletBo(walletId, virtualWallet.getBalance());
+            TransactionBo transactionPo = new TransactionBo(CommonUtil.getCurrentDate(), money, 0, walletId, null);
+            int done1 = virtualWalletMapper.updateBalance(virtualWalletBo);
             int done2 = transactionMapper.writeTransaction(transactionPo);
             if (done2 == 1 && done1 == 1)
                 return transactionPo.getTransactionId();
@@ -113,9 +113,9 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
             throw new UserHasCreatedWalletException();
         }
 
-        VirtualWalletPo virtualWalletPo = new VirtualWalletPo();
-        int done = virtualWalletMapper.createVirtualWallet(virtualWalletPo);
-        walletId = virtualWalletPo.getWalletId();
+        VirtualWalletBo virtualWalletBo = new VirtualWalletBo();
+        int done = virtualWalletMapper.createVirtualWallet(virtualWalletBo);
+        walletId = virtualWalletBo.getWalletId();
 
         int finish = userMapper.updateWalletId(userId, walletId);
 
@@ -140,11 +140,11 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
         VirtualWallet inputVirtualWallet = new VirtualWalletImpl(inputWalletId, inputBalance);
         VirtualWallet outputVirtualWallet = new VirtualWalletImpl(outputWalletId, outputBalance);
         if (outputVirtualWallet.decreaseBalance(money2) == 1 && inputVirtualWallet.increaseBalance(money1) == 1) {
-            VirtualWalletPo inputVirtualWalletPo = new VirtualWalletPo(inputWalletId, inputVirtualWallet.getBalance());
-            VirtualWalletPo outputVirtualWalletPo = new VirtualWalletPo(outputWalletId, outputVirtualWallet.getBalance());
-            TransactionPo transactionPo = new TransactionPo(CommonUtil.getCurrentDate(), money1, 2, inputWalletId, outputWalletId);
-            int done1 = virtualWalletMapper.updateBalance(inputVirtualWalletPo);
-            int done2 = virtualWalletMapper.updateBalance(outputVirtualWalletPo);
+            VirtualWalletBo inputVirtualWalletBo = new VirtualWalletBo(inputWalletId, inputVirtualWallet.getBalance());
+            VirtualWalletBo outputVirtualWalletBo = new VirtualWalletBo(outputWalletId, outputVirtualWallet.getBalance());
+            TransactionBo transactionPo = new TransactionBo(CommonUtil.getCurrentDate(), money1, 2, inputWalletId, outputWalletId);
+            int done1 = virtualWalletMapper.updateBalance(inputVirtualWalletBo);
+            int done2 = virtualWalletMapper.updateBalance(outputVirtualWalletBo);
             int done3 = transactionMapper.writeTransaction(transactionPo);
             int done4 = ordersMapper.payOrders(orderId);
             if (done1 == 1 && done2 == 1 && done3 == 1 && done4 == 1)

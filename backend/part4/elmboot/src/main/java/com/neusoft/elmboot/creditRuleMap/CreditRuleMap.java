@@ -1,15 +1,14 @@
 package com.neusoft.elmboot.creditRuleMap;
 
+import com.neusoft.elmboot.bo.CreditRuleBo;
 import com.neusoft.elmboot.domain.Rule;
 import com.neusoft.elmboot.domain.impl.RechargeCreditRule;
 import com.neusoft.elmboot.domain.impl.SignCreditRule;
 import com.neusoft.elmboot.domain.impl.TransferMoneyCreditRule;
 import com.neusoft.elmboot.mapper.RuleMapper;
-import com.neusoft.elmboot.po.CreditRulePo;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -25,7 +24,7 @@ public class CreditRuleMap {
             return ruleMap.get(ruleId);
         }
         else {
-            CreditRulePo rulePo = ruleMapper.getRule(ruleId);
+            CreditRuleBo rulePo = ruleMapper.getRule(ruleId);
             Rule rule = null;
             switch (rulePo.getId()){
                 case 1:{

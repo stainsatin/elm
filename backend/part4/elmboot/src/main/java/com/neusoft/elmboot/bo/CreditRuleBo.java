@@ -1,9 +1,9 @@
-package com.neusoft.elmboot.po;
+package com.neusoft.elmboot.bo;
 
 import lombok.Data;
 
 @Data
-public class CreditRulePo {
+public class CreditRuleBo {
     private Integer id;
     private String ruleCode;
     private Integer type;
@@ -17,17 +17,17 @@ public class CreditRulePo {
     private Integer lifespan;
     private Integer state;
 
-    public CreditRulePo(Integer id,String ruleCode,Integer type,Integer priority,Integer credit,Double formula,Integer dailyCap,Integer totCap,String startTime,String endTime,Integer lifespan,Integer state){
-        this.id=id;
-        this.ruleCode=ruleCode;
-        this.type=type;
-        this.priority=priority;
-        this.credit=credit;
-        this.formula=formula;
-        this.dailyCap=dailyCap;
-        this.totCap=totCap;
-        this.startTime=startTime;
-        this.endTime=endTime;
+    public CreditRuleBo(Integer id, String ruleCode, Integer type, Integer priority, Integer credit, Double formula, Integer dailyCap, Integer totCap, String startTime, String endTime, Integer lifespan, Integer state) {
+        this.id = id;
+        this.ruleCode = ruleCode;
+        this.type = type;
+        this.priority = priority;
+        this.credit = credit;
+        this.formula = formula;
+        this.dailyCap = dailyCap;
+        this.totCap = totCap;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.lifespan=lifespan;
         this.state=state;
     }

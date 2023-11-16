@@ -3,7 +3,7 @@ package com.neusoft.elmboot.domain;
 import com.neusoft.elmboot.domain.impl.RechargeCreditRule;
 import com.neusoft.elmboot.domain.impl.SignCreditRule;
 import com.neusoft.elmboot.domain.impl.TransferMoneyCreditRule;
-import com.neusoft.elmboot.po.ConsumeCredit;
+import com.neusoft.elmboot.entity.ConsumeCredit;
 
 public interface CreditSystem {
     public int queryEarningCreditBySign(int count, SignCreditRule signCreditRule);

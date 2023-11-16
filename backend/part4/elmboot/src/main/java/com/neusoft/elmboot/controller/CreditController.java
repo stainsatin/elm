@@ -1,10 +1,10 @@
 package com.neusoft.elmboot.controller;
 
 
+import com.neusoft.elmboot.bo.CreditRuleBo;
+import com.neusoft.elmboot.entity.ConsumeCredit;
+import com.neusoft.elmboot.entity.CreditRecord;
 import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
-import com.neusoft.elmboot.po.ConsumeCredit;
-import com.neusoft.elmboot.po.CreditRecord;
-import com.neusoft.elmboot.po.CreditRulePo;
 import com.neusoft.elmboot.service.CreditService;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,15 +54,20 @@ public class CreditController {
         int transactionId=virtualWalletService.transferMoneyWithCredit(inputWalletId,outputWalletId,money,money-deductionMoney,orderId);
         return creditService.transferMoneyWithCreditConsume(creditNum,transactionId,userId);
     }
+
     @RequestMapping("/queryAllCredit")
-    public List<CreditRecord> queryAllCredit(String userId){
+    public List<CreditRecord> queryAllCredit(String userId) {
         return creditService.queryAllCredit(userId);
     }
+
     @RequestMapping("/updateCreditRule")
-    public Integer updateCreditRule(CreditRulePo creditRule){
-        CreditRulePo creditRulePo=new CreditRulePo(creditRule.getId(),creditRule.getRuleCode(),creditRule.getType(),creditRule.getPriority(),creditRule.getCredit(),creditRule.getFormula(),creditRule.getDailyCap(),creditRule.getTotCap(),creditRule.getStartTime(),creditRule.getEndTime(),creditRule.getLifespan(),creditRule.getState());
-        return creditService.updateCreditRule(creditRulePo);
+    public Integer updateCreditRule(CreditRuleBo creditRule) {
+        CreditRuleBo creditRuleBo = new CreditRuleBo(creditRule.getId(), creditRule.getRuleCode(), creditRule.getType(), creditRule.getPriority(), creditRule.getCredit(), creditRule.getFormula(), creditRule.getDailyCap(), creditRule.getTotCap(), creditRule.getStartTime(), creditRule.getEndTime(), creditRule.getLifespan(), creditRule.getState());
+        return creditService.updateCreditRule(creditRuleBo);
     }
+
     @RequestMapping("/queryAllCreditRule")
-    public List<CreditRulePo> queryAllCreditRule(){return creditService.queryAllCreditRule();}
+    public List<CreditRuleBo> queryAllCreditRule() {
+        return creditService.queryAllCreditRule();
+    }
 }

@@ -1,5 +1,6 @@
 package com.neusoft.elmboot.service.impl;
 
+import com.neusoft.elmboot.bo.CreditRuleBo;
 import com.neusoft.elmboot.creditRuleMap.CreditRuleMap;
 import com.neusoft.elmboot.domain.CreditSystem;
 import com.neusoft.elmboot.domain.Rule;
@@ -7,20 +8,18 @@ import com.neusoft.elmboot.domain.impl.CreditSystemImpl;
 import com.neusoft.elmboot.domain.impl.RechargeCreditRule;
 import com.neusoft.elmboot.domain.impl.SignCreditRule;
 import com.neusoft.elmboot.domain.impl.TransferMoneyCreditRule;
+import com.neusoft.elmboot.entity.ConsumeCredit;
+import com.neusoft.elmboot.entity.CreditRecord;
+import com.neusoft.elmboot.entity.UsableCredit;
 import com.neusoft.elmboot.mapper.CreditRecordMapper;
 import com.neusoft.elmboot.mapper.CreditRuleMapper;
-import com.neusoft.elmboot.po.CreditRecord;
-import com.neusoft.elmboot.po.CreditRulePo;
-import com.neusoft.elmboot.po.UsableCredit;
 import com.neusoft.elmboot.service.CreditService;
 import com.neusoft.elmboot.util.CommonUtil;
-import com.neusoft.elmboot.po.ConsumeCredit;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.*;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,10 +41,10 @@ public class CreditServiceImpl implements CreditService {
         synchronized (creditRuleMap) {
             signCreditRule = (SignCreditRule) creditRuleMap.getRule(ruleId);
             if (signCreditRule == null) {
-                CreditRulePo creditRulePo = creditRuleMapper.getRule(ruleId);
-                int credit = creditRulePo.getCredit();
-                int lifeSpan = creditRulePo.getLifespan();
-                int totCap = creditRulePo.getDailyCap();
+                CreditRuleBo creditRuleBo = creditRuleMapper.getRule(ruleId);
+                int credit = creditRuleBo.getCredit();
+                int lifeSpan = creditRuleBo.getLifespan();
+                int totCap = creditRuleBo.getDailyCap();
                 signCreditRule = new SignCreditRule(lifeSpan, credit, totCap);
                 creditRuleMap.writeMap(ruleId, signCreditRule);
             }
@@ -80,9 +79,9 @@ public class CreditServiceImpl implements CreditService {
         synchronized (creditRuleMap) {
             rechargeCreditRule = (RechargeCreditRule) creditRuleMap.getRule(ruleId);
             if (rechargeCreditRule == null) {
-                CreditRulePo creditRulePo = creditRuleMapper.getRule(ruleId);
-                double formula = creditRulePo.getFormula();
-                int lifeSpan = creditRulePo.getLifespan();
+                CreditRuleBo creditRuleBo = creditRuleMapper.getRule(ruleId);
+                double formula = creditRuleBo.getFormula();
+                int lifeSpan = creditRuleBo.getLifespan();
                 rechargeCreditRule = new RechargeCreditRule(lifeSpan, formula);
                 creditRuleMap.writeMap(ruleId, rechargeCreditRule);
             }
@@ -123,8 +122,8 @@ public class CreditServiceImpl implements CreditService {
         synchronized (creditRuleMap) {
             transferMoneyCreditRule = (TransferMoneyCreditRule) creditRuleMap.getRule(ruleId);
             if (transferMoneyCreditRule == null) {
-                CreditRulePo creditRulePo = creditRuleMapper.getRule(ruleId);
-                double formula = creditRulePo.getFormula();
+                CreditRuleBo creditRuleBo = creditRuleMapper.getRule(ruleId);
+                double formula = creditRuleBo.getFormula();
                 transferMoneyCreditRule = new TransferMoneyCreditRule(formula);
                 creditRuleMap.writeMap(ruleId, transferMoneyCreditRule);
             }
@@ -172,11 +171,11 @@ public class CreditServiceImpl implements CreditService {
     private CreditRuleMap creditRuleMap;
 
     @Override
-    public Integer updateCreditRule(CreditRulePo creditRule) {
+    public Integer updateCreditRule(CreditRuleBo creditRule) {
         Integer ruleId = creditRule.getId();
         Rule rule = creditRuleMap.getRule(ruleId);
         switch (ruleId) {
-            case 1 : {
+            case 1: {
                 SignCreditRule signCreditRule = (SignCreditRule) rule;
                 System.out.println(signCreditRule);
                 signCreditRule.setLifeSpan(creditRule.getLifespan());
@@ -199,7 +198,7 @@ public class CreditServiceImpl implements CreditService {
         return creditRuleMapper.updateCreditRule(creditRule);
     }
 
-    public List<CreditRulePo> queryAllCreditRule() {
+    public List<CreditRuleBo> queryAllCreditRule() {
         return creditRuleMapper.queryAllCreditRule();
     }
 }

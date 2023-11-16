@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.controller;
 
-import com.neusoft.elmboot.dto.Result;
+import com.neusoft.elmboot.bo.Result;
 import com.neusoft.elmboot.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

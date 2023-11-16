@@ -1,8 +1,8 @@
-package com.neusoft.elmboot.po;
-
-import java.io.Serializable;
+package com.neusoft.elmboot.entity;
 
 import lombok.Data;
+
+import java.io.Serializable;
 @Data
 public class DeliveryAddress implements Serializable{
     private static final long serialVersionUID = -3607282878547901381L;

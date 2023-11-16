@@ -1,6 +1,6 @@
-package com.neusoft.elmboot.po;
+package com.neusoft.elmboot.bo;
 
-public class TransactionPo {
+public class TransactionBo {
     private Integer transactionId;
     private String time;
     private double money;
@@ -9,12 +9,12 @@ public class TransactionPo {
     private Integer inputwalletId;
     private Integer outputwalletId;
 
-    public TransactionPo(String time,double money,Integer type,Integer inputwalletId,Integer outputwalletId){
-        this.time=time;
-        this.money=money;
-        this.type=type;
-        this.outputwalletId=outputwalletId;
-        this.inputwalletId=inputwalletId;
+    public TransactionBo(String time, double money, Integer type, Integer inputwalletId, Integer outputwalletId) {
+        this.time = time;
+        this.money = money;
+        this.type = type;
+        this.outputwalletId = outputwalletId;
+        this.inputwalletId = inputwalletId;
     }
 
     public Integer getTransactionId() {

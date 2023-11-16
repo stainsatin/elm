@@ -1,7 +1,7 @@
 package com.neusoft.elmboot.domain.impl;
 
 import com.neusoft.elmboot.domain.CreditSystem;
-import com.neusoft.elmboot.po.ConsumeCredit;
+import com.neusoft.elmboot.entity.ConsumeCredit;
 
 public class CreditSystemImpl implements CreditSystem {
     @Override

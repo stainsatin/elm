@@ -1,6 +1,6 @@
 package com.neusoft.elmboot.service.impl;
 
-import com.neusoft.elmboot.dto.RegisterUserInfo;
+import com.neusoft.elmboot.bo.RegisterUserInfo;
 import com.neusoft.elmboot.entity.User;
 import com.neusoft.elmboot.exception.user.UserIdNotFoundException;
 import com.neusoft.elmboot.exception.user.UsernameNotFoundException;
