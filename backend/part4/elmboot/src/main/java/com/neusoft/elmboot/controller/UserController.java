@@ -19,12 +19,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-    @PutMapping("/user")
-    public int updateUserMsg(String userId,String username){
-    	return userService.updateUserMsg(userId, username);
-    }
-
-	@RequestMapping("/updateUserPassword")
+    @RequestMapping("/updateUserPassword")
     public int updateUserPassword(String userId,String oldPass,String newPass) throws NoSuchAlgorithmException {
 		oldPass = CommonUtil.encodePassword(oldPass);
 		newPass = CommonUtil.encodePassword(newPass);
