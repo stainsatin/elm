@@ -6,6 +6,7 @@ import com.neusoft.elmboot.bo.Result;
 import com.neusoft.elmboot.entity.ConsumeCredit;
 import com.neusoft.elmboot.entity.CreditRecord;
 import com.neusoft.elmboot.exception.credit.UserHasSignedException;
+import com.neusoft.elmboot.exception.wallet.RechargeFailedException;
 import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
 import com.neusoft.elmboot.service.CreditService;
 import com.neusoft.elmboot.service.VirtualWalletService;
@@ -36,9 +37,14 @@ public class CreditController {
         return Result.success(creditService.earnCreditBySign());
     }
 
-    @RequestMapping("/queryEarnCreditByRecharge")
-    public Integer queryEarnCreditByRecharge(String userId, Integer money) {
-        return creditService.queryEarnCreditByRecharge(userId, money);
+    @GetMapping("/recharge")
+    public Result queryEarnCreditByRecharge(double money) {
+        return Result.success(creditService.queryEarnCreditByRecharge(money));
+    }
+
+    @PostMapping("/recharge")
+    public Result earnCreditByCharge(double money) throws UserHasNotCreatedWalletIdException, RechargeFailedException {
+        return Result.success(creditService.earnCreditByCharge(money));
     }
 
     @RequestMapping("/earnCreditBySignAndRecharge")

@@ -1,24 +1,24 @@
 package com.neusoft.elmboot.service.impl;
 
 import com.neusoft.elmboot.bo.CreditRuleBo;
+import com.neusoft.elmboot.bo.TransactionBo;
+import com.neusoft.elmboot.bo.VirtualWalletBo;
 import com.neusoft.elmboot.creditRuleMap.CreditRuleMap;
 import com.neusoft.elmboot.domain.CreditSystem;
 import com.neusoft.elmboot.domain.Rule;
-import com.neusoft.elmboot.domain.impl.CreditSystemImpl;
-import com.neusoft.elmboot.domain.impl.RechargeCreditRule;
-import com.neusoft.elmboot.domain.impl.SignCreditRule;
-import com.neusoft.elmboot.domain.impl.TransferMoneyCreditRule;
+import com.neusoft.elmboot.domain.VirtualWallet;
+import com.neusoft.elmboot.domain.impl.*;
 import com.neusoft.elmboot.entity.ConsumeCredit;
 import com.neusoft.elmboot.entity.CreditRecord;
 import com.neusoft.elmboot.entity.UsableCredit;
 import com.neusoft.elmboot.exception.credit.UserHasSignedException;
-import com.neusoft.elmboot.mapper.CreditRecordMapper;
-import com.neusoft.elmboot.mapper.CreditRuleMapper;
+import com.neusoft.elmboot.exception.wallet.RechargeFailedException;
+import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
+import com.neusoft.elmboot.mapper.*;
 import com.neusoft.elmboot.service.CreditService;
 import com.neusoft.elmboot.util.CommonUtil;
 import com.neusoft.elmboot.util.UserUtil;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,10 +28,16 @@ import java.util.List;
 @Service
 public class CreditServiceImpl implements CreditService {
 
-    @Autowired
+    @Resource
     private CreditRuleMapper creditRuleMapper;
-    @Autowired
+    @Resource
     private CreditRecordMapper creditRecordMapper;
+    @Resource
+    private VirtualWalletMapper virtualWalletMapper;
+    @Resource
+    private TransactionMapper transactionMapper;
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public Integer queryEarningCreditBySign() {
@@ -41,17 +47,7 @@ public class CreditServiceImpl implements CreditService {
         String today = time.substring(0, time.indexOf(' ')).trim();
         int count = creditRecordMapper.todaySignRecord(userId, ruleId, today);
         SignCreditRule signCreditRule = null;
-        synchronized (creditRuleMap) {
-            signCreditRule = (SignCreditRule) creditRuleMap.getRule(ruleId);
-            if (signCreditRule == null) {
-                CreditRuleBo creditRuleBo = creditRuleMapper.getRule(ruleId);
-                int credit = creditRuleBo.getCredit();
-                int lifeSpan = creditRuleBo.getLifespan();
-                int totCap = creditRuleBo.getDailyCap();
-                signCreditRule = new SignCreditRule(lifeSpan, credit, totCap);
-                creditRuleMap.writeMap(ruleId, signCreditRule);
-            }
-        }
+        signCreditRule = (SignCreditRule) creditRuleMap.getRule(ruleId);
         CreditSystem creditSystem = new CreditSystemImpl();
         return creditSystem.queryEarningCreditBySign(count, signCreditRule);
     }
@@ -67,7 +63,7 @@ public class CreditServiceImpl implements CreditService {
         Integer check = this.queryEarningCreditBySign();
         if (check == 0) throw new UserHasSignedException();
         CreditRecord creditRecord = new CreditRecord(1, userId, creditNum, createTime, endTime);
-        int done1 = creditRecordMapper.insertCreditRecord(creditRecord);
+        int done1 = creditRecordMapper.insertSignCreditRecord(creditRecord);
         int done2 = creditRecordMapper.insertUsableCredit(userId, creditRecord.getId(), creditNum, createTime, endTime);
         if (done2 == 1 && done1 == 1) {
             return 1;
@@ -77,24 +73,55 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
-    public Integer queryEarnCreditByRecharge(String userId, Integer money) {
+    public Integer queryEarnCreditByRecharge(double money) {
         Integer ruleId = 2;
         RechargeCreditRule rechargeCreditRule = null;
-        synchronized (creditRuleMap) {
-            rechargeCreditRule = (RechargeCreditRule) creditRuleMap.getRule(ruleId);
-            if (rechargeCreditRule == null) {
-                CreditRuleBo creditRuleBo = creditRuleMapper.getRule(ruleId);
-                double formula = creditRuleBo.getFormula();
-                int lifeSpan = creditRuleBo.getLifespan();
-                rechargeCreditRule = new RechargeCreditRule(lifeSpan, formula);
-                creditRuleMap.writeMap(ruleId, rechargeCreditRule);
-            }
-        }
+        rechargeCreditRule = (RechargeCreditRule) creditRuleMap.getRule(ruleId);
+        int count = (int) money;
         CreditSystem creditSystem = new CreditSystemImpl();
-        return creditSystem.queryEarnCreditByRecharge(money, rechargeCreditRule);
+        return creditSystem.queryEarnCreditByRecharge(count, rechargeCreditRule);
     }
 
     @Override
+    @Transactional
+    public Integer earnCreditByCharge(double money) throws UserHasNotCreatedWalletIdException, RechargeFailedException {
+        Integer walletId = userMapper.getWalletIdByUserId(UserUtil.getUserId());
+        if (walletId == null) {
+            throw new UserHasNotCreatedWalletIdException();
+        }
+        double balance = virtualWalletMapper.queryBalance(walletId);
+        VirtualWallet virtualWallet = new VirtualWalletImpl(walletId, balance);
+        if (virtualWallet.increaseBalance(money) == 1) {
+            VirtualWalletBo virtualWalletBo = new VirtualWalletBo(walletId, virtualWallet.getBalance());
+            TransactionBo transactionPo = new TransactionBo(CommonUtil.getCurrentDate(), money, 0, walletId, null);
+            int done1 = virtualWalletMapper.updateBalance(virtualWalletBo);
+            int done2 = transactionMapper.writeTransaction(transactionPo);
+            if (done2 == 1 && done1 == 1) {
+                Integer transactionId = transactionPo.getTransactionId();
+                Integer creditNum = this.queryEarnCreditByRecharge(money);
+                Integer ruleId = 2;
+                RechargeCreditRule rechargeCreditRule = null;
+                rechargeCreditRule = (RechargeCreditRule) creditRuleMap.getRule(ruleId);
+                String createTime = CommonUtil.getCurrentDate();
+                String endTime = CommonUtil.getEndTime(rechargeCreditRule.getLifeSpan());
+                String userId = UserUtil.getUserId();
+                //int ruleCode,String userId,int credit,String createTime,String expiredTime,int eventId
+                CreditRecord creditRecord = new CreditRecord(2, userId, creditNum, createTime, endTime, transactionId);
+                int done3 = creditRecordMapper.insertRechargeCreditRecord(creditRecord);
+                int done4 = creditRecordMapper.insertUsableCredit(userId, creditRecord.getId(), creditNum, createTime, endTime);
+                if (done3 == 1 && done4 == 1) {
+                    return 1;
+                } else {
+                    throw new RechargeFailedException();
+                }
+            } else throw new RechargeFailedException();
+        } else {
+            throw new RechargeFailedException();
+        }
+    }
+
+    @Override
+    @Transactional
     public Integer earnCreditBySign(String userId, Integer creditNum, Integer transactionId) {
         String createTime = CommonUtil.getCurrentDate();
         int lifeSpan = 0;
@@ -103,7 +130,7 @@ public class CreditServiceImpl implements CreditService {
         }
         String endTime = CommonUtil.getEndTime(lifeSpan);
         CreditRecord creditRecord = new CreditRecord(2, userId, creditNum, createTime, endTime, transactionId);
-        int done1 = creditRecordMapper.insertCreditRecord(creditRecord);
+        int done1 = creditRecordMapper.insertSignCreditRecord(creditRecord);
         int done2 = creditRecordMapper.insertUsableCredit(userId, creditRecord.getId(), creditNum, createTime, endTime);
         if (done2 == 1 && done1 == 1) {
             return 1;
@@ -142,7 +169,7 @@ public class CreditServiceImpl implements CreditService {
         Integer ruleId = 3;
         creditNum = -creditNum;
         CreditRecord creditRecord = new CreditRecord(ruleId, userId, creditNum, CommonUtil.getCurrentDate(), id);
-        creditRecordMapper.insertCreditRecord(creditRecord);
+        creditRecordMapper.insertSignCreditRecord(creditRecord);
         int recordId = creditRecord.getId();
         List<UsableCredit> list = creditRecordMapper.listUsableCredit(userId);
         Iterator iterator = list.iterator();

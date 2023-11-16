@@ -4,6 +4,8 @@ import com.neusoft.elmboot.bo.CreditRuleBo;
 import com.neusoft.elmboot.entity.ConsumeCredit;
 import com.neusoft.elmboot.entity.CreditRecord;
 import com.neusoft.elmboot.exception.credit.UserHasSignedException;
+import com.neusoft.elmboot.exception.wallet.RechargeFailedException;
+import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
 
 import java.util.List;
 
@@ -12,7 +14,9 @@ public interface CreditService {
 
     public Integer earnCreditBySign() throws UserHasSignedException;
 
-    public Integer queryEarnCreditByRecharge(String userId, Integer money);
+    public Integer queryEarnCreditByRecharge(double money);
+
+    public Integer earnCreditByCharge(double money) throws UserHasNotCreatedWalletIdException, RechargeFailedException;
 
     public Integer earnCreditBySign(String userId, Integer creditNum, Integer transactionId);
 

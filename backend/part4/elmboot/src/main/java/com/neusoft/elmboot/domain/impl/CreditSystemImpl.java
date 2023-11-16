@@ -18,6 +18,7 @@ public class CreditSystemImpl implements CreditSystem {
         return (int) (money*rechargeCreditRule.getRule());
     }
 
+
     @Override
     public ConsumeCredit consumeCreditByPaying(Integer money, Integer creditNum, TransferMoneyCreditRule transferMoneyCreditRule) {
         ConsumeCredit consumeCredit =new ConsumeCredit();

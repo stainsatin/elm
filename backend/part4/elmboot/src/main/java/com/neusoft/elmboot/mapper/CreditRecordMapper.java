@@ -29,7 +29,11 @@ public interface CreditRecordMapper {
     //int ruleCode,String userId,int credit,String createTime,String expiredTime
     @Insert("insert into creditrecord(userId,ruleCode,eventId,credit,createTime,expiredTime) values(#{userId},#{ruleCode},0,#{credit},#{createTime},#{expiredTime})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
-    public int insertCreditRecord(CreditRecord creditRecord);
+    public int insertSignCreditRecord(CreditRecord creditRecord);
+
+    @Insert("insert into creditrecord(userId,ruleCode,eventId,credit,createTime,expiredTime) values(#{userId},#{ruleCode},#{eventId},#{credit},#{createTime},#{expiredTime})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    public int insertRechargeCreditRecord(CreditRecord creditRecord);
 
     @Insert("insert into usablecredit values(null,#{userId},#{recordId},#{credit},#{createTime},#{expiredTime},0)")
     public int insertUsableCredit(String userId, Integer recordId, Integer credit, String createTime, String expiredTime);
