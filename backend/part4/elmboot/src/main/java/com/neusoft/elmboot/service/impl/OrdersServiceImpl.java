@@ -7,6 +7,7 @@ import com.neusoft.elmboot.entity.Orders;
 import com.neusoft.elmboot.exception.order.BusinessInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.DeliveryAddressInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.OrderHasPayedException;
+import com.neusoft.elmboot.exception.order.OrderIdUserIdNotMatchedException;
 import com.neusoft.elmboot.exception.wallet.BalanceRemainNotEnoughException;
 import com.neusoft.elmboot.exception.wallet.PayOrdersFailedException;
 import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
@@ -89,14 +90,17 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	@Transactional
-	public String payOrders(Integer orderId) throws BalanceRemainNotEnoughException, UserHasNotCreatedWalletIdException, PayOrdersFailedException, OrderHasPayedException {
+	public String payOrders(Integer orderId) throws BalanceRemainNotEnoughException, UserHasNotCreatedWalletIdException, PayOrdersFailedException, OrderHasPayedException, OrderIdUserIdNotMatchedException {
 		Orders orders = ordersMapper.getOrdersById(orderId);
 		if (orders == null) throw new PayOrdersFailedException();
 		Orders checkOrders = ordersMapper.getOrdersByIdOrderState(orderId, 0);
 		if (checkOrders == null) throw new OrderHasPayedException();
 
-		double orderTotal = orders.getOrderTotal();
 		String userId = UserUtil.getUserId();
+		if (!orders.getUserId().equals(userId)) throw new OrderIdUserIdNotMatchedException();
+
+		double orderTotal = orders.getOrderTotal();
+
 		Integer outputWalletId = userMapper.getWalletIdByUserId(userId);
 		if (outputWalletId == null) throw new UserHasNotCreatedWalletIdException();
 		VirtualWalletPo outputVirtualWalletPo = virtualWalletMapper.getVirtualWalletById(outputWalletId);

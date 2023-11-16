@@ -4,6 +4,7 @@ import com.neusoft.elmboot.dto.Result;
 import com.neusoft.elmboot.exception.order.BusinessInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.DeliveryAddressInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.OrderHasPayedException;
+import com.neusoft.elmboot.exception.order.OrderIdUserIdNotMatchedException;
 import com.neusoft.elmboot.exception.wallet.BalanceRemainNotEnoughException;
 import com.neusoft.elmboot.exception.wallet.PayOrdersFailedException;
 import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
@@ -36,7 +37,7 @@ public class OrdersController {
 	}
 
 	@PostMapping("/pay")
-	public Result payOrders(Integer orderId) throws BalanceRemainNotEnoughException, UserHasNotCreatedWalletIdException, PayOrdersFailedException, OrderHasPayedException {
+	public Result payOrders(Integer orderId) throws BalanceRemainNotEnoughException, UserHasNotCreatedWalletIdException, PayOrdersFailedException, OrderHasPayedException, OrderIdUserIdNotMatchedException {
 		return Result.success(ordersService.payOrders(orderId));
 	}
 }

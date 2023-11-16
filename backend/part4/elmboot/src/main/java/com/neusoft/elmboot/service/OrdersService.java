@@ -4,6 +4,7 @@ import com.neusoft.elmboot.entity.Orders;
 import com.neusoft.elmboot.exception.order.BusinessInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.DeliveryAddressInOrderNotFoundException;
 import com.neusoft.elmboot.exception.order.OrderHasPayedException;
+import com.neusoft.elmboot.exception.order.OrderIdUserIdNotMatchedException;
 import com.neusoft.elmboot.exception.wallet.BalanceRemainNotEnoughException;
 import com.neusoft.elmboot.exception.wallet.PayOrdersFailedException;
 import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
@@ -17,6 +18,6 @@ public interface OrdersService {
 
     public List<Orders> listOrdersByUserId(String userId);
 
-    public String payOrders(Integer orderId) throws BalanceRemainNotEnoughException, UserHasNotCreatedWalletIdException, PayOrdersFailedException, OrderHasPayedException;
+    public String payOrders(Integer orderId) throws BalanceRemainNotEnoughException, UserHasNotCreatedWalletIdException, PayOrdersFailedException, OrderHasPayedException, OrderIdUserIdNotMatchedException;
 
 }
