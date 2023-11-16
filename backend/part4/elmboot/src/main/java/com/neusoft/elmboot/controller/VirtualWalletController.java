@@ -2,7 +2,6 @@ package com.neusoft.elmboot.controller;
 
 import com.neusoft.elmboot.dto.Result;
 import com.neusoft.elmboot.exception.wallet.*;
-import com.neusoft.elmboot.po.VirtualWalletVo;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +16,6 @@ public class VirtualWalletController {
     @Resource
     VirtualWalletService virtualWalletService;
 
-    @RequestMapping("/withdrawMoney")
-    public int withdrawMoney(VirtualWalletVo virtualWalletVo) throws Exception {
-        return virtualWalletService.withdrawMoney(virtualWalletVo.getWalletId(), virtualWalletVo.getMoney());
-    }
 
     @PostMapping("/transfer")
     public Result transferMoney(String targetUsername, Integer targetWalletId, double money) throws UsernameWalletIdNotMatchException, UserHasNotCreatedWalletIdException, BalanceRemainNotEnoughException, TransferFailedException {
