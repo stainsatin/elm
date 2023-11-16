@@ -4,16 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] reformat code">
-      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/wallet/UserHasNotCreatedWalletIdException.java" afterDir="false" />
+    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] 充值，查询余额做好了">
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/order/OrderHasPayedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/wallet/BalanceRemainNotEnoughException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/wallet/PayOrdersFailedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/wallet/TransferFailedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/exception/wallet/UsernameWalletIdNotMatchException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/CreditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/CreditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/OrdersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/VirtualWalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/VirtualWalletController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/TransactionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/TransactionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/TransactionPo.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/po/TransactionPo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrdersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/OrdersMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/VirtualWalletMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/VirtualWalletMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/OrdersService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/VirtualWalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/VirtualWalletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/OrdersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/OrdersServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/VirtualWalletServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/VirtualWalletServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/resources/mapper/TransactionMapper.xml" beforeDir="false" />
     </list>
     <list id="80ad86d6-a583-4b15-8ee5-3fc0a5b27001" name="不用提交" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +178,7 @@
       <workItem from="1699922959419" duration="1589000" />
       <workItem from="1699924778864" duration="2512000" />
       <workItem from="1699967336291" duration="2018000" />
-      <workItem from="1699969541754" duration="41037000" />
+      <workItem from="1699969541754" duration="46735000" />
     </task>
     <task id="LOCAL-00001" summary="1) 加了一个GlobalHandler,方便看调用栈。 2) 数据库存储方式变成加盐加密">
       <created>1693727709522</created>
@@ -335,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700073831810</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="[new] 充值，查询余额做好了">
+      <created>1700116248698</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1700116248698</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,7 +405,8 @@
     <MESSAGE value="[new] 订单相关接口重构完成" />
     <MESSAGE value="[new] 创建钱包已完成" />
     <MESSAGE value="[new] reformat code" />
-    <option name="LAST_COMMIT_MESSAGE" value="[new] reformat code" />
+    <MESSAGE value="[new] 充值，查询余额做好了" />
+    <option name="LAST_COMMIT_MESSAGE" value="[new] 充值，查询余额做好了" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

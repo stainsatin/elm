@@ -44,5 +44,7 @@ public interface UserMapper {
     @Select("select walletId from user where userId=#{userId}")
     Integer getWalletIdByUserId(String userId);
 
+    @Select("select * from user where username=#{username} and walletId=#{walletId}")
+    User getUserByUsernameWalletId(String username, Integer walletId);
 
 }

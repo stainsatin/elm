@@ -15,4 +15,7 @@ public interface VirtualWalletMapper {
     @Options(useGeneratedKeys = true)
     @SelectKey(statement = "select last_insert_id()", keyProperty = "walletId", before = false, resultType = int.class)
     public int createVirtualWallet(VirtualWalletPo virtualWalletPo);
+
+    @Select("select * from virtualwallet where walletId=#{walletId}")
+    public VirtualWalletPo getVirtualWalletById(Integer walletId);
 }

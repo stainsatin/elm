@@ -1,9 +1,7 @@
 package com.neusoft.elmboot.controller;
 
 import com.neusoft.elmboot.dto.Result;
-import com.neusoft.elmboot.exception.wallet.CreateWalletFailedException;
-import com.neusoft.elmboot.exception.wallet.UserHasCreatedWalletException;
-import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
+import com.neusoft.elmboot.exception.wallet.*;
 import com.neusoft.elmboot.po.VirtualWalletVo;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import jakarta.annotation.Resource;
@@ -24,9 +22,9 @@ public class VirtualWalletController {
         return virtualWalletService.withdrawMoney(virtualWalletVo.getWalletId(), virtualWalletVo.getMoney());
     }
 
-    @RequestMapping("/transferMoney")
-    public int transferMoney(VirtualWalletVo virtualWalletVo) throws Exception {
-        return virtualWalletService.transferMoney(virtualWalletVo.getInputWalletId(), virtualWalletVo.getOutputWalletId(), virtualWalletVo.getMoney(), virtualWalletVo.getOrderId());
+    @PostMapping("/transfer")
+    public Result transferMoney(String targetUsername, Integer targetWalletId, double money) throws UsernameWalletIdNotMatchException, UserHasNotCreatedWalletIdException, BalanceRemainNotEnoughException, TransferFailedException {
+        return Result.success(virtualWalletService.transferMoney(targetUsername, targetWalletId, money));
     }
 
     @PostMapping

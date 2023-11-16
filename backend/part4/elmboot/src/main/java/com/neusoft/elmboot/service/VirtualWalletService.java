@@ -1,11 +1,9 @@
 package com.neusoft.elmboot.service;
 
-import com.neusoft.elmboot.exception.wallet.CreateWalletFailedException;
-import com.neusoft.elmboot.exception.wallet.UserHasCreatedWalletException;
-import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
+import com.neusoft.elmboot.exception.wallet.*;
 
 public interface VirtualWalletService {
-    public int transferMoney(Integer inputWalletId, Integer outputWalletId, double money, Integer orderId);
+    public int transferMoney(String targetUsername, Integer targetWalletId, double money) throws UsernameWalletIdNotMatchException, UserHasNotCreatedWalletIdException, BalanceRemainNotEnoughException, TransferFailedException;
 
     public int withdrawMoney(Integer walletId, double money);
 

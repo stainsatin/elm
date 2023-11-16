@@ -2,9 +2,8 @@ package com.neusoft.elmboot.service.impl;
 
 import com.neusoft.elmboot.domain.VirtualWallet;
 import com.neusoft.elmboot.domain.impl.VirtualWalletImpl;
-import com.neusoft.elmboot.exception.wallet.CreateWalletFailedException;
-import com.neusoft.elmboot.exception.wallet.UserHasCreatedWalletException;
-import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
+import com.neusoft.elmboot.entity.User;
+import com.neusoft.elmboot.exception.wallet.*;
 import com.neusoft.elmboot.mapper.OrdersMapper;
 import com.neusoft.elmboot.mapper.TransactionMapper;
 import com.neusoft.elmboot.mapper.UserMapper;
@@ -14,24 +13,33 @@ import com.neusoft.elmboot.po.VirtualWalletPo;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import com.neusoft.elmboot.util.CommonUtil;
 import com.neusoft.elmboot.util.UserUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VirtualWalletServiceImpl implements VirtualWalletService {
-    @Autowired
+    @Resource
     private VirtualWalletMapper virtualWalletMapper;
-    @Autowired
+    @Resource
     private TransactionMapper transactionMapper;
-    @Autowired
+    @Resource
     private OrdersMapper ordersMapper;
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Override
     @Transactional
-    public int transferMoney(Integer inputWalletId, Integer outputWalletId, double money, Integer orderId) {
+    public int transferMoney(String targetUsername, Integer targetWalletId, double money) throws UserHasNotCreatedWalletIdException, UsernameWalletIdNotMatchException, BalanceRemainNotEnoughException, TransferFailedException {
+
+        String userId = UserUtil.getUserId();
+        Integer outputWalletId = userMapper.getWalletIdByUserId(userId);
+        if (outputWalletId == null)
+            throw new UserHasNotCreatedWalletIdException();
+        User targetUser = userMapper.getUserByUsernameWalletId(targetUsername, targetWalletId);
+        if (targetUser == null)
+            throw new UsernameWalletIdNotMatchException();
+        Integer inputWalletId = targetUser.getWalletId();
         double inputBalance = virtualWalletMapper.queryBalance(inputWalletId);
         double outputBalance = virtualWalletMapper.queryBalance(outputWalletId);
         VirtualWallet inputVirtualWallet = new VirtualWalletImpl(inputWalletId, inputBalance);
@@ -43,13 +51,12 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
             int done1 = virtualWalletMapper.updateBalance(inputVirtualWalletPo);
             int done2 = virtualWalletMapper.updateBalance(outputVirtualWalletPo);
             int done3 = transactionMapper.writeTransaction(transactionPo);
-            int done4 = ordersMapper.payOrders(orderId);
-            if (done1 == 1 && done2 == 1 && done3 == 1 && done4 == 1)
+            if (done1 == 1 && done2 == 1 && done3 == 1)
                 return 1;
-            else
-                return 0;
+            else throw new TransferFailedException();
         } else {
-            return 0;
+            if (outputVirtualWallet.decreaseBalance(money) == 0) throw new BalanceRemainNotEnoughException();
+            else throw new TransferFailedException();
         }
     }
 
