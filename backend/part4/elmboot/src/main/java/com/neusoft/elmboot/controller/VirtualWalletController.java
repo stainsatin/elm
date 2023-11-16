@@ -3,9 +3,11 @@ package com.neusoft.elmboot.controller;
 import com.neusoft.elmboot.dto.Result;
 import com.neusoft.elmboot.exception.wallet.CreateWalletFailedException;
 import com.neusoft.elmboot.exception.wallet.UserHasCreatedWalletException;
+import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
 import com.neusoft.elmboot.po.VirtualWalletVo;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class VirtualWalletController {
     @Resource
     VirtualWalletService virtualWalletService;
+
     @RequestMapping("/withdrawMoney")
-    public int withdrawMoney(VirtualWalletVo virtualWalletVo) throws Exception{
-        return virtualWalletService.withdrawMoney(virtualWalletVo.getWalletId(),virtualWalletVo.getMoney());
+    public int withdrawMoney(VirtualWalletVo virtualWalletVo) throws Exception {
+        return virtualWalletService.withdrawMoney(virtualWalletVo.getWalletId(), virtualWalletVo.getMoney());
     }
 
     @RequestMapping("/transferMoney")
@@ -26,18 +29,18 @@ public class VirtualWalletController {
         return virtualWalletService.transferMoney(virtualWalletVo.getInputWalletId(), virtualWalletVo.getOutputWalletId(), virtualWalletVo.getMoney(), virtualWalletVo.getOrderId());
     }
 
-    @RequestMapping("/recharge")
-    public int recharge(VirtualWalletVo virtualWalletVo) throws Exception {
-        return virtualWalletService.recharge(virtualWalletVo.getWalletId(), virtualWalletVo.getMoney());
+    @PostMapping
+    public Result recharge(double money) throws UserHasNotCreatedWalletIdException {
+        return Result.success(virtualWalletService.recharge(money));
     }
 
     @PostMapping("/create")
-    public Result userCreateVirtualWallet(String userId) throws CreateWalletFailedException, UserHasCreatedWalletException {
-        return Result.success(virtualWalletService.userCreateVirtualWallet(userId));
+    public Result userCreateVirtualWallet() throws CreateWalletFailedException, UserHasCreatedWalletException {
+        return Result.success(virtualWalletService.userCreateVirtualWallet());
     }
 
-    @RequestMapping("/queryBalance")
-    public double queryBalance(VirtualWalletVo virtualWalletVo) throws Exception {
-        return virtualWalletService.queryBalance(virtualWalletVo.getWalletId());
+    @GetMapping
+    public Result queryBalance() throws UserHasNotCreatedWalletIdException {
+        return Result.success(virtualWalletService.queryBalance());
     }
 }

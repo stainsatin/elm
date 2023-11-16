@@ -1,11 +1,12 @@
 package com.neusoft.elmboot.controller;
 
 
+import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
+import com.neusoft.elmboot.po.ConsumeCredit;
 import com.neusoft.elmboot.po.CreditRecord;
 import com.neusoft.elmboot.po.CreditRulePo;
 import com.neusoft.elmboot.service.CreditService;
 import com.neusoft.elmboot.service.VirtualWalletService;
-import com.neusoft.elmboot.po.ConsumeCredit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,17 +29,20 @@ public class CreditController {
     public Integer earnCreditBySign(String userId,int creditNum){
         return creditService.earnCreditBySign(userId,creditNum);
     }
+
     @RequestMapping("/queryEarnCreditByRecharge")
-    public Integer queryEarnCreditByRecharge(String userId,Integer money){
-        return creditService.queryEarnCreditByRecharge(userId,money);
+    public Integer queryEarnCreditByRecharge(String userId, Integer money) {
+        return creditService.queryEarnCreditByRecharge(userId, money);
     }
+
     @RequestMapping("/earnCreditBySignAndRecharge")
-    public Integer earnCreditBySignAndRecharge(String userId,Integer money,Integer creditNum,Integer walletId){
-        Integer transactionId=virtualWalletService.recharge(walletId,money);
-        return creditService.earnCreditBySign(userId,creditNum,transactionId);
+    public Integer earnCreditBySignAndRecharge(String userId, Integer money, Integer creditNum, Integer walletId) throws UserHasNotCreatedWalletIdException {
+        Integer transactionId = virtualWalletService.recharge(money);
+        return creditService.earnCreditBySign(userId, creditNum, transactionId);
     }
+
     @RequestMapping("/queryAvailableCredit")
-    public Integer queryAvailableCredit(String userId){
+    public Integer queryAvailableCredit(String userId) {
         return creditService.queryAvailableCredit(userId);
     }
     @RequestMapping("/consumeCreditByPaying")

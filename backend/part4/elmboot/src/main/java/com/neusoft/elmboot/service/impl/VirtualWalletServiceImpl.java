@@ -4,6 +4,7 @@ import com.neusoft.elmboot.domain.VirtualWallet;
 import com.neusoft.elmboot.domain.impl.VirtualWalletImpl;
 import com.neusoft.elmboot.exception.wallet.CreateWalletFailedException;
 import com.neusoft.elmboot.exception.wallet.UserHasCreatedWalletException;
+import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
 import com.neusoft.elmboot.mapper.OrdersMapper;
 import com.neusoft.elmboot.mapper.TransactionMapper;
 import com.neusoft.elmboot.mapper.UserMapper;
@@ -12,6 +13,7 @@ import com.neusoft.elmboot.po.TransactionPo;
 import com.neusoft.elmboot.po.VirtualWalletPo;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import com.neusoft.elmboot.util.CommonUtil;
+import com.neusoft.elmboot.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,7 +75,11 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
 
     @Override
     @Transactional
-    public int recharge(Integer walletId, double money) {
+    public int recharge(double money) throws UserHasNotCreatedWalletIdException {
+        Integer walletId = userMapper.getWalletIdByUserId(UserUtil.getUserId());
+        if (walletId == null) {
+            throw new UserHasNotCreatedWalletIdException();
+        }
         double balance = virtualWalletMapper.queryBalance(walletId);
         VirtualWallet virtualWallet = new VirtualWalletImpl(walletId, balance);
         if (virtualWallet.increaseBalance(money) == 1) {
@@ -92,8 +98,9 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
 
     @Override
     @Transactional
-    public int userCreateVirtualWallet(String userId) throws UserHasCreatedWalletException, CreateWalletFailedException {
+    public int userCreateVirtualWallet() throws UserHasCreatedWalletException, CreateWalletFailedException {
 
+        String userId = UserUtil.getUserId();
         Integer walletId = userMapper.getWalletIdByUserId(userId);
         if (walletId != null) {
             throw new UserHasCreatedWalletException();
@@ -111,7 +118,11 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
     }
 
     @Override
-    public double queryBalance(Integer walletId) {
+    public double queryBalance() throws UserHasNotCreatedWalletIdException {
+        String userId = UserUtil.getUserId();
+        Integer walletId = userMapper.getWalletIdByUserId(userId);
+        if (walletId == null)
+            throw new UserHasNotCreatedWalletIdException();
         return virtualWalletMapper.queryBalance(walletId);
     }
 

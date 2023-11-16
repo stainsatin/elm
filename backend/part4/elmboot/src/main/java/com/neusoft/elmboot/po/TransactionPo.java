@@ -4,6 +4,7 @@ public class TransactionPo {
     private Integer transactionId;
     private String time;
     private double money;
+    //0 充值 1提现 2转账
     private Integer type;
     private Integer inputwalletId;
     private Integer outputwalletId;
