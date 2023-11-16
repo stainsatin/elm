@@ -14,30 +14,43 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class CreditRuleMap {
-    private static Map<Integer, Rule> ruleMap=new ConcurrentHashMap<>();
+    // 饿汉式创建单例releMap
+    private static Map<Integer, Rule> ruleMap = new ConcurrentHashMap<>();
 
     @Resource
     private RuleMapper ruleMapper;
 
-    public Rule getRule(Integer ruleId){
-        if(ruleMap.containsKey(ruleId)){
-            return ruleMap.get(ruleId);
-        }
-        else {
+    private CreditRuleMap() {
+    }
+
+    public static Map<Integer, Rule> getRuleMap() {
+        return ruleMap;
+    }
+
+    public Rule getRule(Integer ruleId) {
+        Map<Integer, Rule> instance = getRuleMap();
+        if (instance.containsKey(ruleId)) {
+            return instance.get(ruleId);
+        } else {
             CreditRuleBo rulePo = ruleMapper.getRule(ruleId);
             Rule rule = null;
-            switch (rulePo.getId()){
-                case 1:{
-                    rule=new SignCreditRule(rulePo.getLifespan(),rulePo.getCredit(),rulePo.getDailyCap());
-                    ruleMap.put(ruleId,rule);
+            System.out.println("id:");
+            System.out.println(rulePo.getId());
+            switch (rulePo.getId()) {
+                case 1: {
+                    rule = new SignCreditRule(rulePo.getLifespan(), rulePo.getCredit(), rulePo.getDailyCap());
+                    instance.put(ruleId, rule);
+                    break;
                 }
-                case 2:{
-                    rule=new RechargeCreditRule(rulePo.getLifespan(),rulePo.getFormula());
-                    ruleMap.put(ruleId,rule);
+                case 2: {
+                    rule = new RechargeCreditRule(rulePo.getLifespan(), rulePo.getFormula());
+                    instance.put(ruleId, rule);
+                    break;
                 }
-                case 3:{
+                case 3: {
                     rule = new TransferMoneyCreditRule(rulePo.getFormula());
-                    ruleMap.put(ruleId,rule);
+                    instance.put(ruleId, rule);
+                    break;
                 }
             }
             return rule;

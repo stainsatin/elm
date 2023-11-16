@@ -3,13 +3,14 @@ package com.neusoft.elmboot.service;
 import com.neusoft.elmboot.bo.CreditRuleBo;
 import com.neusoft.elmboot.entity.ConsumeCredit;
 import com.neusoft.elmboot.entity.CreditRecord;
+import com.neusoft.elmboot.exception.credit.UserHasSignedException;
 
 import java.util.List;
 
 public interface CreditService {
-    public Integer queryEarningCreditBySign(String userId);
+    public Integer queryEarningCreditBySign();
 
-    public Integer earnCreditBySign(String userId, int creditNum);
+    public Integer earnCreditBySign() throws UserHasSignedException;
 
     public Integer queryEarnCreditByRecharge(String userId, Integer money);
 

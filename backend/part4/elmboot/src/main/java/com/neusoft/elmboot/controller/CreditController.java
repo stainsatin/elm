@@ -2,32 +2,38 @@ package com.neusoft.elmboot.controller;
 
 
 import com.neusoft.elmboot.bo.CreditRuleBo;
+import com.neusoft.elmboot.bo.Result;
 import com.neusoft.elmboot.entity.ConsumeCredit;
 import com.neusoft.elmboot.entity.CreditRecord;
+import com.neusoft.elmboot.exception.credit.UserHasSignedException;
 import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
 import com.neusoft.elmboot.service.CreditService;
 import com.neusoft.elmboot.service.VirtualWalletService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/CreditController")
+@RequestMapping("/credit")
 public class CreditController {
 
-    @Autowired
+    @Resource
     CreditService creditService;
-    @Autowired
+    @Resource
     VirtualWalletService virtualWalletService;
-    @RequestMapping("/queryEarningCreditBySign")
-    public Integer queryEarningCreditBySign(String userId){
-        return creditService.queryEarningCreditBySign(userId);
+
+    @GetMapping("/sign")
+    public Result queryEarningCreditBySign() {
+        return Result.success(creditService.queryEarningCreditBySign());
     }
-    @RequestMapping("/earnCreditBySign")
-    public Integer earnCreditBySign(String userId,int creditNum){
-        return creditService.earnCreditBySign(userId,creditNum);
+
+    @PostMapping("/sign")
+    public Result earnCreditBySign() throws UserHasSignedException {
+        return Result.success(creditService.earnCreditBySign());
     }
 
     @RequestMapping("/queryEarnCreditByRecharge")

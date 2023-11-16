@@ -11,10 +11,12 @@ import com.neusoft.elmboot.domain.impl.TransferMoneyCreditRule;
 import com.neusoft.elmboot.entity.ConsumeCredit;
 import com.neusoft.elmboot.entity.CreditRecord;
 import com.neusoft.elmboot.entity.UsableCredit;
+import com.neusoft.elmboot.exception.credit.UserHasSignedException;
 import com.neusoft.elmboot.mapper.CreditRecordMapper;
 import com.neusoft.elmboot.mapper.CreditRuleMapper;
 import com.neusoft.elmboot.service.CreditService;
 import com.neusoft.elmboot.util.CommonUtil;
+import com.neusoft.elmboot.util.UserUtil;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,9 +34,10 @@ public class CreditServiceImpl implements CreditService {
     private CreditRecordMapper creditRecordMapper;
 
     @Override
-    public Integer queryEarningCreditBySign(String userId) {
+    public Integer queryEarningCreditBySign() {
         Integer ruleId = 1;
         String time = CommonUtil.getCurrentDate();
+        String userId = UserUtil.getUserId();
         String today = time.substring(0, time.indexOf(' ')).trim();
         int count = creditRecordMapper.todaySignRecord(userId, ruleId, today);
         SignCreditRule signCreditRule = null;
@@ -55,16 +58,17 @@ public class CreditServiceImpl implements CreditService {
 
     @Override
     @Transactional
-    public Integer earnCreditBySign(String userId, int creditNum) {
+    public Integer earnCreditBySign() throws UserHasSignedException {
         String createTime = CommonUtil.getCurrentDate();
-        int lifeSpan = 0;
-        SignCreditRule rule = (SignCreditRule)creditRuleMap.getRule(1);
+        SignCreditRule rule = (SignCreditRule) creditRuleMap.getRule(1);
         String endTime = CommonUtil.getEndTime(rule.getLifeSpan());
-        CreditRecord creditRecord = new CreditRecord(1, userId, creditNum, createTime, endTime,-1);
+        String userId = UserUtil.getUserId();
+        Integer creditNum = rule.getCredit();
+        Integer check = this.queryEarningCreditBySign();
+        if (check == 0) throw new UserHasSignedException();
+        CreditRecord creditRecord = new CreditRecord(1, userId, creditNum, createTime, endTime);
         int done1 = creditRecordMapper.insertCreditRecord(creditRecord);
         int done2 = creditRecordMapper.insertUsableCredit(userId, creditRecord.getId(), creditNum, createTime, endTime);
-        System.out.println(done1);
-        System.out.println(done2);
         if (done2 == 1 && done1 == 1) {
             return 1;
         } else {
