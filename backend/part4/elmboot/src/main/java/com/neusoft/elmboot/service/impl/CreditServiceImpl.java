@@ -10,8 +10,13 @@ import com.neusoft.elmboot.domain.VirtualWallet;
 import com.neusoft.elmboot.domain.impl.*;
 import com.neusoft.elmboot.entity.ConsumeCredit;
 import com.neusoft.elmboot.entity.CreditRecord;
+import com.neusoft.elmboot.entity.Orders;
 import com.neusoft.elmboot.entity.UsableCredit;
 import com.neusoft.elmboot.exception.credit.UserHasSignedException;
+import com.neusoft.elmboot.exception.order.OrderHasPayedException;
+import com.neusoft.elmboot.exception.order.OrderIdUserIdNotMatchedException;
+import com.neusoft.elmboot.exception.wallet.BalanceRemainNotEnoughException;
+import com.neusoft.elmboot.exception.wallet.PayOrdersFailedException;
 import com.neusoft.elmboot.exception.wallet.RechargeFailedException;
 import com.neusoft.elmboot.exception.wallet.UserHasNotCreatedWalletIdException;
 import com.neusoft.elmboot.mapper.*;
@@ -38,6 +43,8 @@ public class CreditServiceImpl implements CreditService {
     private TransactionMapper transactionMapper;
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private OrdersMapper ordersMapper;
 
     @Override
     public Integer queryEarningCreditBySign() {
@@ -140,56 +147,81 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
-    public Integer queryAvailableCredit(String userId) {
+    public Integer queryAvailableCredit() {
+        String userId = UserUtil.getUserId();
         creditRecordMapper.updataQueryAvailableCredit(userId, CommonUtil.getCurrentDate());
         int availableCredit = creditRecordMapper.queryAvailableCredit(userId, CommonUtil.getCurrentDate());
         return availableCredit;
     }
 
     @Override
-    public ConsumeCredit consumeCreditByPaying(String userId, Integer money, Integer creditNum) {
+    public ConsumeCredit consumeCreditByPaying(double money) {
+        String userId = UserUtil.getUserId();
         Integer ruleId = 3;
         TransferMoneyCreditRule transferMoneyCreditRule = null;
-        synchronized (creditRuleMap) {
-            transferMoneyCreditRule = (TransferMoneyCreditRule) creditRuleMap.getRule(ruleId);
-            if (transferMoneyCreditRule == null) {
-                CreditRuleBo creditRuleBo = creditRuleMapper.getRule(ruleId);
-                double formula = creditRuleBo.getFormula();
-                transferMoneyCreditRule = new TransferMoneyCreditRule(formula);
-                creditRuleMap.writeMap(ruleId, transferMoneyCreditRule);
-            }
-        }
+        transferMoneyCreditRule = (TransferMoneyCreditRule) creditRuleMap.getRule(ruleId);
+        int count = (int) money;
+        Integer creditNum = this.queryAvailableCredit();
         CreditSystem creditSystem = new CreditSystemImpl();
-        return creditSystem.consumeCreditByPaying(money, creditNum, transferMoneyCreditRule);
+        return creditSystem.consumeCreditByPaying(count, creditNum, transferMoneyCreditRule);
     }
 
     @Override
     @Transactional
-    public Integer transferMoneyWithCreditConsume(Integer creditNum, Integer id, String userId) {
+    public Integer transferMoneyWithCreditConsume(Integer orderId) throws BalanceRemainNotEnoughException, UserHasNotCreatedWalletIdException, PayOrdersFailedException, OrderHasPayedException, OrderIdUserIdNotMatchedException {
+        String userId = UserUtil.getUserId();
+        Orders orders = ordersMapper.getOrdersById(orderId);
+        if (orders == null) throw new PayOrdersFailedException();
+        Orders checkOrders = ordersMapper.getOrdersByIdOrderState(orderId, 0);
+        if (checkOrders == null) throw new OrderHasPayedException();
+        if (!orders.getUserId().equals(userId)) throw new OrderIdUserIdNotMatchedException();
+        // 实际需要支付的钱
+        double money = orders.getOrderTotal();
+        ConsumeCredit consumeCredit = this.consumeCreditByPaying(money);
+        Integer userWalletId = userMapper.getWalletIdByUserId(userId);
+        if (userWalletId == null) throw new UserHasNotCreatedWalletIdException();
+
+        Integer creditNum = consumeCredit.getCreditNum();
         Integer ruleId = 3;
-        creditNum = -creditNum;
-        CreditRecord creditRecord = new CreditRecord(ruleId, userId, creditNum, CommonUtil.getCurrentDate(), id);
-        creditRecordMapper.insertSignCreditRecord(creditRecord);
-        int recordId = creditRecord.getId();
-        List<UsableCredit> list = creditRecordMapper.listUsableCredit(userId);
-        Iterator iterator = list.iterator();
-        creditNum = -creditNum;
-        while (creditNum > 0) {
-            UsableCredit usableCredit = (UsableCredit) iterator.next();
-            if (creditNum >= usableCredit.getCredit()) {
-                creditNum = creditNum - usableCredit.getCredit();
-                creditRecordMapper.consumeCredit(usableCredit.getId());
-                creditRecordMapper.insertReducecredit(userId, recordId, usableCredit.getId(), usableCredit.getCredit(), usableCredit.getCreateTime(), usableCredit.getExpiredTime());
+        // 可以抵扣这些
+        double decreaseMoney = consumeCredit.getDeductionMoney();
+        // 抵扣之后需要在虚拟钱包中付的
+        double remainMoneyToPay = money - decreaseMoney;
+        if (remainMoneyToPay < 0) throw new PayOrdersFailedException();
+        VirtualWalletBo outputVirtualWalletBo = virtualWalletMapper.getVirtualWalletById(userWalletId);
+        VirtualWallet outputVirtualWallet = new VirtualWalletImpl(outputVirtualWalletBo.getWalletId(), outputVirtualWalletBo.getBalance());
+        if (outputVirtualWallet.decreaseBalance(remainMoneyToPay) == 1) {
+            TransactionBo transactionPo = new TransactionBo(CommonUtil.getCurrentDate(), remainMoneyToPay, 1, null, userWalletId);
+            int done1 = virtualWalletMapper.updateBalance(outputVirtualWalletBo);
+            int done2 = transactionMapper.writeTransaction(transactionPo);
+            int done3 = ordersMapper.payOrders(orderId);
+            if (done1 == 1 && done2 == 1 && done3 == 1) {
+                Integer transactionId = transactionPo.getTransactionId();
+                CreditRecord creditRecord = new CreditRecord(ruleId, userId, -creditNum, CommonUtil.getCurrentDate(), transactionId);
+                creditRecordMapper.insertRechargeCreditRecord(creditRecord);
+                Integer recordId = creditRecord.getId();
+                List<UsableCredit> list = creditRecordMapper.listUsableCredit(userId);
+                Iterator<UsableCredit> iterator = list.iterator();
+                while (creditNum > 0) {
+                    UsableCredit usableCredit = iterator.next();
+                    if (creditNum >= usableCredit.getCredit()) {
+                        creditNum = creditNum - usableCredit.getCredit();
+                        creditRecordMapper.consumeCredit(usableCredit.getId());
+                        creditRecordMapper.insertReducecredit(userId, recordId, usableCredit.getId(), usableCredit.getCredit(), usableCredit.getCreateTime(), usableCredit.getExpiredTime());
+                    } else {
+                        creditRecordMapper.insertReducecredit(userId, recordId, usableCredit.getId(), creditNum, usableCredit.getCreateTime(), usableCredit.getExpiredTime());
+                        creditRecordMapper.updateCredit(usableCredit.getId(), usableCredit.getCredit() - creditNum);
+                        creditNum = 0;
+                    }
+                }
+                if (creditNum == 0)
+                    return 1;
+                else
+                    throw new PayOrdersFailedException();
             } else {
-                creditRecordMapper.insertReducecredit(userId, recordId, usableCredit.getId(), creditNum, usableCredit.getCreateTime(), usableCredit.getExpiredTime());
-                creditRecordMapper.updateCredit(usableCredit.getId(), usableCredit.getCredit() - creditNum);
-                creditNum = 0;
+                throw new PayOrdersFailedException();
             }
-        }
-        if (creditNum == 0)
-            return 1;
-        else
-            return 0;
+        } else throw new BalanceRemainNotEnoughException();
     }
 
     @Override

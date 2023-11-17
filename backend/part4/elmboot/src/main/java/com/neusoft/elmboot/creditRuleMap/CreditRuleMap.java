@@ -34,8 +34,6 @@ public class CreditRuleMap {
         } else {
             CreditRuleBo rulePo = ruleMapper.getRule(ruleId);
             Rule rule = null;
-            System.out.println("id:");
-            System.out.println(rulePo.getId());
             switch (rulePo.getId()) {
                 case 1: {
                     rule = new SignCreditRule(rulePo.getLifespan(), rulePo.getCredit(), rulePo.getDailyCap());
