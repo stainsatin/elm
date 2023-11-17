@@ -19,8 +19,6 @@ import com.neusoft.elmboot.service.OrdersService;
 import com.neusoft.elmboot.util.CommonUtil;
 import com.neusoft.elmboot.util.UserUtil;
 import jakarta.annotation.Resource;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +41,6 @@ public class OrdersServiceImpl implements OrdersService {
 	@Resource
 	private VirtualWalletMapper virtualWalletMapper;
 
-	@Caching(evict = {@CacheEvict(cacheNames = "ordersList", allEntries = true)})
 	@Override
 	@Transactional
 	public int createOrders(Integer businessId, Integer daId, double orderTotal) throws BusinessInOrderNotFoundException, DeliveryAddressInOrderNotFoundException {

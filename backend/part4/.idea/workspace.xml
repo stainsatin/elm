@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] 充值获得积分写好了，可以看作Facade模式......">
+    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[new] 所有积分系统都重构完成">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/CreditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/CreditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/creditRuleMap/CreditRuleMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/creditRuleMap/CreditRuleMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/CreditService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/CreditService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/VirtualWalletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/VirtualWalletService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/CreditServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/CreditServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/VirtualWalletServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/VirtualWalletServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/ElmbootApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/ElmbootApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/BusinessServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/BusinessServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/OrdersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/OrdersServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/UserServiceImpl.java" afterDir="false" />
     </list>
     <list id="80ad86d6-a583-4b15-8ee5-3fc0a5b27001" name="不用提交" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -170,7 +171,7 @@
       <workItem from="1699922959419" duration="1589000" />
       <workItem from="1699924778864" duration="2512000" />
       <workItem from="1699967336291" duration="2018000" />
-      <workItem from="1699969541754" duration="59592000" />
+      <workItem from="1699969541754" duration="66872000" />
     </task>
     <task id="LOCAL-00001" summary="1) 加了一个GlobalHandler,方便看调用栈。 2) 数据库存储方式变成加盐加密">
       <created>1693727709522</created>
@@ -389,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700136212841</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="[new] 所有积分系统都重构完成">
+      <created>1700193094571</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1700193094571</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +433,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整了业务实现层" />
     <MESSAGE value="积分修复了，把单例模式改成Mapper注入了" />
     <MESSAGE value="[new] 删除了redis和druid的配置，目前能够正常跑通接口" />
     <MESSAGE value="[new] 增加了用户token登录与验证" />
@@ -450,7 +457,8 @@
     <MESSAGE value="[new] 调整了项目结构，弄好了Bo,Vo,Entity的分类" />
     <MESSAGE value="[new] 签到获得积分写好了" />
     <MESSAGE value="[new] 充值获得积分写好了，可以看作Facade模式......" />
-    <option name="LAST_COMMIT_MESSAGE" value="[new] 充值获得积分写好了，可以看作Facade模式......" />
+    <MESSAGE value="[new] 所有积分系统都重构完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="[new] 所有积分系统都重构完成" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -460,7 +468,7 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/CreditServiceImpl.java</url>
-          <line>241</line>
+          <line>240</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

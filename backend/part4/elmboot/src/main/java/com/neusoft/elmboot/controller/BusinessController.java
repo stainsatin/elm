@@ -3,7 +3,7 @@ package com.neusoft.elmboot.controller;
 
 import com.neusoft.elmboot.bo.Result;
 import com.neusoft.elmboot.service.BusinessService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/business")
 public class BusinessController {
-	
-	@Autowired
+
+	@Resource
 	private BusinessService businessService;
-	
+
 	@GetMapping("/order-type-id")
-	public Result listBusinessByOrderTypeId(Integer orderTypeId)throws Exception{
+	public Result listBusinessByOrderTypeId(Integer orderTypeId) throws Exception {
 		return Result.success(businessService.listBusinessByOrderTypeId(orderTypeId));
 	}
-	
+
 	@GetMapping
-	public Result getBusinessById(Integer businessId)throws Exception{
+	public Result getBusinessById(Integer businessId) throws Exception {
 		return Result.success(businessService.getBusinessById(businessId));
 	}
 	
