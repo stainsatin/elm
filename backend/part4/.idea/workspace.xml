@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[fix] 移除了所有缓存, 为business加入了默认的构造函数">
+    <list default="true" id="8b68493b-a0c5-425c-a005-9941f24503b5" name="Default Changelist" comment="[fix] 一些结构调整，无伤大雅">
+      <change afterPath="$PROJECT_DIR$/elmboot/src/test/java/com/neusoft/elmboot/controller/controller/BusinessControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/test/java/com/neusoft/elmboot/controller/controller/CartControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/test/java/com/neusoft/elmboot/controller/controller/ControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/test/java/com/neusoft/elmboot/controller/controller/CreditControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/test/java/com/neusoft/elmboot/controller/controller/OrdersControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elmboot/src/test/java/com/neusoft/elmboot/controller/controller/VirtualWalletControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_5_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_3_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_6_0_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/elmboot_0_0_1_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/elmboot_0_0_1_SNAPSHOT.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/creditRuleMap/CreditRuleMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/creditRuleMap/CreditRuleMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/src/main/java/com/neusoft/elmboot/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elmboot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/elmboot/pom.xml" afterDir="false" />
     </list>
     <list id="80ad86d6-a583-4b15-8ee5-3fc0a5b27001" name="不用提交" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,12 +75,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../frontend/part3/elm_vue3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/elmboot/src/test/java/com/neusoft/elmboot" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="ReactorSettings">
@@ -79,11 +88,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\program\elm\backend\part4\elmboot\src\test\java\com\neusoft\elmboot" />
+      <recent name="D:\program\elm\backend\part4\elmboot\src\controller" />
+      <recent name="D:\program\elm\backend\part4\elmboot" />
+      <recent name="D:\program\elm\backend\part4\elmboot\src\test" />
       <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot\controller" />
-      <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot" />
-      <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot\service\impl" />
-      <recent name="D:\program\elm\backend\part4\elmboot\src\main\java\com\neusoft\elmboot\service" />
-      <recent name="D:\program\elm\backend\part4\elmboot\src\main\resources\mapper" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\program\elm\backend\part4\elmboot\controller" />
+      <recent name="D:\program\elm\backend\part4\elmboot" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.neusoft.elmboot.entity" />
@@ -94,7 +107,66 @@
       <recent name="com.neusoft.elmboot.creditRuleMap" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ElmbootApplication">
+  <component name="RunManager" selected="JUnit.BusinessControllerTest (1)">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BusinessControllerTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="elmboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.neusoft.elmboot.controller.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.neusoft.elmboot.controller.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.neusoft.elmboot.controller.controller.BusinessControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BusinessControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="elmboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.neusoft.elmboot.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.neusoft.elmboot.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.neusoft.elmboot.controller.BusinessControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BusinessControllerTest.listBusinessByOrderTypeId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="elmboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.neusoft.elmboot.controller.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.neusoft.elmboot.controller.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.neusoft.elmboot.controller.controller.BusinessControllerTest" />
+      <option name="METHOD_NAME" value="listBusinessByOrderTypeId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ElmbootApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="elmboot" />
       <extension name="coverage">
@@ -111,6 +183,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VirtualWalletControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="elmboot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.neusoft.elmboot.controller.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.neusoft.elmboot.controller.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.neusoft.elmboot.controller.controller.VirtualWalletControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ElmbootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="elmboot" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.neusoft.elmboot.ElmbootApplication" />
@@ -120,6 +207,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BusinessControllerTest (1)" />
+        <item itemvalue="JUnit.VirtualWalletControllerTest" />
+        <item itemvalue="JUnit.BusinessControllerTest.listBusinessByOrderTypeId" />
+        <item itemvalue="JUnit.BusinessControllerTest" />
         <item itemvalue="JUnit.ElmbootApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
@@ -155,7 +246,8 @@
       <workItem from="1699924778864" duration="2512000" />
       <workItem from="1699967336291" duration="2018000" />
       <workItem from="1699969541754" duration="75830000" />
-      <workItem from="1700324240255" duration="595000" />
+      <workItem from="1700324240255" duration="1819000" />
+      <workItem from="1700329756496" duration="1686000" />
     </task>
     <task id="LOCAL-00001" summary="1) 加了一个GlobalHandler,方便看调用栈。 2) 数据库存储方式变成加盐加密">
       <created>1693727709522</created>
@@ -388,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700212210748</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="[fix] 一些结构调整，无伤大雅">
+      <created>1700327880731</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1700327880731</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,7 +523,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[new] 删除了redis和druid的配置，目前能够正常跑通接口" />
     <MESSAGE value="[new] 增加了用户token登录与验证" />
     <MESSAGE value="[new] 增加了全局拦截异常，删除了不必要的文件，新加了注册接口，增加了userName校验" />
     <MESSAGE value="[new] 删除了所有外键约束，但是没体现" />
@@ -449,7 +547,8 @@
     <MESSAGE value="[new] 充值获得积分写好了，可以看作Facade模式......" />
     <MESSAGE value="[new] 所有积分系统都重构完成" />
     <MESSAGE value="[fix] 移除了所有缓存, 为business加入了默认的构造函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] 移除了所有缓存, 为business加入了默认的构造函数" />
+    <MESSAGE value="[fix] 一些结构调整，无伤大雅" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] 一些结构调整，无伤大雅" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
