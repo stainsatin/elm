@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class CreditRuleMap {
-    // 饿汉式创建单例releMap
+    // 饿汉式创建单例ruleMap
     private static Map<Integer, Rule> ruleMap = new ConcurrentHashMap<>();
 
     @Resource

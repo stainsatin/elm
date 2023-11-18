@@ -12,7 +12,6 @@ import com.neusoft.elmboot.service.UserService;
 import com.neusoft.elmboot.util.CommonUtil;
 import com.neusoft.elmboot.util.UserUtil;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,7 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Resource
