@@ -41,7 +41,7 @@
 			this.user = this.$getSessionStorage('user');
 
 			//根据orderTypeId查询商家信息
-			let url_1="BusinessController/listBusinessByOrderTypeId/${this.orderTypeId}";//ByHot
+			let url_1 = "BusinessController/listBusinessByOrderTypeId/" + this.orderTypeId;
 			this.$axios.get(url_1).then(response => {
 				this.businessArr = response.data.result;
 				// console.log(response.data);

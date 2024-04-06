@@ -1,70 +1,59 @@
 package com.tju.elmcloud.po;
-import java.io.Serializable;
 
-public class User implements Serializable {
+public class User {
 
-    private static final long serialVersionUID = -3565823820366948318L;
     private String userId;
     private String password;
     private String userName;
-    private Integer userSex;
+    private int userSex;
     private String userImg;
-    private Integer delTag;
-    private Integer walletId;
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setUserSex(Integer userSex) {
-        this.userSex = userSex;
-    }
-
-    public void setUserImg(String userImg) {
-        this.userImg = userImg;
-    }
-
-    public void setDelTag(Integer delTag) {
-        this.delTag = delTag;
-    }
+    private int delTag;
 
     public String getUserId() {
         return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getUserName() {
         return userName;
     }
 
-    public Integer getUserSex() {
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getUserSex() {
         return userSex;
+    }
+
+    public void setUserSex(int userSex) {
+        this.userSex = userSex;
     }
 
     public String getUserImg() {
         return userImg;
     }
 
-    public Integer getDelTag() {
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
+
+    public int getDelTag() {
         return delTag;
     }
 
-	public Integer getWalletId() {
-		return walletId;
-	}
-
-	public void setWalletId(Integer walletId) {
-		this.walletId = walletId;
-	}
+    public void setDelTag(int delTag) {
+        this.delTag = delTag;
+    }
 }

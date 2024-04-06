@@ -101,7 +101,7 @@
 				// this.user.userSex = parseInt(this.user.userSex, 10);
 				console.log(this.user.userSex);
 				//注册请求
-				let url="UserController/saveUser/${this.user.userId}/${this.user.password}/${this.user.userName}/${this.user.userSex}";
+				let url="UserController/saveUser/${this.user.userId}/${this.user.password}/${this.user.userName}/"+this.user.userSex;
 				this.$axios.post(url).then(response => {
 					// console.log(response.data);
 					if (response.data.result > 0) {
