@@ -1,7 +1,5 @@
 server:
   port: 13001
-  servlet:
-    context-path: /eureka
 
 #eureka配置
 eureka:
