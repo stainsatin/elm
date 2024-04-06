@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="elm_one_tap_start_servers" type="CompoundRunConfigurationType">
+    <toRun name="BusinessApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="BusinessApplication (1)" type="SpringBootApplicationConfigurationType" />
+    <toRun name="CartApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="CartApplication (1)" type="SpringBootApplicationConfigurationType" />
+    <toRun name="CommentsApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="CreditApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="DeliveryAddressApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="FoodApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="FoodApplication (1)" type="SpringBootApplicationConfigurationType" />
+    <toRun name="OrdersApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="OrdersApplication (1)" type="SpringBootApplicationConfigurationType" />
+    <toRun name="UserApplication" type="SpringBootApplicationConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

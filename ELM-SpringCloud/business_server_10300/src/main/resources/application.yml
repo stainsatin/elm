@@ -3,8 +3,8 @@ server:
 
 logging:
   level:
-    org.springframework: debug
-    com.tju.elmcloud.mapper: debug
+    org.springframework: error
+    com.tju.elmcloud.mapper: error
 
 spring:
   application:
