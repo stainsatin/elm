@@ -79,14 +79,14 @@
 		created() {
 			this.user = this.$getSessionStorage("user");
 			//获取订单
-			let url_1="OrdersController/getOrdersById/${this.orderId}";			
+			let url_1="OrdersController/getOrdersById/"+this.orderId ;			
 			this.$axios.get(url_1).then(response => {
 				this.orders = response.data.result;
 			}).catch(error => {
 				console.error(error);
 			});
 			//查询可用积分
-			let url_2="CreditController/queryAvailableCredit/${this.user.userId}";	
+			let url_2="CreditController/queryAvailableCredit/"+this.user.userId ;	
 			this.$axios.get(url_2).then(response => {
 					this.creditNum = response.data.result;
 					let money = Math.floor((this.orders.orderTotal));
@@ -118,7 +118,7 @@
 				this.isShowDetailet = !this.isShowDetailet;
 			},
 			queryConsumeCreditByPaying(userId, money, creditNum) {  //查询消耗积分和抵扣的钱
-			let url="CreditController/consumeCreditByPaying/${userId}/${Math.floor(money)}/${creditNum}";
+			let url="CreditController/consumeCreditByPaying/"+userId +'/'+Math.floor(money) +'/'+creditNum ;
 				this.$axios.get(url).then((response) => {
 						console.log(response.data.result);
 						this.consumeCreditNum = Math.round(response.data.result.creditNum);
@@ -140,7 +140,7 @@
 				} else {
 
 					if (this.useCreditOrNot == 0) { //不用积分
-					let url="VirtualWalletController/transferMoney/${businessWalletId}/${userWalletId}/${moneyNum}/${this.orderId}";
+					let url="VirtualWalletController/transferMoney/"+businessWalletId +'/'+userWalletId +'/'+moneyNum +'/'+this.orderId ;
 						this.$axios.post(url).then((response) => {
 								let res = response.data.result;
 								//返回1成功，说明余额有钱
@@ -161,7 +161,7 @@
 								console.error(error);
 							});
 					} else { //使用积分
-						let url="CreditController/transferMoneyWithCreditConsume/${businessWalletId}/${userWalletId}/${moneyNum}/${this.orderId}/${this.deductionMoney}/${this.consumeCreditNum}/${this.user.userId}";
+						let url="CreditController/transferMoneyWithCreditConsume/"+businessWalletId +'/'+userWalletId +'/'+moneyNum +'/'+this.orderId +'/'+this.deductionMoney +'/'+this.consumeCreditNum +'/'+this.user.userId ;
 						this.$axios.post(url).then((response) => {
 								let res = response.data.result;
 								//返回1成功，说明余额有钱

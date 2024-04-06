@@ -71,7 +71,7 @@
 		},
 		created() {
 			this.user = this.$getSessionStorage('user');
-			let url="OrdersController/listOrdersByUserId/${this.user.userId}";			
+			let url="OrdersController/listOrdersByUserId/"+this.user.userId;			
 			this.$axios.get(url).then(response => {
 				let result = response.data.result;
 				//console.log(result);

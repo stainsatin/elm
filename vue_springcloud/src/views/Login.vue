@@ -58,7 +58,7 @@
 				}
 
 				//登录请求
-				let url="UserController/getUserByIdByPass/${this.userId}/${this.password}";
+				let url="UserController/getUserByIdByPass/"+this.userId+'/'+this.password;
 				this.$axios.get(url).then(response => {
 					let user = response.data.result;
 					console.log('user',user);

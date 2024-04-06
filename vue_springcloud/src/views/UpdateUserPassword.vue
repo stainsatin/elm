@@ -62,7 +62,7 @@
 					alert('新密码不能为空！');
 					return;
 				}
-				let url='UserController/updateUserPassword/${this.user.userId}/${this.oldPass}/${this.newPass}';
+				let url="UserController/updateUserPassword/"+this.user.userId+'/'+this.oldPass+'/'+this.newPass;
 				this.$axios.put(url).then(response => {
 					if (response.data.result > 0) {
 						this.user.password=this.newPass;

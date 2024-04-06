@@ -39,38 +39,41 @@
 		},
 		created() {
 			this.user = this.$getSessionStorage('user');
-
 			//根据orderTypeId查询商家信息
-			let url_1 = "BusinessController/listBusinessByOrderTypeId/" + this.orderTypeId;
-			this.$axios.get(url_1).then(response => {
-				this.businessArr = response.data.result;
-				// console.log(response.data);
-				//判断是否登录
-				if (this.user != null) {
-					this.listCart();
-				}
-			}).catch(error => {
-				console.error(error);
-			});
+			if (this.orderTypeId !== undefined){
+				let url_1 = "Businesscontroller/listBusinessByorderTypeId/" + this.orderTypeId;
+				this.$axios.get(url_1).then(response => {
+					this.businessArr = response.data.result;
+					// console.log(response.data);
+					//判断是否登录
+					if (this.user != null) {
+						this.listCart();
+					}
+				}).catch(error => {
+					console.error(error);
+				});				
+			}
 			
 			//根据businessName查询商家信息
-			let url_2="BusinessController/listBusinessByName/${this.businessName}";
-			this.$axios.get(url_2).then(response => {
-				this.businessArr = response.data.result;
-				//判断是否登录
-				if (this.user != null) {
-					this.listCart();
-				}
-			}).catch(error => {
-				console.error(error);
-			});
+			if (this.businessName !== undefined){
+				let url_2="BusinessController/listBusinessByName/"+this.businessName;
+				this.$axios.get(url_2).then(response => {
+					this.businessArr = response.data.result;
+					//判断是否登录
+					if (this.user != null) {
+						this.listCart();
+					}
+				}).catch(error => {
+					console.error(error);
+				});
+			}
 		},
 		components: {
 			Footer
 		},
 		methods: {
 			listCart() {
-				let url="CartController/listCart/${this.user.userId}";
+				let url="CartController/listCart/"+this.user.userId;
 				this.$axios.get(url).then(response => {
 					let cartArr = response.data.result;
 					//遍历所有食品列表

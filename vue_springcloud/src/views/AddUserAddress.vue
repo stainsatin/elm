@@ -86,7 +86,7 @@
 				}
 				
 				console.log(this.deliveryAddress);
-				let url="DeliveryAddressController/saveDeliveryAddress/${this.deliveryAddress.contactName}/${this.deliveryAddress.contactSex}/${this.deliveryAddress.contactTel}/${this.deliveryAddress.address}/${this.user.userId}";			
+				let url="DeliveryAddressController/saveDeliveryAddress/"+this.deliveryAddress.contactName+'/'+this.deliveryAddress.contactSex+'/'+this.deliveryAddress.contactTel+'/'+this.deliveryAddress.address+'/'+this.user.userId;			
 				this.$axios.post(url).then(response => {
 					if (response.data.result > 0) {
 						this.$router.push({

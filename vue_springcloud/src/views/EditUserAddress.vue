@@ -63,7 +63,7 @@
 		},
 		created() {
 			this.user = this.$getSessionStorage('user');
-			let url="DeliveryAddressController/getDeliveryAddressById/${this.daId}";			
+			let url="DeliveryAddressController/getDeliveryAddressById/"+this.daId;			
 			this.$axios.get(url).then(response => {
 				this.deliveryAddress = response.data.result;
 			}).catch(error => {
@@ -87,7 +87,7 @@
 					alert('联系人地址不能为空！');
 					return;
 				}
-				let url="DeliveryAddressController/updateDeliveryAddress/${this.daId}/${this.deliveryAddress.contactName}/${this.deliveryAddress.contactSex}/${this.deliveryAddress.contactTel}/${this.deliveryAddress.address}";			
+				let url="DeliveryAddressController/updateDeliveryAddress/"+this.daId+'/'+this.deliveryAddress.contactName+'/'+this.deliveryAddress.contactSex+'/'+this.deliveryAddress.contactTel+'/'+this.deliveryAddress.address;			
 				this.$axios.put(url).then(response => {
 					if (response.data.result > 0) {
 						this.$router.push({

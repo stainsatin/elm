@@ -87,7 +87,7 @@ export default {
 	  if (this.user.walletId == null) {
 	    this.balance = null;
 	  } else {
-		let url="VirtualWalletController/queryBalance/${this.user.walletId}";
+		let url="VirtualWalletController/queryBalance/"+this.user.walletId;
 	    this.$axios.get(url).then((response) => {
 	        this.balance = response.data.result;
 	      })
@@ -97,7 +97,7 @@ export default {
 	  }
 	},
 	queryAvailableCredit(userId) {  //查询可用积分
-		let url="CreditController/queryAvailableCredit/${userId}";
+		let url="CreditController/queryAvailableCredit/"+userId;
 		this.$axios.get(url).then((response) => {
 	      this.creditNum=response.data.result;
 	    })
@@ -107,7 +107,7 @@ export default {
 	
 	},
 	queryEarningCreditBySign(userId){ //查询签到积分
-		let url="CreditController/queryEarningCreditBySign/${userId}";
+		let url="CreditController/queryEarningCreditBySign/"+userId;
 	    this.$axios.get(url).then((response) => {
 	      this.creditEarningBySign=response.data.result;
 	    })
@@ -117,7 +117,7 @@ export default {
 	},
     queryEarnCreditByRecharge(userId,money){ //查询充值所获积分
       money=Math.floor((money));
-	  let url="CreditController/queryEarnCreditByRecharge/${userId}/${money}";
+	  let url="CreditController/queryEarnCreditByRecharge/"+userId+'/'+money;
       this.$axios.get(url).then((response) => {
           this.creditEarningByRecharge=Math.floor(response.data.result);
         })
@@ -126,7 +126,7 @@ export default {
         });
     },
     sign(userId,creditNum){   //签到后更新积分
-		let url="CreditController/earnCreditBySign/${userId}/${creditNum}"
+		let url="CreditController/earnCreditBySign/"+userId+'/'+creditNum;
 		this.$axios.put(url).then((response) => {
           if(response.data.result==1){
             this.queryEarningCreditBySign(userId);
@@ -138,14 +138,14 @@ export default {
         });
     },
     createWallet() { //创建钱包
-		let url_1="VirtualWalletController/userCreateVirtualWallet/${this.user.userId}";
+		let url_1="VirtualWalletController/userCreateVirtualWallet/"+this.user.userId;
 		this.$axios.post(url_1).then((response) => {
           this.user.walletId = response.data.result;
           this.$setSessionStorage("user", this.user);
           // 钱包创建成功，更新余额
           // console.log("after create wallet")
           // console.log("创建钱包",this.user)
-		  let url_2="VirtualWalletController/queryBalance/${this.user.walletId}";
+		  let url_2="VirtualWalletController/queryBalance/"+this.user.walletId;
           this.$axios.get(url_2).then((response) => {
               this.balance = response.data.result;
             })
@@ -171,7 +171,7 @@ export default {
         alert("您未开通虚拟钱包!请开通!");
       } else {
         if(this.creditEarningByRecharge==0){
-			let url_1="VirtualWalletController/recharge/${this.user.walletId}/${this.money}";
+			let url_1="VirtualWalletController/recharge/"+this.user.walletId+'/'+this.money;
 			this.$axios.put(url_1).then((response) => {
             if (response.data.result == 1) {
               alert("充值成功");
@@ -185,7 +185,7 @@ export default {
             console.error(error);
           });
         }else{
-		  let url_2="CreditController/earnCreditBySignAndRecharge/${this.user.userId}/${this.user.walletId}/${Math.floor(this.money)}/${this.creditEarningByRecharge}";
+		  let url_2="CreditController/earnCreditBySignAndRecharge/"+this.user.userId+'/'+this.user.walletId+'/'+Math.floor(this.money)+'/'+this.creditEarningByRecharge;
           this.$axios.put(url_2).then((response) => {
             if (response.data.result == 1) {
               alert("充值成功");
@@ -212,7 +212,7 @@ export default {
       } else if (this.money > this.balance) {
         alert("余额不足");
       } else {
-			let url="VirtualWalletController/withdrawMoney/${this.user.walletId}/${this.money}";
+			let url="VirtualWalletController/withdrawMoney/"+this.user.walletId+'/'+this.money;
 			this.$axios.put(url).then((response) => {
             if (response.data.result == 1) {
               alert("提现成功");

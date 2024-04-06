@@ -49,12 +49,12 @@
 					alert('用户名不能为空！');
 					return;
 				}
-				let url='UserController/updateUserMsg/${this.user.userId}/${this.newName}';
+				let url="UserController/updateUserMsg/"+this.user.userId+'/'+this.newName;
 				this.$axios.put(url).then(response => {
 					console.log(response.data.result);
 					if (response.data.result > 0) {
 						this.user.userName=this.newName;
-						this.$setSessionStorage('user', this.user);
+						this.$setSessionStorage('user', this.user); 
 						alert('修改用户名成功！');
 					} else {
 						alert('修改用户名失败！');

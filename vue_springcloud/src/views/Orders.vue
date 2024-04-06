@@ -57,7 +57,7 @@
 			this.deliveryaddress = this.$getLocalStorage(this.user.userId);
 
 			//查询当前商家
-			let businessUrl="BusinessController/getBusinessById/${this.businessId}";
+			let businessUrl="BusinessController/getBusinessById/"+this.businessId;
 			this.$axios.get(businessUrl).then(response => {
 				this.business = response.data.result;
 			}).catch(error => {
@@ -65,7 +65,7 @@
 			});
 
 			//查询当前用户在购物车中的当前商家食品列表
-			let cartUrl="CartController/listCart/${this.user.userId}/${this.businessId}";		
+			let cartUrl="CartController/listCart/"+this.user.userId+'/'+this.businessId;		
 			this.$axios.get(cartUrl).then(response => {
 				this.cartArr = response.data.result;
 			}).catch(error => {
@@ -101,7 +101,7 @@
 				}
 
 				//创建订单
-				let url="OrdersController/createOrders/${this.user.userId}/${this.businessId}/${this.deliveryaddress.daId}/${this.totalPrice}";			
+				let url="OrdersController/createOrders/"+this.user.userId+'/'+this.businessId+'/'+this.deliveryaddress.daId+'/'+this.totalPrice;			
 				this.$axios.post(url).then(response => {
 					let orderId = response.data.result;
 					if (orderId > 0) {

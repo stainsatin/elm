@@ -89,7 +89,7 @@
 			}
 		},
 		created() {
-			let url="BusinessController/getBusinessById/${this.businessId}";
+			let url="BusinessController/getBusinessById/"+this.businessId;
 			this.user = this.$getSessionStorage('user');
 			//根据businessId查询商家信息
 			this.$axios.get(url).then(response => {
@@ -125,7 +125,7 @@
 		},
 		methods: {
 			listCart() {
-				let url="CartController/listCart/${this.user.userId}/${this.businessId}";
+				let url="CartController/listCart/"+this.user.userId+'/'+this.businessId;
 				this.$axios.get(url).then(response => {
 					let cartArr = response.data.result;
 					//遍历所有食品列表
@@ -175,7 +175,7 @@
 				}
 			},
 			savaCart(index) {
-				let url="CartController/saveCart/${this.user.userId}/${this.businessId}/${this.foodArr[index].foodId}";
+				let url="CartController/saveCart/"+this.user.userId+'/'+this.businessId+'/'+this.foodArr[index].foodId;
 				this.$axios.post(url).then(response => {
 					if (response.data.result == 1) {
 						//此食品数量要更新为1；
@@ -189,7 +189,7 @@
 				});
 			},
 			updateCart(index, num) {
-				let url="CartController/updateCart/${this.user.userId}/${this.businessId}/${this.foodArr[index].foodId}/${this.foodArr[index].quantity + num}";
+				let url="CartController/updateCart/"+this.user.userId+'/'+this.businessId+'/'+this.foodArr[index].foodId+'/'+(this.foodArr[index].quantity + num);
 				this.$axios.put(url).then(response => {
 					if (response.data.result == 1) {
 						//此食品数量要更新为1或-1；
@@ -203,7 +203,7 @@
 				});
 			},
 			removeCart(index) {
-				let url="CartController/removeCart/${this.user.userId}/${this.businessId}/${this.foodArr[index].foodId}";
+				let url="CartController/removeCart/"+this.user.userId+'/'+this.businessId+'/'+this.foodArr[index].foodId;
 				this.$axios.delete(url).then(response => {
 					if (response.data.result == 1) {
 						//此食品数量要更新为0；视图的减号和数量要消失

@@ -94,7 +94,7 @@
 		},
 		created() {
 			this.user = this.$getSessionStorage("user");
-			let url="TransactionController/queryTransaction/${this.user.walletId}";
+			let url="TransactionController/queryTransaction/"+this.user.walletId;
 			this.$axios.get(url).then((response) => {
 					let result = response.data.result;
 					console.log("array", result);
@@ -119,7 +119,7 @@
 		},
 		methods: {
 			queryAllCredit(userId) {
-				let url="CreditController/queryAllCredit/${userId}";
+				let url="CreditController/queryAllCredit/"+userId;
 				this.$axios.get(url).then((response) => {
 						let res = response.data.result;
 						for (let orders of res) {
@@ -135,7 +135,7 @@
 				orders.isShowDetailet = !orders.isShowDetailet;
 			},
 			getBusinessNameByWalletId(walletId, orders) {
-				let url="BusinessController/queryBusinessNameByWalletId/${walletId}";
+				let url="BusinessController/queryBusinessNameByWalletId/"+walletId;
 				this.$axios.get(url).then((response) => {
 						orders.businessName = response.data.result;
 					})
