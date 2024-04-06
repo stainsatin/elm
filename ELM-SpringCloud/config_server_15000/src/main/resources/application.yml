@@ -8,7 +8,7 @@ spring:
     config: #有关springcloud config的配置
       server:
         git:
-          uri: https://gitee.com/wang-yangsen/ELMScc.git #git远程仓库地址
+          uri: https://gitee.com/zztdyhm/elm_cloud_config.git #git远程仓库地址
 
 #eureka配置
 eureka:

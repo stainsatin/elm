@@ -12,4 +12,4 @@ eureka:
     fetch-registry: false #是否启用从注册中心拉取服务列表的功能（默认true）.
     service-url:
       #这是集群版写法，13000注册给13001；反之，13001要注册给13000.
-      defaultZone: http://eurekaserver13000:13000/eureka/
+      defaultZone: http://eurekaServer13000:13000/eureka/
