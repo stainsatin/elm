@@ -41,7 +41,7 @@
 			this.user = this.$getSessionStorage('user');
 			//根据orderTypeId查询商家信息
 			if (this.orderTypeId !== undefined){
-				let url_1 = "Businesscontroller/listBusinessByorderTypeId/" + this.orderTypeId;
+				let url_1 = "BusinessController/listBusinessByOrderTypeId/" + this.orderTypeId;
 				this.$axios.get(url_1).then(response => {
 					this.businessArr = response.data.result;
 					// console.log(response.data);

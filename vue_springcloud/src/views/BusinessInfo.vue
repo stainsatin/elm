@@ -88,10 +88,10 @@
 				user: {}
 			}
 		},
-		created() {
-			let url="BusinessController/getBusinessById/"+this.businessId;
+		created() {			
 			this.user = this.$getSessionStorage('user');
 			//根据businessId查询商家信息
+			let url="BusinessController/getBusinessById/"+this.businessId;
 			this.$axios.get(url).then(response => {
 				this.business = response.data.result;
 				this.foodArr = this.business.foodList;
