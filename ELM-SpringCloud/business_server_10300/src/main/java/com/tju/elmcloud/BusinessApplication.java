@@ -9,7 +9,6 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableFeignClients
-@MapperScan
 public class BusinessApplication {
 
     public static void main(String[] args) {

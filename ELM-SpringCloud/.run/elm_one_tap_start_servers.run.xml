@@ -5,10 +5,14 @@
     <toRun name="CartApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="CartApplication (1)" type="SpringBootApplicationConfigurationType" />
     <toRun name="CommentsApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="ConfigApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="CreditApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="DeliveryAddressApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="EurekaApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="EurekaApplication (1)" type="SpringBootApplicationConfigurationType" />
     <toRun name="FoodApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="FoodApplication (1)" type="SpringBootApplicationConfigurationType" />
+    <toRun name="GatewayApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="OrdersApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="OrdersApplication (1)" type="SpringBootApplicationConfigurationType" />
     <toRun name="UserApplication" type="SpringBootApplicationConfigurationType" />
