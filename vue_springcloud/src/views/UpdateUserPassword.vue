@@ -54,17 +54,15 @@ export default {
         alert("请输入旧密码！");
         return;
       }
+      if (this.oldPass != this.user.password) {
+        alert("请输入正确旧密码！");
+        return;
+      }
       if (this.newPass == "") {
         alert("新密码不能为空！");
         return;
       }
-      let url =
-        "UserController/updateUserPassword/" +
-        this.user.userId +
-        "/" +
-        this.oldPass +
-        "/" +
-        this.newPass;
+      let url = `UserController/updateUserById/${this.user.userId}/${this.newPass}/${this.user.userName}/${this.user.userSex}`;
       this.$axios
         .put(url)
         .then((response) => {

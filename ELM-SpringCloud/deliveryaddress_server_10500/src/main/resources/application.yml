@@ -11,7 +11,7 @@ spring:
     name: deliveryaddress-server
   datasource:
     username: root
-    password: 3021244259
+    password: 12345
     url: jdbc:mysql://localhost:3306/elm?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
 

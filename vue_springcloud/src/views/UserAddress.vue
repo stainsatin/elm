@@ -9,8 +9,13 @@
       <li v-for="item in deliveryAddressArr">
         <div class="addresslist-left" @click="setDeliveryAddress(item)">
           <h3>
-            {{ item.contactName }}{{ sexFilter(item.contactSex) }}
-            {{ item.contactTel }}
+            {{
+              item.contactName +
+              " " +
+              sexFilter(item.contactSex) +
+              " " +
+              item.contactTel
+            }}
           </h3>
           <p>{{ item.address }}</p>
         </div>

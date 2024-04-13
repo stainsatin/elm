@@ -15,8 +15,18 @@
         </p>
         <i class="fa fa-angle-right"></i>
       </div>
-      <!-- <p>{{deliveryaddress!=null?{{{{deliveryaddress.contactName}}{{sexFilter(deliveryaddress.contactSex)}} {{deliveryaddress.contactTel}}}}:':'}}</p> -->
-      <p>{{ user.userName }}{{ sexFilter(user.userSex) }} {{ user.userId }}</p>
+      <p>
+        {{
+          deliveryaddress != null
+            ? deliveryaddress.contactName +
+              " " +
+              sexFilter(deliveryaddress.contactSex) +
+              " " +
+              deliveryaddress.contactTel
+            : ""
+        }}
+      </p>
+      <!-- <p>{{ user.userName }}{{ sexFilter(user.userSex) }} {{ user.userId }}</p> -->
     </div>
 
     <!-- 订单明细部分 -->
@@ -113,15 +123,7 @@ export default {
       }
 
       //创建订单
-      let url =
-        "OrdersController/createOrders/" +
-        this.user.userId +
-        "/" +
-        this.businessId +
-        "/" +
-        this.deliveryaddress.daId +
-        "/" +
-        this.totalPrice;
+      let url = `OrdersController/createOrders/${this.user.userId}/${this.businessId}/${this.deliveryaddress.daId}/${this.totalPrice}`;
       this.$axios
         .post(url)
         .then((response) => {
@@ -134,7 +136,6 @@ export default {
               },
             });
           } else {
-            console.log(orderId);
             alert("创建订单失败！");
           }
         })

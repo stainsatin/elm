@@ -1,237 +1,237 @@
-body{
-	background-color: #f2f2f2;
+body {
+  background-color: #f2f2f2;
 }
 
 /********* 总容器 *********/
-.wrapper{
-	width: 100%;
-	background-color: #f2f2f2;
+.wrapper {
+  width: 100%;
+  background-color: #f2f2f2;
 }
 
 /********* 头部 *********/
-.wrapper header{
-	width: 100%;
-	height: 12vw;
-	background-color: deepskyblue;
-	
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 1000;
-	
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	
-	color: white;
-	font-size: 5vw;
-	font-weight: 700;
+.wrapper header {
+  width: 100%;
+  height: 12vw;
+  background-color: deepskyblue;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  font-size: 5vw;
+  font-weight: 700;
 }
 
 /********* 商家LOGO *********/
-.wrapper .merchant-logo{
-	width: 100%;
-	padding-top: 15vw;
-	display: flex;
-	justify-content: center;
-	margin-bottom: 3vw;
+.wrapper .merchant-logo {
+  width: 100%;
+  padding-top: 15vw;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3vw;
 }
-.wrapper .merchant-logo img{
-	height: 35vw;
-	width: 35vw;
-	border-radius: 6vw;
+.wrapper .merchant-logo img {
+  height: 35vw;
+  width: 35vw;
+  border-radius: 6vw;
 }
-.wrapper .merchant-detail{
-	width: 100%;
-	height: 20vw;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.wrapper .merchant-detail {
+  width: 100%;
+  height: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.wrapper .merchant-detail h1{
-	color: black;
-	font-size: 5.5vw;
-	margin-bottom: 1.5vw;
+.wrapper .merchant-detail h1 {
+  color: black;
+  font-size: 5.5vw;
+  margin-bottom: 1.5vw;
 }
-.wrapper .merchant-detail p{
-	color: darkslategray;
-	font-size: 3vw;
-	margin-bottom: 1.5vw;
+.wrapper .merchant-detail p {
+  color: darkslategray;
+  font-size: 3vw;
+  margin-bottom: 1.5vw;
 }
 
 /********* 商品 *********/
-.wrapper .food{
-	width: 100%;
+.wrapper .food {
+  width: 100%;
 }
-.wrapper .food li{
-	padding: 3vw;
-	margin: 2vw;
-	user-select:none;
-	background-color: white;
-	border-radius: 5vw;
-	
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+.wrapper .food li {
+  padding: 3vw;
+  margin: 2vw;
+  user-select: none;
+  background-color: white;
+  border-radius: 5vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.wrapper .food li .left{
-	display: flex;
-	align-items: center;
+.wrapper .food li .left {
+  display: flex;
+  align-items: center;
 }
-.wrapper .food li .left img{
-	width: 20vw;
-	height: 20vw;
+.wrapper .food li .left img {
+  width: 20vw;
+  height: 20vw;
 }
-.wrapper .food li .left .left-info{
-	margin-left: 3vw;
+.wrapper .food li .left .left-info {
+  margin-left: 3vw;
 }
-.wrapper .food li .left .left-info h3{
-	margin-bottom: 2vw;
-	font-size: 4vw;
-	color: darkslategray;
+.wrapper .food li .left .left-info h3 {
+  margin-bottom: 2vw;
+  font-size: 4vw;
+  color: darkslategray;
 }
-.wrapper .food li .left .left-info p{
-	margin-bottom: 2vw;
-	font-size: 3.5vw;
-	color: gray;
+.wrapper .food li .left .left-info p {
+  margin-bottom: 2vw;
+  font-size: 3.5vw;
+  color: gray;
 }
-.wrapper .food li .right{
-	width: 16vw;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+.wrapper .food li .right {
+  width: 16vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.wrapper .food li .right .fa-minus-circle{
-	font-size: 4.5vw;
-	color: gray;
-	cursor: pointer;
+.wrapper .food li .right .fa-minus-circle {
+  font-size: 4.5vw;
+  color: gray;
+  cursor: pointer;
 }
-.wrapper .food li .right .fa-plus-circle{
-	font-size: 4.5vw;
-	color: deepskyblue;
-	cursor: pointer;
+.wrapper .food li .right .fa-plus-circle {
+  font-size: 4.5vw;
+  color: deepskyblue;
+  cursor: pointer;
 }
-.wrapper .food li .right p{
-	font-size: 3.5vw;
-	color: darkslategray;
+.wrapper .food li .right p {
+  font-size: 3.5vw;
+  color: darkslategray;
 }
 
 /*********推荐商家按钮*********/
-.wrapper .merchant-button{
-	width: 100%;
-	box-sizing: border-box;
-	padding: 4vw 10vw 22vw;
+.wrapper .merchant-button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4vw 10vw 22vw;
 }
-.wrapper .merchant-button button{
-	width:100%;
-	height: 15vw;
-	background-color: deepskyblue;
-	border-radius: 5vw;
-	
-	display:flex;
-	justify-content: space-between;
-	align-items: center;
-	
-	color: white;
-	border: none;
-	outline: none;
+.wrapper .merchant-button button {
+  width: 100%;
+  height: 15vw;
+  background-color: deepskyblue;
+  border-radius: 5vw;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: white;
+  border: none;
+  outline: none;
 }
-.wrapper .merchant-button button .button-left{
-	font-size: 3.5vw;
-	margin-left: 4vw;
-	align-items: center;
-	user-select: none;
+.wrapper .merchant-button button .button-left {
+  font-size: 3.5vw;
+  margin-left: 4vw;
+  align-items: center;
+  user-select: none;
 }
-.wrapper .merchant-button button .button-right{
-	font-size: 3.5vw;
-	margin-right: 4vw;
-	cursor: pointer;
+.wrapper .merchant-button button .button-right {
+  font-size: 3.5vw;
+  margin-right: 4vw;
+  cursor: pointer;
 }
 
 /********* 购物车 *********/
-.wrapper .cart{
-	width: 95%;
-	height: 14vw;
-	
-	position: fixed;
-	bottom: 3vw;
-	left: 2.5%;
-	
-	display:flex;
+.wrapper .cart {
+  width: 95%;
+  height: 14vw;
+
+  position: fixed;
+  bottom: 3vw;
+  left: 2.5%;
+
+  display: flex;
 }
-.wrapper .cart .left{
-	background-color: dimgray;
-	border-top-left-radius: 5vw;
-	border-bottom-left-radius: 5vw;
-	
-	display: flex;
-	flex: 2;
+.wrapper .cart .left {
+  background-color: dimgray;
+  border-top-left-radius: 5vw;
+  border-bottom-left-radius: 5vw;
+
+  display: flex;
+  flex: 2;
 }
-.wrapper .cart .left .cart-icon{
-	width: 14vw;
-	height: 14vw;
-	background-color: deepskyblue;
-	border-radius: 10vw;
-	border: solid 5px darkslategray;
-	
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	
-	margin-top: -4vw;
-	margin-left: 4vw;
-	
-	position: relative;
+.wrapper .cart .left .cart-icon {
+  width: 14vw;
+  height: 14vw;
+  background-color: deepskyblue;
+  border-radius: 10vw;
+  border: solid 5px darkslategray;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: -4vw;
+  margin-left: 4vw;
+
+  position: relative;
 }
-.wrapper .cart .left .cart-icon .fa-shopping-cart{
-	font-size: 8vw;
-	color: white;
+.wrapper .cart .left .cart-icon .fa-shopping-cart {
+  font-size: 8vw;
+  color: white;
 }
-.wrapper .cart .left .cart-icon .quantity{
-	width: 5vw;
-	height: 5vw;
-	color: white;
-	background-color: red;
-	border-radius: 4vw;
-	font-size: 3.5vw;
-	
-	display: flex;
-	justify-content: center;
-	
-	position: absolute;
-	right: -1.5vw;
-	top: -1vw;
+.wrapper .cart .left .cart-icon .quantity {
+  width: 5vw;
+  height: 5vw;
+  color: white;
+  background-color: red;
+  border-radius: 4vw;
+  font-size: 3.5vw;
+
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+  right: -1.5vw;
+  top: -1vw;
 }
-.wrapper .cart .left .amount{
-	margin-left: 1vw;
-	
-	display: flex;
-	flex-direction: column;
+.wrapper .cart .left .amount {
+  margin-left: 1vw;
+
+  display: flex;
+  flex-direction: column;
 }
-.wrapper .cart .left .amount h3{
-	font-size:4.5vw;
-	color: white;
-	
-	margin-top: 1vw;
+.wrapper .cart .left .amount h3 {
+  font-size: 4.5vw;
+  color: white;
+
+  margin-top: 1vw;
 }
-.wrapper .cart .left .amount p{
-	font-size: 3vw;
-	color: darkgray;
+.wrapper .cart .left .amount p {
+  font-size: 3vw;
+  color: darkgray;
 }
-.wrapper .cart .right{
-	background-color: mediumseagreen;
-	color: white;
-	font-size: 4.7vw;
-	font-weight: 700;
-	border-top-right-radius: 5vw;
-	border-bottom-right-radius: 5vw;
-	
-	display: flex;
-	flex: 1;
-	align-items: center;
-	justify-content: center;
-	
-	cursor: pointer;
-	user-select: none;
+.wrapper .cart .right {
+  background-color: mediumseagreen;
+  color: white;
+  font-size: 4.7vw;
+  font-weight: 700;
+  border-top-right-radius: 5vw;
+  border-bottom-right-radius: 5vw;
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  user-select: none;
 }

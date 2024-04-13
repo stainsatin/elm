@@ -16,9 +16,9 @@
             <if test="userSex!=null ">
                 userSex=#{userSex},
             </if>
-            <if test="userImg!=null and userImg!='' ">
+           <!-- <if test="userImg!=null and userImg!='' ">
                 userImg=#{userImg}
-            </if>
+            </if>-->
         </set>
         where userId=#{userId}
     </update>

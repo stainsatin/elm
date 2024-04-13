@@ -58,20 +58,18 @@ public class UserController {
         return new CommonResult<>(200, "success", result);
     }
 
-    @PutMapping("/updateUserById/{userId}/{password}/{userName}/{userSex}/{userImg}")
+    @PutMapping("/updateUserById/{userId}/{password}/{userName}/{userSex}")
     public CommonResult<Integer> updateUserById(
             @PathVariable("userId") String userId,
             @PathVariable("password") String password,
             @PathVariable("userName") String userName,
-            @PathVariable("userSex") Integer userSex,
-            @PathVariable("userImg") String userImg
+            @PathVariable("userSex") Integer userSex
     ) throws Exception {
         User param = new User();
         param.setUserId(userId);
         param.setPassword(password);
         param.setUserName(userName);
         param.setUserSex(userSex);
-        param.setUserImg(userImg);
         int result = userService.updateUserById(param);
         return new CommonResult<>(200, "success", result);
     }
