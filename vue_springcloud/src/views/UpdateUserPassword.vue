@@ -70,6 +70,7 @@ export default {
             this.user.password = this.newPass;
             this.$setSessionStorage("user", this.user);
             alert("修改密码成功！");
+            this.$router.go(-1);
           } else {
             alert("修改密码失败！");
           }

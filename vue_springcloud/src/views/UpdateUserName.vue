@@ -56,6 +56,7 @@ export default {
             this.user.userName = this.newName;
             this.$setSessionStorage("user", this.user);
             alert("修改用户名成功！");
+            this.$router.go(-1);
           } else {
             alert("修改用户名失败！");
           }
