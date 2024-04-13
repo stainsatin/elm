@@ -2,7 +2,7 @@
   <div class="wrapper">
     <!-- header部分 -->
     <header>
-      <p>用户登陆</p>
+      <p>用户登录</p>
     </header>
     <!-- 表单部分 -->
     <ul class="form-box">
@@ -88,6 +88,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 /****************** 总容器 ******************/
 .wrapper {
@@ -116,7 +117,7 @@ export default {
 /****************** 表单部分 ******************/
 .wrapper .form-box {
   width: 100%;
-  margin-top: 12vw;
+  padding-top: 12vw;
 }
 
 .wrapper .form-box li {

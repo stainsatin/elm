@@ -160,7 +160,7 @@ export default {
 /****************** 表单部分 ******************/
 .wrapper .form-box {
   width: 100%;
-  margin-top: 12vw;
+  padding-top: 12vw;
 }
 
 .wrapper .form-box li {

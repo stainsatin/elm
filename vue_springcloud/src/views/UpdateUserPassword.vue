@@ -95,15 +95,18 @@ export default {
   width: 100%;
   height: 12vw;
   background-color: deepskyblue;
-  color: #fff;
-  font-size: 4.8vw;
+
   position: fixed;
-  left: 0;
   top: 0;
-  z-index: 1000;
+  left: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  color: white;
+  font-size: 5vw;
+  font-weight: 700;
 }
 
 /****************** 修改密码部分 ******************/
