@@ -61,6 +61,9 @@
     <div class="button-register">
       <button @click="register">注册</button>
     </div>
+    <div class="button-login">
+      <button @click="login">去登录</button>
+    </div>
   </div>
 </template>
 <script>
@@ -129,6 +132,11 @@ export default {
           console.error(error);
         });
     },
+    login() {
+      this.$router.push({
+        path: "login",
+      });
+    },
   },
 };
 </script>
@@ -195,7 +203,7 @@ export default {
 .wrapper .button-register {
   width: 100%;
   box-sizing: border-box;
-  padding: 4vw 10vw 20vw;
+  padding: 4vw 10vw 0;
 }
 
 .wrapper .button-register button {
@@ -208,6 +216,29 @@ export default {
 
   font-size: 3.5vw;
   color: white;
+
+  cursor: pointer;
+}
+
+.wrapper .button-login {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4vw 10vw;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper .button-login button {
+  width: 100%;
+  height: 10vw;
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 4vw;
+  border: solid 1.5px #ddd;
+
+  font-size: 3.5vw;
+  color: darkslategray;
 
   cursor: pointer;
 }

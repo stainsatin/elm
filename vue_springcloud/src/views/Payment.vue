@@ -4,28 +4,40 @@
     <header>
       <p>在线支付</p>
     </header>
+    <div style="height: 2vw"></div>
+
     <!-- 订单信息部分 -->
-    <h3>订单信息：</h3>
-    <div class="order-info">
-      <p>
-        {{ orders.business.businessName }}
-        <i class="fa fa-caret-down" @click="detailetShow"></i>
-      </p>
-      <p>&#165;{{ orders.orderTotal }}</p>
+    <div class="order">
+      <h3>订单信息：</h3>
+      <div
+        style="height: 1.5px; background-color: #ddd; margin-bottom: 1vw"
+      ></div>
+      <div class="order-info">
+        <p>
+          {{ orders.business.businessName }}
+          <i class="fa fa-caret-down" @click="detailetShow"></i>
+        </p>
+        <p>&#165;{{ orders.orderTotal }}</p>
+      </div>
+      <!-- 订单明细部分 -->
+      <ul class="order-detailet" v-show="isShowDetailet">
+        <li v-for="item in orders.list">
+          <p>{{ item.food.foodName }} x {{ item.quantity }}</p>
+          <p>&#165;{{ item.food.foodPrice * item.quantity }}</p>
+        </li>
+        <li>
+          <p>配送费</p>
+          <p>&#165;{{ orders.business.deliveryPrice }}</p>
+        </li>
+      </ul>
     </div>
-    <!-- 订单明细部分 -->
-    <ul class="order-detailet" v-show="isShowDetailet">
-      <li v-for="item in orders.list">
-        <p>{{ item.food.foodName }} x {{ item.quantity }}</p>
-        <p>&#165;{{ item.food.foodPrice * item.quantity }}</p>
-      </li>
-      <li>
-        <p>配送费</p>
-        <p>&#165;{{ orders.business.deliveryPrice }}</p>
-      </li>
-    </ul>
+
     <!-- 积分部分 -->
     <div class="credit">
+      <h3>积分信息：</h3>
+      <div
+        style="height: 1.5px; background-color: #ddd; margin-bottom: 1vw"
+      ></div>
       <div class="credit-info">
         <p>您当前可用的积分总额为{{ "  " + this.creditNum + " " }}</p>
         <p>消耗{{ " " + this.consumeCreditNum + " 积分 " }}</p>
@@ -53,6 +65,10 @@
 
     <!-- 支付方式部分 -->
     <ul class="payment-type">
+      <h3>支付方式：</h3>
+      <div
+        style="height: 1.5px; background-color: #ddd; margin-bottom: 1vw"
+      ></div>
       <li>
         <img src="../assets/alipay.png" />
         <input
@@ -279,73 +295,80 @@ export default {
 }
 
 /****************** 订单信息部分 ******************/
-.wrapper h3 {
-  width: 100%;
+.wrapper .order {
   box-sizing: border-box;
-  padding: 15vw 3vw 1vw;
-
-  font-size: 3.5vw;
-  font-weight: 300;
-  color: gray;
-}
-
-.wrapper .order-info {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 2vw 3vw;
-  font-size: 3.5vw;
-  color: darkslategray;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.wrapper .order-info .fa-caret-down {
+  padding: 3vw 3vw 2vw;
+  margin: 12vw 2.5vw 2vw;
   user-select: none;
-  cursor: pointer;
-}
-
-.wrapper .order-info p:last-child {
-  color: orangered;
-  font-size: 4vw;
-}
-
-/****************** 订单明细部分 ******************/
-.wrapper .order-detailet {
-  width: 100%;
-  margin-bottom: 4vw;
-}
-
-.wrapper .order-detailet li {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 1vw 3vw 0vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.wrapper .order-detailet li p {
-  font-size: 3vw;
-  color: darkslategray;
-}
-
-/****************** 积分部分 ******************/
-.wrapper .credit {
-  width: 95%;
-  margin: 2vw 2.5vw;
-  padding-bottom: 1vw;
-
   background-color: white;
   border-radius: 5vw;
   border: solid 1.5px #ddd;
 }
 
-.wrapper .credit .credit-info {
+.wrapper .order h3 {
+  padding-bottom: 2vw;
+  font-size: 3.5vw;
+  font-weight: 300;
+  color: gray;
+}
+
+.wrapper .order .order-info {
+  box-sizing: border-box;
+  padding: 1vw 0;
+  font-size: 3.5vw;
+  color: darkslategray;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper .order .order-info .fa-caret-down {
+  user-select: none;
+  cursor: pointer;
+}
+
+.wrapper .order .order-info p:last-child {
+  color: orangered;
+  font-size: 3.5vw;
+}
+
+/****************** 订单明细部分 ******************/
+.wrapper .order .order-detailet {
+  width: 100%;
+}
+
+.wrapper .order .order-detailet li {
   width: 100%;
   box-sizing: border-box;
-  padding: 2vw 3vw;
+  padding: 1vw 0;
+  color: darkslategray;
+  font-size: 2.5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/****************** 积分部分 ******************/
+.wrapper .credit {
+  box-sizing: border-box;
+  padding: 3vw 3vw 2vw;
+  margin: 2.5vw 2vw;
+  user-select: none;
+  background-color: white;
+  border-radius: 5vw;
+  border: solid 1.5px #ddd;
+}
+
+.wrapper .credit h3 {
+  padding-bottom: 2vw;
+  font-size: 3.5vw;
+  font-weight: 300;
+  color: gray;
+}
+
+.wrapper .credit .credit-info {
+  box-sizing: border-box;
+  padding: 1vw 0;
   font-size: 3.5vw;
   color: darkslategray;
 
@@ -359,7 +382,7 @@ export default {
 
 .wrapper .credit .buttonofcredit {
   box-sizing: border-box;
-  padding: 2vw 3vw;
+  padding: 1vw 0;
   font-size: 3.5vw;
   color: darkslategray;
   display: flex;
@@ -369,18 +392,26 @@ export default {
 
 /****************** 支付方式部分 ******************/
 .wrapper .payment-type {
-  width: 95%;
-  margin: 2vw 2.5vw;
-
+  box-sizing: border-box;
+  padding: 3vw 3vw 2vw;
+  margin: 2.5vw 2vw;
+  user-select: none;
   background-color: white;
   border-radius: 5vw;
   border: solid 1.5px #ddd;
 }
 
+.wrapper .payment-type h3 {
+  padding-bottom: 2vw;
+  font-size: 3.5vw;
+  font-weight: 300;
+  color: gray;
+}
+
 .wrapper .payment-type li {
   width: 100%;
   box-sizing: border-box;
-  padding: 3vw;
+  padding: 3vw 0;
 
   display: flex;
   justify-content: space-between;

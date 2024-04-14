@@ -9,6 +9,10 @@
     <!--未支付订单列表-->
     <ul class="unpaid-order">
       <h3>未支付订单信息：</h3>
+      <div
+        v-show="orderArr.length > 0"
+        style="height: 1.5px; background-color: #ddd; margin-bottom: 1vw"
+      ></div>
       <li v-for="item in orderArr">
         <div class="order-info" v-if="item.orderState == 0">
           <p>
@@ -164,7 +168,7 @@ export default {
 }
 
 .wrapper .unpaid-order h3 {
-  margin-bottom: 3vw;
+  padding-bottom: 2vw;
   font-size: 3.5vw;
   font-weight: 300;
   color: gray;
@@ -176,7 +180,7 @@ export default {
 
 .wrapper .unpaid-order li .order-info {
   box-sizing: border-box;
-  padding-bottom: 2vw;
+  padding: 1vw 0;
   font-size: 3.5vw;
   color: darkslategray;
 
@@ -209,8 +213,8 @@ export default {
 .wrapper .unpaid-order li .order-detailet li {
   width: 100%;
   box-sizing: border-box;
-  padding: 1vw 4vw;
-  color: #666;
+  padding: 1vw 0;
+  color: darkslategray;
   font-size: 2.5vw;
   display: flex;
   justify-content: space-between;
@@ -218,7 +222,7 @@ export default {
 }
 
 .wrapper .paid-order h3 {
-  margin-bottom: 3vw;
+  margin-bottom: 2vw;
   font-size: 3.5vw;
   font-weight: 300;
   color: gray;
@@ -240,7 +244,7 @@ export default {
 
 .wrapper .paid-order li .order-info {
   box-sizing: border-box;
-  padding-bottom: 2vw;
+  padding: 1vw 0;
   font-size: 3.5vw;
   color: darkslategray;
 
@@ -269,8 +273,8 @@ export default {
 .wrapper .paid-order li .order-detailet li {
   width: 100%;
   box-sizing: border-box;
-  padding: 1vw 4vw;
-  color: #666;
+  padding: 1vw 0;
+  color: darkslategray;
   font-size: 2.5vw;
   display: flex;
   justify-content: space-between;

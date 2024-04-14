@@ -172,7 +172,7 @@ export default {
 .wrapper .button-register {
   width: 100%;
   box-sizing: border-box;
-  padding: 4vw 10vw 20vw;
+  padding: 4vw 10vw;
   display: flex;
   justify-content: center;
 }
