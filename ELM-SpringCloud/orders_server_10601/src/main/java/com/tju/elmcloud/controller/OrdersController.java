@@ -3,7 +3,7 @@ package com.tju.elmcloud.controller;
 import com.tju.elmcloud.feign.CreditFeignClient;
 import com.tju.elmcloud.po.CommonResult;
 import com.tju.elmcloud.po.Orders;
-//import com.tju.elmcloud.service.CreditService; TODO:积分系统待添加
+import com.tju.elmcloud.service.CreditService;// TODO:积分系统待添加
 import com.tju.elmcloud.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,7 +38,7 @@ public class OrdersController {
         orders.setDaId(daId);
         orders.setOrderTotal(orderTotal);
         int orderId = ordersService.createOrders(orders);
-//        int creditId = creditService.saveCreditByOrder(odId);
+        //int creditId = creditService.saveCreditByOrder(orderId);
         creditFeignClient.saveCreditByOrder(orderId);
         return new CommonResult<>(200, "success", orderId);
     }
