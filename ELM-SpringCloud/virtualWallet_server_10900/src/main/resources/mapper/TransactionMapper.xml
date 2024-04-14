@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neusoft.elmboot.mapper.TransactionMapper">
+    <insert id="writeTransaction" parameterType="TransactionPo" useGeneratedKeys="true" keyProperty="transactionId">
+        insert into transaction
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            transactionId,time,money,type,
+            <if test="inputwalletId != null and inputwalletId != ''">
+                inputwalletId,
+            </if>
+            <if test="outputwalletId != null and outputwalletId != ''">
+                outputwalletId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{transactionId},#{time},#{money},#{type},
+            <if test="inputwalletId != null and inputwalletId != ''">
+                #{inputwalletId},
+            </if>
+            <if test="outputwalletId != null and outputwalletId != ''">
+                #{outputwalletId},
+            </if>
+        </trim>
+    </insert>
+</mapper>

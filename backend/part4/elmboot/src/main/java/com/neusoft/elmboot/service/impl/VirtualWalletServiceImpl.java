@@ -1,5 +1,6 @@
 package com.neusoft.elmboot.service.impl;
 
+import java.math.BigDecimal;
 import com.neusoft.elmboot.domain.VirtualWallet;
 import com.neusoft.elmboot.domain.impl.VirtualWalletImpl;
 import com.neusoft.elmboot.mapper.OrdersMapper;
