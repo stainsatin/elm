@@ -2,7 +2,6 @@ package com.tju.elmcloud.controller;
 
 import com.tju.elmcloud.service.VirtualWalletService;
 import com.tju.elmcloud.po.CommonResult;
-import com.tju.elmcloud.po.VirtualWalletVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

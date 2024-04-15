@@ -99,10 +99,12 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
     @Transactional
     public int userCreateVirtualWallet(String userId) {
         VirtualWalletPo virtualWalletPo=new VirtualWalletPo();
+        virtualWalletPo.setUserId(userId);
         int done1=virtualWalletMapper.createVirtualWallet(virtualWalletPo);
-        int done2=virtualWalletMapper.updateWalletId(userId,123);
+        int walletId = virtualWalletMapper.querywalletId(userId);
+        int done2=virtualWalletMapper.updateWalletId(userId,walletId);
         if(done2==1&&done1==1)
-            return virtualWalletPo.getWalletId();
+            return walletId;
         else
             return -1;
     }
