@@ -48,7 +48,7 @@ public class VirtualWalletController {
     	return new CommonResult(200,"success", virtualWalletService.queryBalance(walletId));
     }
     
-    @RequestMapping("/queryBalance/{inputWalletId}/{outputWalletId}/{money1}/{money2}/{orderId}")
+    @RequestMapping("/transferMoneyWithCredit/{inputWalletId}/{outputWalletId}/{money1}/{money2}/{orderId}")
     public CommonResult<Integer> transferMoneyWithCredit(@PathVariable("inputWalletId") Integer inputWalletId,
             @PathVariable("outputWalletId") Integer outputWalletId,
             @PathVariable("money1") double money1,

@@ -100,7 +100,7 @@ public class VirtualWalletServiceImpl implements VirtualWalletService {
     public int userCreateVirtualWallet(String userId) {
         VirtualWalletPo virtualWalletPo=new VirtualWalletPo();
         int done1=virtualWalletMapper.createVirtualWallet(virtualWalletPo);
-        int done2=userMapper.updateWalletId(userId,virtualWalletPo.getWalletId());
+        int done2=virtualWalletMapper.updateWalletId(userId,123);
         if(done2==1&&done1==1)
             return virtualWalletPo.getWalletId();
         else

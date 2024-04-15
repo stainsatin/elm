@@ -62,6 +62,11 @@ spring:
           uri: lb://credit-server
           predicates:
             - Path=/CreditController/*/**
+            
+        - id: virtualWalletServer
+          uri: lb://virtualWallet-server
+          predicates:
+            - Path=/VirtualWalletController/*/**
 
 #eureka配置
 eureka:
