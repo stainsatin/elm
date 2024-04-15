@@ -16,6 +16,7 @@
     <toRun name="OrdersApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="OrdersApplication (1)" type="SpringBootApplicationConfigurationType" />
     <toRun name="UserApplication" type="SpringBootApplicationConfigurationType" />
+    <toRun name="WalletApplication" type="SpringBootApplicationConfigurationType" />
     <method v="2" />
   </configuration>
 </component>

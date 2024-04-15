@@ -1,183 +1,226 @@
 package com.tju.elmcloud.service.impl;
 
-import com.tju.elmcloud.mapper.CommentMapper;
-import com.tju.elmcloud.mapper.CreditMapper;
-import com.tju.elmcloud.mapper.OrdersMapper;
-import com.tju.elmcloud.mapper.ValidCreditMapper;
-import com.tju.elmcloud.po.*;
+import com.tju.elmcloud.creditRuleMap.CreditRuleMap;
+import com.tju.elmcloud.domain.CreditSystem;
+import com.tju.elmcloud.domain.Rule;
+import com.tju.elmcloud.domain.impl.CreditSystemImpl;
+import com.tju.elmcloud.domain.impl.RechargeCreditRule;
+import com.tju.elmcloud.domain.impl.SignCreditRule;
+import com.tju.elmcloud.domain.impl.TransferMoneyCreditRule;
+import com.tju.elmcloud.mapper.CreditRecordMapper;
+import com.tju.elmcloud.mapper.CreditRuleMapper;
+import com.tju.elmcloud.po.CreditRecord;
+import com.tju.elmcloud.po.CreditRulePo;
+import com.tju.elmcloud.po.UsableCredit;
 import com.tju.elmcloud.service.CreditService;
-import com.tju.elmcloud.util.ChannelId;
-import com.tju.elmcloud.util.CreditConfig;
-import com.tju.elmcloud.util.CreditConfigImpl;
-import com.tju.elmcloud.util.SQLTimeUtil;
+import com.tju.elmcloud.util.CommonUtil;
+import com.tju.elmcloud.vo.ConsumeCredit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
 public class CreditServiceImpl implements CreditService {
 
     @Autowired
-    private CreditMapper creditMapper;
-
+    private CreditRuleMapper creditRuleMapper;
     @Autowired
-    private CommentMapper commentMapper;
-
-    @Autowired
-    private ValidCreditMapper validCreditMapper;
-
-    @Autowired
-    private OrdersMapper ordersMapper;
+    private CreditRecordMapper creditRecordMapper;
 
     @Override
-    public int getTotalCredit(String userId) {
-        CreditBO creditBO = new CreditBO(userId, getValidCredits(userId));
-        return creditBO.getTotalCredit();
-    }
-
-    @Override
-    public List<CreditVO> getCreditTotalDetails(String userId) {
-        return creditMapper.getCreditTotalDetails(userId);
-    }
-
-    @Override
-    public List<CreditVO> getCreditByParam(String userId, int param) {
-        if(param == 0) {
-            return creditMapper.getCreditOfAdd(userId);
-        } else if(param == 1) {
-            return creditMapper.getCreditOfSpend(userId);
-        } else {
-            return creditMapper.getCreditOfOutTime(userId);
+    public Integer queryEarningCreditBySign(String userId) {
+        Integer ruleId=1;
+        String time= CommonUtil.getCurrentDate();
+        String today=time.substring(0,time.indexOf(' ')).trim();
+        int count=creditRecordMapper.todaySignRecord(userId,ruleId,today);
+        CreditRuleMap creditRuleMap=CreditRuleMap.getRuleMap();
+        SignCreditRule signCreditRule=null;
+        synchronized (creditRuleMap) {
+            signCreditRule = (SignCreditRule) creditRuleMap.getRule(ruleId);
+            if (signCreditRule == null) {
+                CreditRulePo creditRulePo = creditRuleMapper.getRule(ruleId);
+                int credit = creditRulePo.getCredit();
+                int lifeSpan = creditRulePo.getLifespan();
+                int totCap = creditRulePo.getDailyCap();
+                signCreditRule = new SignCreditRule(lifeSpan, credit, totCap);
+                creditRuleMap.writeMap(ruleId, signCreditRule);
+            }
         }
-    }
-    @Override
-    @Transactional
-    public int saveCreditByOrder(int orderId) {
-        Orders orders = ordersMapper.getOrdersById(orderId);
-        CreditEntity creditEntity = new CreditEntity();
-        creditEntity.setUserId(orders.getUserId());
-        creditEntity.setChannelId(ChannelId.addCreditByOrder);
-        creditEntity.setEventId(orderId);
-        double price = orders.getOrderTotal();
-        CreditConfig creditConfig = new CreditConfigImpl();
-        int credit = creditConfig.calculateCreditByPrice(price);
-        creditEntity.setCredit(credit);
-        Date createTime = SQLTimeUtil.getNowDate();
-        Date expiredTime = SQLTimeUtil.addDays(createTime, CreditConfig.validDays);
-        creditEntity.setCreateTime(createTime);
-        creditEntity.setExpiredTime(expiredTime);
-
-        ValidCredit validCredit = new ValidCredit();
-        validCredit.setUserId(orders.getUserId());
-        validCredit.setCredit(credit);
-        validCredit.setCreateTime(createTime);
-        validCredit.setExpiredTime(expiredTime);
-
-        validCreditMapper.saveValidCredit(validCredit);
-
-        return creditMapper.saveCreditDetail(creditEntity);
-    }
-
-    @Override
-    public int saveCreditByComment(int cmId) {
-        Comment comment = commentMapper.getCommentById(cmId);
-        CreditEntity creditEntity = new CreditEntity();
-        creditEntity.setUserId("123");
-        creditEntity.setChannelId(ChannelId.addCreditByComment);
-        creditEntity.setCredit(CreditConfig.creditForOneComment);
-        creditEntity.setEventId(cmId);
-        creditEntity.setCreditDetailId(CreditConfig.creditForOneComment);
-        Date createTime = SQLTimeUtil.getNowDate();
-        Date expiredTime = SQLTimeUtil.addDays(createTime, CreditConfig.validDays);
-        creditEntity.setCreateTime(createTime);
-        creditEntity.setExpiredTime(expiredTime);
-
-        ValidCredit validCredit = new ValidCredit();
-        validCredit.setUserId("123");
-        validCredit.setCredit(CreditConfig.creditForOneComment);
-        validCredit.setCreateTime(createTime);
-        validCredit.setExpiredTime(expiredTime);
-
-        System.out.println(validCredit.getCredit());
-
-        validCreditMapper.saveValidCredit(validCredit);
-
-        return creditMapper.saveCreditDetail(creditEntity);
+        CreditSystem creditSystem=new CreditSystemImpl();
+        return  creditSystem.queryEarningCreditBySign(count,signCreditRule);
     }
 
     @Override
     @Transactional
-    public int spendCredit(String userId, String channelId, int eventId, int credit) {
-        if(credit <= 0) {
+    public Integer earnCreditBySign(String userId, int creditNum) {
+        System.out.println("serivice: "+userId);
+        System.out.println("serivice: "+creditNum);
+        String createTime=CommonUtil.getCurrentDate();
+        CreditRuleMap creditRuleMap=CreditRuleMap.getRuleMap();
+        int lifeSpan=0;
+        synchronized (creditRuleMap) {
+            lifeSpan = ((SignCreditRule) creditRuleMap.getRule(1)).getLifeSpan();
+        }
+        String endTime=CommonUtil.getEndTime(lifeSpan);
+        CreditRecord creditRecord=new CreditRecord(1,userId,creditNum,createTime,endTime);
+        int done1=creditRecordMapper.insertCreditRecord(creditRecord);
+        int done2=creditRecordMapper.insertUsableCredit(userId,creditRecord.getId(),creditNum,createTime,endTime);
+        if (done2==1&&done1==1){
+            return 1;
+        }
+        else {
             return 0;
         }
-        CreditBO creditBO = new CreditBO(userId, validCreditMapper.getAllValidCredit(userId));
-        boolean success = creditBO.spendCredit(credit);
-        if(!success) {
-            return -1;
-        }
-        for (int i : creditBO.getIndexOfRemove()) {
-            validCreditMapper.removeValidCreditById(i);
-        }
-        if(creditBO.getCreditOfAdd() != null) {
-            validCreditMapper.saveValidCredit(creditBO.getCreditOfAdd());
-        }
-        CreditEntity creditEntity = new CreditEntity();
-        creditEntity.setUserId(userId);
-        creditEntity.setChannelId(channelId);
-        creditEntity.setEventId(eventId);
-        creditEntity.setCredit(-credit);
-        creditEntity.setCreateTime(SQLTimeUtil.getNowDate());
-        creditEntity.setExpiredTime(null);
-        return creditMapper.saveCreditDetail(creditEntity);
     }
 
     @Override
-    public List<ValidCredit> getValidCredits(String userId) {
-        return creditMapper.getValidCredit(userId);
+    public Integer queryEarnCreditByRecharge(String userId, Integer money) {
+
+        Integer ruleId=2;
+        CreditRuleMap creditRuleMap=CreditRuleMap.getRuleMap();
+        RechargeCreditRule rechargeCreditRule=null;
+        synchronized (creditRuleMap) {
+            rechargeCreditRule = (RechargeCreditRule) creditRuleMap.getRule(ruleId);
+            if (rechargeCreditRule == null) {
+                CreditRulePo creditRulePo = creditRuleMapper.getRule(ruleId);
+                double formula = creditRulePo.getFormula();
+                int lifeSpan = creditRulePo.getLifespan();
+                rechargeCreditRule = new RechargeCreditRule(lifeSpan, formula);
+                creditRuleMap.writeMap(ruleId, rechargeCreditRule);
+            }
+        }
+        CreditSystem creditSystem=new CreditSystemImpl();
+        return creditSystem.queryEarnCreditByRecharge(money,rechargeCreditRule);
     }
 
     @Override
-    public int saveCreditForNewUser(String userId) {
-        CreditEntity creditEntity = new CreditEntity();
-        creditEntity.setUserId(userId);
-        creditEntity.setChannelId(ChannelId.newUser);
-        creditEntity.setEventId(-1);
-        int credit = CreditConfig.newCredit;
-        creditEntity.setCredit(credit);
-        Date createTime = SQLTimeUtil.getNowDate();
-        Date expiredTime = SQLTimeUtil.addDays(createTime, CreditConfig.validDays);
-        creditEntity.setCreateTime(createTime);
-        creditEntity.setExpiredTime(expiredTime);
+    public Integer earnCreditBySign(String userId, Integer creditNum, Integer transactionId) {
+        String createTime=CommonUtil.getCurrentDate();
+        int lifeSpan=0;
+        CreditRuleMap creditRuleMap=CreditRuleMap.getRuleMap();
+        synchronized (creditRuleMap){
+            lifeSpan=((RechargeCreditRule)(creditRuleMap.getRule(2))).getLifeSpan();
+        }
+        String endTime=CommonUtil.getEndTime(lifeSpan);
+        CreditRecord creditRecord=new CreditRecord(2,userId,creditNum,createTime,endTime,transactionId);
+        int done1=creditRecordMapper.insertCreditRecord(creditRecord);
+        int done2=creditRecordMapper.insertUsableCredit(userId,creditRecord.getId(),creditNum,createTime,endTime);
+        if (done2==1&&done1==1){
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
 
-        ValidCredit validCredit = new ValidCredit();
-        validCredit.setUserId(userId);
-        validCredit.setCredit(credit);
-        validCredit.setCreateTime(createTime);
-        validCredit.setExpiredTime(expiredTime);
+    @Override
+    public Integer queryAvailableCredit(String userId) {
+        creditRecordMapper.updataQueryAvailableCredit(userId,CommonUtil.getCurrentDate());
+        Integer availableCredit=creditRecordMapper.queryAvailableCredit(userId,CommonUtil.getCurrentDate());
+        if(availableCredit==null)return 0;
+        return availableCredit;
+    }
 
-        validCreditMapper.saveValidCredit(validCredit);
-
-        return creditMapper.saveCreditDetail(creditEntity);
+    @Override
+    public ConsumeCredit consumeCreditByPaying(String userId, Integer money, Integer creditNum) {
+        Integer ruleId=3;
+        CreditRuleMap creditRuleMap=CreditRuleMap.getRuleMap();
+        TransferMoneyCreditRule transferMoneyCreditRule=null;
+        synchronized (creditRuleMap){
+            transferMoneyCreditRule=(TransferMoneyCreditRule) creditRuleMap.getRule(ruleId);
+            if(transferMoneyCreditRule==null){
+                CreditRulePo creditRulePo = creditRuleMapper.getRule(ruleId);
+                double formula=creditRulePo.getFormula();
+                transferMoneyCreditRule=new TransferMoneyCreditRule(formula);
+                creditRuleMap.writeMap(ruleId,transferMoneyCreditRule);
+            }
+        }
+        CreditSystem creditSystem=new CreditSystemImpl();
+        return creditSystem.consumeCreditByPaying(money,creditNum,transferMoneyCreditRule);
     }
 
     @Override
     @Transactional
-    public void updateCredit(String userId) {
-        List<ValidCredit> outTimeCredits = validCreditMapper.getOutTimeCredits(userId);
-        for(ValidCredit validCredit : outTimeCredits) {
-            validCreditMapper.removeValidCreditById(validCredit.getCredit());
-            CreditEntity creditEntity = new CreditEntity();
-            creditEntity.setUserId(userId);
-            creditEntity.setChannelId(ChannelId.outTime);
-            creditEntity.setEventId(-1);
-            creditEntity.setCredit(-validCredit.getCredit());
-            creditEntity.setCreateTime(validCredit.getExpiredTime());
-            creditEntity.setExpiredTime(null);
-            creditMapper.saveCreditDetail(creditEntity);
+    public Integer transferMoneyWithCreditConsume(Integer creditNum, Integer id, String userId) {
+        Integer ruleId=3;
+        creditNum=-creditNum;
+        CreditRecord creditRecord=new CreditRecord(ruleId,userId,creditNum,CommonUtil.getCurrentDate(),id);
+        creditRecordMapper.insertCreditRecord(creditRecord);
+        int recordId=creditRecord.getId();
+        List<UsableCredit> list=creditRecordMapper.listUsableCredit(userId);
+        Iterator iterator=list.iterator();
+        creditNum=-creditNum;
+        while (creditNum>0){
+            UsableCredit usableCredit=(UsableCredit) iterator.next();
+            if (creditNum>=usableCredit.getCredit()){
+                creditNum=creditNum-usableCredit.getCredit();
+                creditRecordMapper.consumeCredit(usableCredit.getId());
+                creditRecordMapper.insertReducecredit(userId,recordId,usableCredit.getId(),usableCredit.getCredit(),usableCredit.getCreateTime(),usableCredit.getExpiredTime());
+            } else {
+                creditRecordMapper.insertReducecredit(userId,recordId,usableCredit.getId(),creditNum,usableCredit.getCreateTime(),usableCredit.getExpiredTime());
+                creditRecordMapper.updateCredit(usableCredit.getId(),usableCredit.getCredit()-creditNum);
+                creditNum=0;
+            }
         }
+        if(creditNum==0)
+            return 1;
+        else
+            return 0;
+    }
+
+    @Override
+    public List<CreditRecord> queryAllCredit(String userId) {
+        List<CreditRecord> list=creditRecordMapper.queryAllCredit(userId);
+        return list;
+    }
+
+    @Override
+    public Integer updateCreditRule(CreditRulePo creditRule) {
+        CreditRuleMap creditRuleMap=CreditRuleMap.getRuleMap();
+        synchronized (creditRuleMap){
+            Integer ruleId=creditRule.getId();
+            Rule rule=creditRuleMap.getRule(ruleId);
+            if (ruleId == 1) {
+                if(rule==null){
+                    rule = new SignCreditRule(creditRule.getLifespan(),creditRule.getCredit(),creditRule.getDailyCap());
+                }
+                else {
+                    rule = (SignCreditRule) rule;
+                    ((SignCreditRule) rule).setLifeSpan(creditRule.getLifespan());
+                    ((SignCreditRule) rule).setCredit(creditRule.getCredit());
+                    ((SignCreditRule) rule).setDailyCap(creditRule.getDailyCap());
+                }
+                creditRuleMap.writeMap(1, rule);
+            }
+            else if (ruleId==2){
+                if(rule == null){
+                    rule=new RechargeCreditRule(creditRule.getLifespan(),creditRule.getFormula());
+                }
+                else {
+                    rule=(RechargeCreditRule)rule;
+                    ((RechargeCreditRule) rule).setLifeSpan(creditRule.getLifespan());
+                    ((RechargeCreditRule) rule).setFormula(creditRule.getFormula());
+                }
+                creditRuleMap.writeMap(2,rule);
+            }
+            else if(ruleId==3){
+                if(rule==null){
+                    rule=new TransferMoneyCreditRule(creditRule.getFormula());
+                }
+                else {
+                    rule = (TransferMoneyCreditRule) rule;
+                    ((TransferMoneyCreditRule) rule).setFormula(creditRule.getFormula());
+                }
+                creditRuleMap.writeMap(3,rule);
+            }
+        }
+        return creditRuleMapper.updateCreditRule(creditRule);
+    }
+
+    public List<CreditRulePo> queryAllCreditRule(){
+        return creditRuleMapper.queryAllCreditRule();
     }
 }

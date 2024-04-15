@@ -1,69 +1,125 @@
 package com.tju.elmcloud.controller;
 
+import com.tju.elmcloud.feign.WalletFeignClient;
 import com.tju.elmcloud.po.CommonResult;
-import com.tju.elmcloud.po.CreditVO;
-import com.tju.elmcloud.po.ValidCredit;
+import com.tju.elmcloud.po.CreditRecord;
+import com.tju.elmcloud.po.CreditRulePo;
 import com.tju.elmcloud.service.CreditService;
+import com.tju.elmcloud.vo.ConsumeCredit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+@RefreshScope
 @RestController
 @RequestMapping("/CreditController")
 public class CreditController {
 
+    /*@Autowired
+    private RestTemplate restTemplate;*/
+
     @Autowired
-    private CreditService creditService;
+    CreditService creditService;
 
-    @PutMapping("/spendCredit/{userId}/{channelId}/{eventId}/{credit}")
-    public CommonResult<Integer> spendCredit(
-            @PathVariable("userId") String userId,
-            @PathVariable("channelId") String channelId,
-            @PathVariable("eventId") Integer eventId,
-            @PathVariable("credit") Integer credit
-    ) throws Exception {
-        int res = creditService.spendCredit(userId, channelId, eventId, credit);
-        return new CommonResult<>(200, "success", res);
+    /*@Autowired
+    private DiscoveryClient discoveryClient;*/
+
+    @Resource
+    private WalletFeignClient walletFeignClient;
+    //此处用于测试Bus动态刷新
+    @Value("${eureka.instance.lease-renewal-interval-in-seconds}")
+    private int renewal;
+    @Value("${eureka.instance.lease-expiration-duration-in-seconds}")
+    private int expiration;
+
+    @GetMapping("/queryEarningCreditBySign/{userId}")
+    public CommonResult<Integer> queryEarningCreditBySign(@PathVariable("userId") String userId) {
+        return new CommonResult<Integer>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.queryEarningCreditBySign(userId));
     }
 
-    @GetMapping("/getTotalCredit/{userId}")
-    public CommonResult<Integer> getTotalCredit(@PathVariable("userId") String userId) throws Exception {
-        int res = creditService.getTotalCredit(userId);
-        return new CommonResult<>(200, "success", res);
+    @PutMapping("/earnCreditBySign/{userId}/{creditNum}")
+    public CommonResult<Integer> earnCreditBySign(@PathVariable("userId") String userId, @PathVariable("creditNum") int creditNum) {
+        System.out.println(userId);
+        System.out.println(creditNum);
+        return new CommonResult<Integer>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.earnCreditBySign(userId, creditNum));
     }
 
-    @GetMapping("/getValidCredit/{userId}")
-    public CommonResult<List> getValidCredits(@PathVariable("userId") String userId) throws Exception {
-        List<ValidCredit> list =  creditService.getValidCredits(userId);
-        return new CommonResult<>(200, "success", list);
+    @GetMapping("/queryEarnCreditByRecharge/{userId}/{money}")
+    public CommonResult<Integer> queryEarnCreditByRecharge(@PathVariable("userId") String userId, @PathVariable("money") Integer money) {
+        return new CommonResult<Integer>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.queryEarnCreditByRecharge(userId, money));
     }
 
-    @GetMapping("/getCreditTotalDetails/{userId}")
-    public CommonResult<List> getCreditTotalDetails(@PathVariable("userId") String userId) throws Exception {
-        List<CreditVO> list = creditService.getCreditTotalDetails(userId);
-        return new CommonResult<>(200, "success", list);
+    @Transactional
+    @PutMapping("/earnCreditBySignAndRecharge/{userId}/{money}/{creditNum}/{walletId}")
+    public CommonResult<Integer> earnCreditBySignAndRecharge(@PathVariable("userId") String userId, @PathVariable("money") double money, @PathVariable("creditNum") Integer creditNum, @PathVariable("walletId") Integer walletId) {
+        /*List<ServiceInstance> instanceList = discoveryClient.getInstances("wallet-server");
+        ServiceInstance instance = instanceList.get(0);
+        CommonResult<Integer> result = restTemplate.exchange(
+                "http://" + instance.getHost() + ":" + instance.getPort() +
+                        "/VirtualWalletController/recharge/"+walletId+"/"+money,
+                HttpMethod.PUT,null, CommonResult.class).getBody();*/
+        CommonResult<Integer> result = walletFeignClient.recharge(money, walletId);
+        System.out.println(result.getMessage());
+
+        Integer response = 0;
+        if (result.getCode() == 200) {
+            Integer transactionId = result.getResult();
+            if (transactionId == 0) response = 0;
+            else response = creditService.earnCreditBySign(userId, creditNum, transactionId);
+        } else {
+            response = 0;
+        }
+        return new CommonResult<Integer>(200, "success，renewal：" + renewal + "，expiration：" + expiration, response);
     }
 
-    @GetMapping("/getCreditByParam/{userId}/{param}")
-    public CommonResult<List> getCreditTotalDetailsByParam(
-            @PathVariable("userId") String userId,
-            @PathVariable("param") Integer param) throws Exception {
-        List<CreditVO> list = creditService.getCreditByParam(userId, param);
-        return new CommonResult<>(200, "success", list);
+    @GetMapping("/queryAvailableCredit/{userId}")
+    public CommonResult<Integer> queryAvailableCredit(@PathVariable("userId") String userId) {
+        return new CommonResult<Integer>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.queryAvailableCredit(userId));
     }
 
-    @PostMapping("/saveCreditByOrder/{orderId}")
-    public CommonResult<Integer> saveCreditByOrder(@PathVariable("orderId") Integer orderId) {
-        int res = creditService.saveCreditByOrder(orderId);
-        return new CommonResult<>(200, "success", res);
+    @GetMapping("/consumeCreditByPaying/{userId}/{money}/{creditNum}")
+    public CommonResult<ConsumeCredit> consumeCreditByPaying(@PathVariable("userId") String userId, @PathVariable("money") Integer money, @PathVariable("creditNum") Integer creditNum) {
+        return new CommonResult<ConsumeCredit>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.consumeCreditByPaying(userId, money, creditNum));
     }
 
-    @PostMapping("/saveCreditByComment/{cmId}")
-    public CommonResult<Integer> saveCreditByComment(@PathVariable("cmId") Integer cmId) {
-        int res = creditService.saveCreditByComment(cmId);
-        return new CommonResult<>(200, "success", res);
+    @PutMapping("/transferMoneyWithCreditConsume/{inputWalletId}/{outputWalletId}/{money}/{orderId}/{deductionMoney}/{creditNum}/{userId}")
+    public CommonResult<Integer> transferMoneyWithCreditConsume(@PathVariable("inputWalletId") int inputWalletId, @PathVariable("outputWalletId") int outputWalletId, @PathVariable("money") double money, @PathVariable("orderId") int orderId, @PathVariable("deductionMoney") double deductionMoney, @PathVariable("creditNum") int creditNum, @PathVariable("userId") String userId) {
+        /*CommonResult<Integer> result = restTemplate.exchange(
+                "http://8.130.15.102:10700/VirtualWalletController/transferMoneyWithCredit/"+inputWalletId+"/"+outputWalletId+"/"+money+"/"+(money-deductionMoney)+"/"+orderId,
+                HttpMethod.PUT,null,CommonResult.class).getBody();*/
+        CommonResult<Integer> result = walletFeignClient.transferMoneyWithCredit(inputWalletId, outputWalletId, money, money - deductionMoney, orderId);
+        System.out.println(result.getMessage());
+        Integer response = 0;
+        if (result.getCode() == 200) {
+            Integer transactionId = result.getResult();
+            if (transactionId == 0) response = 0;
+            else response = creditService.transferMoneyWithCreditConsume(creditNum, transactionId, userId);
+        } else {
+            response = 0;
+        }
+        return new CommonResult<Integer>(200, "success，renewal：" + renewal + "，expiration：" + expiration, response);
     }
 
-    // TODO: 新用户注册获取积分，更新积分
+    @GetMapping("/queryAllCredit/{userId}")
+    public CommonResult<List<CreditRecord>> queryAllCredit(@PathVariable("userId") String userId) {
+        return new CommonResult<List<CreditRecord>>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.queryAllCredit(userId));
+    }
+
+    @PutMapping("/updateCreditRule")
+    public CommonResult<Integer> updateCreditRule(@RequestParam(name = "id") Integer id, @RequestParam(name = "ruleCode") String ruleCode, @RequestParam(name = "type") Integer type, @RequestParam(name = "priority") Integer priority, @RequestParam(name = "credit") Integer credit, @RequestParam(name = "formula") Double formula, @RequestParam(name = "dailyCap") Integer dailyCap, @RequestParam(name = "totCap") Integer totCap, @RequestParam(name = "startTime") String startTime, @RequestParam(name = "endTime") String endTime, @RequestParam(name = "lifespan") Integer lifespan, @RequestParam(name = "state") Integer state) {
+        CreditRulePo creditRulePo = new CreditRulePo(id, ruleCode, type, priority, credit, formula, dailyCap, totCap, startTime, endTime, lifespan, state);
+        return new CommonResult<Integer>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.updateCreditRule(creditRulePo));
+        // return creditService.updateCreditRule(creditRulePo);
+    }
+
+    @GetMapping("/queryAllCreditRule")
+    public CommonResult<List<CreditRulePo>> queryAllCreditRule() {
+        return new CommonResult<List<CreditRulePo>>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.queryAllCreditRule());
+    }
 }
