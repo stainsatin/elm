@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
-@FeignClient(name = "wallet-server", fallback = WalletFeignClientCallBack.class)
+@FeignClient(name = "virtualWallet-server", fallback = WalletFeignClientCallBack.class)
 public interface WalletFeignClient {
 
     @PutMapping("/VirtualWalletController/recharge/{walletId}/{money}")

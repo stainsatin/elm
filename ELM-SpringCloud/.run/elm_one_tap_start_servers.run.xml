@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="elm_one_tap_start_servers" type="CompoundRunConfigurationType">
+    <toRun name="AuthApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="BusinessApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="BusinessApplication (1)" type="SpringBootApplicationConfigurationType" />
     <toRun name="CartApplication" type="SpringBootApplicationConfigurationType" />

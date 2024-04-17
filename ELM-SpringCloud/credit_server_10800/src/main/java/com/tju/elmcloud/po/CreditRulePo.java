@@ -76,4 +76,19 @@ public class CreditRulePo {
     public Integer getState() {
         return state;
     }
+
+    public String getTypeName(){
+        if(this.id==1){
+            return "SignCreditRule";
+        }
+        else if(this.id==2){
+            return "RechargeCreditRule";
+        }
+        else if(this.id==3){
+            return "TransferMoneyCreditRule";
+        }
+        else{
+            return "Unknown";
+        }
+    }
 }

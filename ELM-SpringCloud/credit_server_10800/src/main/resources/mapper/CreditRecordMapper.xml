@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.tju.mapper.CreditRecordMapper">
+<mapper namespace="com.tju.elmcloud.mapper.CreditRecordMapper">
     <insert id="insertCreditRecord" parameterType="CreditRecord" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO creditrecord
         <trim prefix="(" suffix=")" suffixOverrides=",">

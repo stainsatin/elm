@@ -109,7 +109,7 @@ export default {
     },
     queryAvailableCredit(userId) {
       //查询可用积分
-      let url = "CreditController/getTotalCredit/" + userId;
+      let url = "CreditController/queryAvailableCredit/" + userId;
       this.$axios
         .get(url)
         .then((response) => {

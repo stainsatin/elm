@@ -56,14 +56,13 @@ public class CreditController {
     }
 
     @Transactional
-    @PutMapping("/earnCreditBySignAndRecharge/{userId}/{money}/{creditNum}/{walletId}")
-    public CommonResult<Integer> earnCreditBySignAndRecharge(@PathVariable("userId") String userId, @PathVariable("money") double money, @PathVariable("creditNum") Integer creditNum, @PathVariable("walletId") Integer walletId) {
-        /*List<ServiceInstance> instanceList = discoveryClient.getInstances("wallet-server");
-        ServiceInstance instance = instanceList.get(0);
-        CommonResult<Integer> result = restTemplate.exchange(
-                "http://" + instance.getHost() + ":" + instance.getPort() +
-                        "/VirtualWalletController/recharge/"+walletId+"/"+money,
-                HttpMethod.PUT,null, CommonResult.class).getBody();*/
+    @PutMapping("/earnCreditBySignAndRecharge/{userId}/{walletId}/{money}/{creditNum}")
+    public CommonResult<Integer> earnCreditBySignAndRecharge(
+            @PathVariable("userId") String userId,
+            @PathVariable("walletId") Integer walletId,
+            @PathVariable("money") double money,
+            @PathVariable("creditNum") Integer creditNum
+            ) {
         CommonResult<Integer> result = walletFeignClient.recharge(money, walletId);
         System.out.println(result.getMessage());
 
@@ -88,12 +87,9 @@ public class CreditController {
         return new CommonResult<ConsumeCredit>(200, "success，renewal：" + renewal + "，expiration：" + expiration, creditService.consumeCreditByPaying(userId, money, creditNum));
     }
 
-    @PutMapping("/transferMoneyWithCreditConsume/{inputWalletId}/{outputWalletId}/{money}/{orderId}/{deductionMoney}/{creditNum}/{userId}")
+    @PostMapping("/transferMoneyWithCreditConsume/{inputWalletId}/{outputWalletId}/{money}/{orderId}/{deductionMoney}/{creditNum}/{userId}")
     public CommonResult<Integer> transferMoneyWithCreditConsume(@PathVariable("inputWalletId") int inputWalletId, @PathVariable("outputWalletId") int outputWalletId, @PathVariable("money") double money, @PathVariable("orderId") int orderId, @PathVariable("deductionMoney") double deductionMoney, @PathVariable("creditNum") int creditNum, @PathVariable("userId") String userId) {
-        /*CommonResult<Integer> result = restTemplate.exchange(
-                "http://8.130.15.102:10700/VirtualWalletController/transferMoneyWithCredit/"+inputWalletId+"/"+outputWalletId+"/"+money+"/"+(money-deductionMoney)+"/"+orderId,
-                HttpMethod.PUT,null,CommonResult.class).getBody();*/
-        CommonResult<Integer> result = walletFeignClient.transferMoneyWithCredit(inputWalletId, outputWalletId, money, money - deductionMoney, orderId);
+               CommonResult<Integer> result = walletFeignClient.transferMoneyWithCredit(inputWalletId, outputWalletId, money, money - deductionMoney, orderId);
         System.out.println(result.getMessage());
         Integer response = 0;
         if (result.getCode() == 200) {

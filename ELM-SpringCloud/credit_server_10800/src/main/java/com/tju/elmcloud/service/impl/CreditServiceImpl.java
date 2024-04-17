@@ -56,8 +56,6 @@ public class CreditServiceImpl implements CreditService {
     @Override
     @Transactional
     public Integer earnCreditBySign(String userId, int creditNum) {
-        System.out.println("serivice: "+userId);
-        System.out.println("serivice: "+creditNum);
         String createTime=CommonUtil.getCurrentDate();
         CreditRuleMap creditRuleMap=CreditRuleMap.getRuleMap();
         int lifeSpan=0;
