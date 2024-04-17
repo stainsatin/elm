@@ -1,3 +1,35 @@
-/frontend/part3/elm_vue3/node_modules/
+# 忽略所有.idea文件夹
+.idea/
 
-**/.idea/
+# 忽略所有node_modules文件夹
+node_modules/
+
+# 忽略所有target文件夹
+target/
+
+# 忽略特定的文件和文件夹（示例）
+*.log
+*.tmp
+*.temp
+.DS_Store # macOS 文件系统创建的文件
+
+# 忽略编译生成的文件
+*.class
+*.jar
+*.war
+
+# 忽略操作系统生成的文件
+Thumbs.db
+ehthumbs.db
+
+# 忽略编辑器或IDE生成的文件
+.vscode/
+*.sublime-workspace
+
+# 你还可以指定忽略某些文件的具体路径
+# 比如，忽略根目录下的一个特定node_modules文件夹：
+#/node_modules/
+
+# 也可以忽略所有子目录下的某个特定文件或文件夹
+# 比如，忽略所有子目录下的temp文件夹：
+**/temp/
