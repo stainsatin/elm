@@ -17,7 +17,7 @@ import UpdateUserPassword from "../views/UpdateUserPassword.vue";
 import PaymentDone from "../views/PaymentDone.vue";
 import Error403 from "../components/Error403.vue";
 import Wallet from "../views/Wallet.vue";
-
+import Transaction from "../views/Transaction.vue";
 const routes = [
   {
     path: "/",
@@ -109,6 +109,11 @@ const routes = [
     name: "Wallet",
     component: Wallet,
   },
+  {
+    path: "/transaction",
+    name: "Transaction",
+    component: Transaction,
+  }
 ];
 
 const router = createRouter({
