@@ -11,7 +11,7 @@ spring:
     name: virtualWallet-server
   datasource:
     username: root
-    password: 519618ydt
+    password: 2018X5zzt!
     url: jdbc:mysql://localhost:3306/elm?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
 

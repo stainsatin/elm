@@ -64,8 +64,6 @@ public class CreditController {
             @PathVariable("creditNum") Integer creditNum
             ) {
         CommonResult<Integer> result = walletFeignClient.recharge(money, walletId);
-        System.out.println(result.getMessage());
-
         Integer response = 0;
         if (result.getCode() == 200) {
             Integer transactionId = result.getResult();
