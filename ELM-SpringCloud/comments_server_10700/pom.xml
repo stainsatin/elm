@@ -67,6 +67,12 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.3.3</version>
+        </dependency>
     </dependencies>
 
 </project>
