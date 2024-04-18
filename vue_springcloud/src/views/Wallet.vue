@@ -48,9 +48,9 @@
       </button>
     </div>
     <div class="button-register" v-else>
-      <button>您今天已签到</button>
+      <button style="cursor: auto">您今天已签到</button>
     </div>
-    <div style="height: 16vw"></div>
+    <div style="height: 18vw"></div>
 
     <!-- 底部菜单部分 -->
     <Footer></Footer>

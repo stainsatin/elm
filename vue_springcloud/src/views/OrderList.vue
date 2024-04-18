@@ -10,14 +10,14 @@
     <ul class="unpaid-order">
       <h3>未支付订单信息：</h3>
       <div
-        v-show="orderArr.length > 0"
+        v-show="orderArr.filter((order) => order.orderState === 0).length > 0"
         style="height: 1.5px; background-color: #ddd; margin-bottom: 1vw"
       ></div>
       <li v-for="item in orderArr">
         <div class="order-info" v-if="item.orderState == 0">
           <p>
             {{ item.business.businessName }}
-            <i class="fa fa-caret-down" @click="detailetShow1(item)"></i>
+            <i class="fa fa-caret-down" @click="detailetShow(item)"></i>
           </p>
           <div class="order-info-right">
             <p>&#165;{{ item.orderTotal }}</p>
@@ -47,11 +47,15 @@
     <!--已支付订单列表-->
     <ul class="paid-order">
       <h3>已支付订单信息：</h3>
+      <div
+        v-show="orderArr.filter((order) => order.orderState === 1).length > 0"
+        style="height: 1.5px; background-color: #ddd; margin-bottom: 1vw"
+      ></div>
       <li v-for="item in orderArr">
         <div class="order-info" v-if="item.orderState == 1">
           <p>
             {{ item.business.businessName }}
-            <i class="fa fa-caret-down" @click="detailetShow2(item)"></i>
+            <i class="fa fa-caret-down" @click="detailetShow(item)"></i>
           </p>
           <div class="order-info-right">
             <p>&#165;{{ item.orderTotal }}</p>
@@ -88,6 +92,8 @@ export default {
     return {
       orderArr: [],
       user: {},
+      orderArr0: [],
+      orderArr1: [],
     };
   },
   created() {
@@ -109,10 +115,7 @@ export default {
       });
   },
   methods: {
-    detailetShow1(orders) {
-      orders.isShowDetailet = !orders.isShowDetailet;
-    },
-    detailetShow2(orders) {
+    detailetShow(orders) {
       orders.isShowDetailet = !orders.isShowDetailet;
     },
     toPay(orderId) {
@@ -250,6 +253,10 @@ export default {
 
   display: flex;
   justify-content: space-between;
+}
+
+.wrapper .paid-order li .order-info p i {
+  cursor: pointer;
 }
 
 .wrapper .paid-order li .order-info .order-info-right {

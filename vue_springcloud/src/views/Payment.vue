@@ -194,9 +194,9 @@ export default {
           //不用积分
           let url =
             "VirtualWalletController/transferMoney/" +
-            businessWalletId +
-            "/" +
             userWalletId +
+            "/" +
+            businessWalletId +
             "/" +
             moneyNum +
             "/" +
@@ -226,9 +226,9 @@ export default {
           //使用积分
           let url =
             "CreditController/transferMoneyWithCreditConsume/" +
-            businessWalletId +
-            "/" +
             userWalletId +
+            "/" +
+            businessWalletId +
             "/" +
             moneyNum +
             "/" +
