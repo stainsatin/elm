@@ -10,10 +10,10 @@ spring:
   application:
     name: business-server
   datasource:
-    username: root
+    username: ZzTzZ
     password: 2018X5zzt!
-    url: jdbc:mysql://localhost:3306/elm?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mariadb://twtstudio.cn:3306/elm?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    driver-class-name: org.mariadb.jdbc.Driver
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
