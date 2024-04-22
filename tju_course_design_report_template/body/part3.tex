@@ -552,7 +552,7 @@ DispatcherServlet/doPost
     \includegraphics[width=0.4\textwidth,height=0.4\textheight]{vue1}
     \caption{前端模块结构}\label{fig:vue1}
 \end{figure}
-前端模块中，除了基本的项目依赖、配置文件外，主要是网页组件的制作。我们不仅需要根据不同的网页进行样式更改，还需要向服务端发送请求以获取数据资源，通过路由跳转来实现点餐过程中不同网页之间的切换。前端模块结构如图~\ref{fig:vue1}~所示
+前端模块中，除了基本的项目依赖、配置文件外，主要是网页组件的制作。我们不仅需要根据不同的网页进行样式更改，还需要向服务端发送请求以获取数据资源，通过路由跳转来实现点餐过程中不同网页之间的切换。
 
 重要文件说明：
 \begin{enumerate}
@@ -568,7 +568,7 @@ DispatcherServlet/doPost
 \end{enumerate}
 
 \section{测试}
-在本项目中，我们先对点餐的正常流程进行了测试。首先，用户可以点击首页的推荐商家列表直接选择商家，也可以在搜索框搜索商家，或通过商家分类进入符合条件的商家列表，并在商家列表中选择心仪的商家。如图~\ref{fig:order1}~和~\ref{fig:businessList}~所示.
+在本项目中，我们先对点餐的正常流程进行了测试。首先，用户可以点击首页的推荐商家列表直接选择商家，也可以在搜索框搜索商家，或通过商家分类进入符合条件的商家列表，并在商家列表中选择心仪的商家。
 \begin{figure}[htbp]
     \centering
     \begin{minipage}{0.4\textwidth}
@@ -584,14 +584,14 @@ DispatcherServlet/doPost
     \vspace{\baselineskip}
 \end{figure}
 
-其次，进入商家后，用户可以在商家信息中进行点餐，点击“+”增加数量，点击“-”减少数量。最后点击“去结算”，此时，若用户未登录，则页面跳转至登录页面，用户可进行登录或注册操作。登陆成功后，页面重新返回，再次点击“去结算”，跳转至确认订单页面。如图~\ref{fig:order3}所示。
+其次，进入商家后，用户可以在商家信息中进行点餐，点击“+”增加数量，点击“-”减少数量。最后点击“去结算”，此时，若用户未登录，则页面跳转至登录页面，用户可进行登录或注册操作。登陆成功后，页面重新返回，再次点击“去结算”，跳转至确认订单页面。
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth,height=0.3\textheight]{order3}
     \caption{进入商家信息并点餐}\label{fig:order3}
 \end{figure}
 
-在确认订单页面，点击配送地址部分，可跳转至地址管理页面，对地址进行修改、删除或添加。然后点击去支付，进入支付页面。如图~\ref{fig:order5}~和~\ref{fig:userAddress}~所示.
+在确认订单页面，点击配送地址部分，可跳转至地址管理页面，对地址进行修改、删除或添加。然后点击去支付，进入支付页面。
 \begin{figure}[htbp]
     \centering
     \begin{minipage}{0.4\textwidth}
@@ -607,14 +607,14 @@ DispatcherServlet/doPost
     \vspace{\baselineskip}
 \end{figure}
 
-最后，在支付页面点击下拉按钮查看订单详情，并选择支付方式，点击“确认支付”，跳转至支付成功页面，点击“回到首页”返回首页。如图~\ref{fig:orderhidden1}~和~\ref{fig:paymentDone1}~所示.
+最后，在支付页面点击下拉按钮查看订单详情，并选择支付方式，点击“确认支付”，跳转至支付成功页面，点击“回到首页”返回首页。~\\
 
 \begin{figure}[htbp]
     \centering
     \begin{minipage}{0.4\textwidth}
         \centering
         \includegraphics[width=\textwidth]{orderhidden}
-        \caption{支付页面}\label{fig:orderhidden1}
+        \caption{支付页面}\label{fig:part2test5}
     \end{minipage}
     \begin{minipage}{0.4\textwidth}
         \centering
@@ -628,26 +628,26 @@ DispatcherServlet/doPost
     \begin{itemize}
         \item{输入数据}：手机号码:12345678911;密码:123;确认密码:111;用户名称:user;性别:女;
         \item {预期结果}：两次输入的密码不一致！
-        \item {实际结果}：如图~\ref{fig:conflictingPass}~所示.
+        \item {实际结果}：
               \begin{figure}[htbp]
                   \centering
                   \includegraphics[width=0.6\textwidth]{conflictingPass}
                   \caption{注册密码不一致图}\label{fig:conflictingPass}
               \end{figure}
-              ~\\
+
               \item{输入数据}：手机号码:12345678911;密码:123;确认密码:123;用户名称:user;性别:女;
         \item {预期结果}：注册成功并跳转至登录页面
-        \item {实际结果}：注册成功并跳转至登录页面.如图~\ref{fig:login1}~所示.
+        \item {实际结果}：注册成功并跳转至登录页面
               \begin{figure}[htbp]
                   \centering
                   \includegraphics[width=0.4\textwidth,height=0.13\textheight]{login1}
                   \caption{注册成功返回登录的图}\label{fig:login1}
               \end{figure}
-              ~\\
+
               \item{预置条件}:手机号12345678911已注册
               \item{输入数据}:手机号码:12345678911;密码:123;确认密码:123;用户名称:user;性别:女;
         \item {预期结果}：此手机号码已存在！
-        \item {实际结果}：如图~\ref{fig:existingTel}~所示.
+        \item {实际结果}：
               \begin{figure}[htbp]
                   \centering
                   \includegraphics[width=0.5\textwidth,height=0.08\textheight]{existingTel}
@@ -660,7 +660,7 @@ DispatcherServlet/doPost
               \item{输入数据}：手机号码：12345678911;密码：123;
               \item{预期结果}：若上一个页面为注册页面，则返回首页，否则返回登录前的页面
               \item{实际结果}：当上一个页面为注册页面时，登录后仍返回注册页面
-              \item{解决办法}：前端页面跳转至login前，记录来时的路由，并判断是否为register，若是，则登录成功后跳转至首页，否则跳转至来时的路由。如图~\ref{fig:beforeRouter}~和~\ref{fig:isRegister}~所示.
+              \item{解决办法}：前端页面跳转至login前，记录来时的路由，并判断是否为register，若是，则登录成功后跳转至首页，否则跳转至来时的路由。
               \begin{figure}[htbp]
                   \centering
                   \begin{minipage}{0.4\textwidth}
@@ -679,7 +679,7 @@ DispatcherServlet/doPost
           \begin{itemize}
               \item{操作说明}:点击下拉按钮查看订单详情，点击“去支付”支付订单
               \item {预期结果}：可以看到点餐详情，“去支付”后跳转至支付页面
-              \item {实际结果}：如图~\ref{fig:detail}~和~\ref{fig:orderhidden}~所示.
+              \item {实际结果}：
                     \begin{figure}[htbp]
                         \centering
                         \begin{minipage}{0.35\textwidth}
@@ -701,7 +701,7 @@ DispatcherServlet/doPost
               \item{操作说明}:点击用户名旁的编辑按钮，更改用户名为“张三”
               \item {预期结果}：“我的”页面用户名更改为“张三”
               \item {实际结果}：数据库用户名更改成功，但“我的”页面用户名仍为原用户名
-              \item {解决办法}：向sessionStorage中存储新的user对象。如图~\ref{fig:setNewName}~和~\ref{fig:updateName}~所示.
+              \item {解决办法}：向sessionStorage中存储新的user对象
           \end{itemize}
           \begin{figure}[htbp]
             \centering
@@ -719,7 +719,7 @@ DispatcherServlet/doPost
           \begin{itemize}
               \item{操作说明}:点击“修改密码”，第一次在“旧密码”中输入错误密码；第二次在“旧密码”中输入正确密码。
               \item {预期结果}：第一次修改密码失败；第二次修改密码成功。
-              \item {实际结果}：第一次修改密码失败；第二次修改密码成功。如图~\ref{fig:errorPass}~和~\ref{fig:correctPass}~所示.
+              \item {实际结果}：第一次修改密码失败；第二次修改密码成功。
           \end{itemize}
           \begin{figure}[htbp]
               \centering
@@ -737,7 +737,7 @@ DispatcherServlet/doPost
           \begin{itemize}
               \item{操作说明}:点击“我的地址”
               \item {预期结果}：进入“地址管理”页面，可进行地址的增删改
-              \item {实际结果}：完成“地址管理”页面中地址的增删改功能。如图~\ref{fig:address}~所示.
+              \item {实际结果}：完成“地址管理”页面中地址的增删改功能
           \end{itemize}
           \begin{figure}[htbp]
               \centering
@@ -748,7 +748,7 @@ DispatcherServlet/doPost
               \item{操作说明}:点击“退出登录”
               \item {预期结果}：返回登录页面，用户再次访问时需登录认证
               \item {实际结果}：返回登录页面，但用户再次访问时仍保持登录状态
-              \item {解决办法}：在退出登录后，前端需要从sessionStorage中移除user对象。如图~\ref{fig:withdrew}~所示.
+              \item {解决办法}：在退出登录后，前端需要从sessionStorage中移除user对象
           \end{itemize}
           \begin{figure}[htbp]
               \centering

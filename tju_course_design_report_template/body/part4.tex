@@ -11,8 +11,16 @@ JDK17 MySQL SpringBoot Maven3.6.3
 四个阶段的项目加上组内实现的创新和优化，代码共计四万余行，为了应对庞大的工程量以及确保项目的可维护性与可拓展性，我们采用了模块化设计的方法。各个模块被设计为相对独立的单元，为了满足高内聚低耦合的特性。在模块划分上，整个项目沿用了~SpringBoot~框架的分层架构，按照以下的方式组织。
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\textwidth]{elm_springboot_framework}
+    \includegraphics[width=0.6\textwidth]{elm_springboot_framework2}
     \caption{项目结构模块设计}\label{fig:elm_springboot_framework}
+    \vspace{\baselineskip}
+\end{figure}
+
+本项目后端分为三层，分别为表示层、业务层和持久层。表示层主要负责从前端接收请求，业务层主要负责处理不同模块的业务逻辑，持久层则主要负责向数据库获取、写入或更新数据。本项目的分层架构可用类图表示，由图~\ref{fig:elm_springboot_uml}~所示。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{elm_springboot_uml}
+    \caption{项目分层架构类图}\label{fig:elm_springboot_uml}
     \vspace{\baselineskip}
 \end{figure}
 
@@ -229,42 +237,33 @@ JDK17 MySQL SpringBoot Maven3.6.3
 \vspace{\baselineskip}
 \end{table}
 
-\subsection{接口设计}
-
-\subsubsection{外部接口}
-用户或其他软件可以通过~Interne~访问服务器~IP~实现对本软件的访问。同时提供图形化UI界面供用户使用。并且提供其他软件能够访问本项目的接口。网络传输协议采用HTTP协议，具体使用方法为：~http://IP地址/数据库名/内部接口~
-
-\subsubsection{内部接口}
-内部接口主要是为了实现软件的功能，提供给前端调用。内部接口的具体实现如下所示。
-
-接口的部分已经在第三部分Serverlet部分阐述过，这里不做赘述。
-
-
 \section{点赞业务流后端的SpringBoot实现}
-点餐业务流后端采用~SpringBoot+Mybatis~实现，利用~Mybatis~连接并操作数据库，使得对于数据库的操作代码编写简单。~SpringBoot~框架采用三层架构，即控制层、业务层和持久层。控制层向上层即前端提供接口，使得前端可以调用后端接口；业务层实现具体业务代码，如数据库的事务型操作在这里体现；持久层即编写~SQL~语句操作数据库，实现对数据库的修改和访问。三层架构中，除持久层外，其余层代码较为简单，大致模板如下，除部分业务代码外不再给出具体实现：
+点餐业务流后端采用~SpringBoot+Mybatis~实现，利用~Mybatis~连接并操作数据库，使得对于数据库的操作代码编写简单。~SpringBoot~框架采用三层架构，即控制层、业务层和持久层。控制层向上层即前端提供接口，使得前端可以调用后端接口，代码模板如下：
 
 \begin{lstlisting}[basicstyle=\footnotesize]
-//控制层代码模板
-@RestController
-@RequestMapping("/XXXXController")
-public class XXXXController {
+    //控制层代码模板
+    @RestController
+    @RequestMapping("/XXXX")
+    public class XXXXController {
+        
+        @Autowired
+        private XXXXService xxxxService;
     
-    @Autowired
-    private XXXXService xxxxService;
-
-    @RequestMapping("接口名/")
-    public 返回值类型接口名参数类型( 参数名)throws Exception{
-        return xxxxService接口名参数名.();
+        @RequestMapping("、接口名")
+        public 返回值类型接口名参数类型( 参数名)throws Exception{
+            return xxxxService接口名参数名.();
+        }
+        
+        ...
     }
-    
-    ...
-}
-\end{lstlisting}
+    \end{lstlisting}
+
+业务层实现具体业务代码，如数据库的事务型操作在这里体现；持久层即编写~SQL~语句操作数据库，实现对数据库的修改和访问。业务层包含业务层接口代码模板和业务层实现代码接口，代码模板如下：
 
 \begin{lstlisting}[basicstyle=\footnotesize]
 //业务层接口代码模板
 public interface XXXXService {
-    public 返回值类型接口名参数类型( 参数名);
+    public 返回值类型接口名参数类型(参数名);
     ...
 }
 \end{lstlisting}
@@ -294,7 +293,8 @@ public class XXXXServiceImpl implements XXXXService{
     \vspace{\baselineskip}
 \end{figure}
 
-\section{用户信息模块功能实现}
+\section{模块功能实现}
+\subsection{用户信息模块}
 本模块，涉及对用户表和地址表的修改与访问。~SQL~语句较为简单、因此采用注解的方式直接写在~Java~代码中。
 
 \begin{lstlisting}[basicstyle=\footnotesize]
@@ -336,7 +336,7 @@ public interface DeliveryAddressMapper {
 }
 \end{lstlisting}
 
-\section{商家信息模块}
+\subsection{商家信息模块}
 本模块涉及对商家表和食品表的修改与访问。简单的 SQL 语句不再给出实现，部分较为复杂的 SQL 语句写在 XML 文件中，如模糊查询、参数不定等。
 
 \begin{lstlisting}[basicstyle=\footnotesize]
@@ -353,7 +353,7 @@ SELECT * FROM (
 ORDER BY a.num DESC
 \end{lstlisting}
 
-\section{点单业务模块}
+\subsection{点单业务模块}
 本模块涉及对购物车表、订单表和订单明细表的修改与访问。在创建订单时涉及到事务，即要么不执行，要么全部执行。在~SpringBoot~框架中使用注解
 ~“@Transactional”~说明某方法是一个事务。
 
@@ -487,59 +487,3 @@ public class OrdersServiceImpl implements OrdersService{
     \caption{签到前后对比}\label{fig:sign}
 \end{figure} 
 \end{enumerate}
-
-\section{服务器部署}
-\subsection{环境}
-\subsubsection{服务器选择}
-阿里云服务器(2核4G centos系统) 
-
-\subsubsection{服务器环境配置}
-MySQL8.0 nginx	redis jdk17
-
-\subsection{项目部署过程}
-\subsubsection{后端部署}
-修改springboot配置文件,将localhost改为服务器内网IP
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.8\textwidth]{aliyunsjk}
-	\caption{修改url}
-	\vspace{\baselineskip}
-\end{figure}
-
-将springboot程序打包成jar包,通过脚本运行
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.8\textwidth]{jiaoben}
-	\caption{sh脚本}
-	\vspace{\baselineskip}
-\end{figure}
-通过netstat命令查看运行情况,运行结果如下:
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.8\textwidth]{jar}
-	\caption{运行情况}
-	\vspace{\baselineskip}
-\end{figure}
-
-\subsubsection{前端部署}
-将前端项目打包成dist文件放在home目录。
-
-修改nginx.conf配置文件如图6-14所示
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.8\textwidth]{nginx}
-	\caption{nginx配置文件修改}
-	\vspace{\baselineskip}
-\end{figure}
-
-\subsubsection{最终合并}
-重启nginx,同时禁止80端口和8081端口的防火墙,现在前后端就可以进行交互了。
-
-输入服务器公网IP就能进入网页进行操作，最终效果如图6-15所示。
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.8\textwidth]{result}
-	\caption{最终效果}
-	\vspace{\baselineskip}
-\end{figure}
