@@ -88,3 +88,14 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 3000
+           
+jwt:
+  tokenHeader: Authorization
+  secret: elm-secrt000001
+  expiration: 604800 #秒
+  prefix: Bearer
+ 
+# 不用登录就可以访问的接口
+allowed:
+  paths: /UserController/login
+

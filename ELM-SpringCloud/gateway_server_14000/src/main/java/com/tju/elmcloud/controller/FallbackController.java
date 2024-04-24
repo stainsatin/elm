@@ -9,6 +9,6 @@ public class FallbackController {
 
     @RequestMapping("/fallback")
     public CommonResult fallback() {
-        return new CommonResult(403, "Gateway触发了熔断降级", null);
+        return new CommonResult(403, "服务器繁忙，请稍后重试", null);
     }
 }

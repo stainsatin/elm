@@ -10,10 +10,21 @@ spring:
   application:
     name: user-server
   datasource:
-    username: ZzTzZ
-    password: 2018X5zzt!
-    url: jdbc:mariadb://twtstudio.cn:3306/elm?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 519618ydt
+    url: jdbc:mysql://localhost:3306/elm?characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 3
+        max-wait: -1
+        min-idle: 0
+    timeout: 2000
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -28,3 +39,9 @@ eureka:
   instance:
     prefer-ip-address: true #使用ip地址向Eureka注册
     instance-id: ${spring.cloud.client.ip-address}:${server.port} #自定义微服务实例ID
+    
+jwt:
+  tokenHeader: Authorization
+  secret: elm-secrt000001
+  expiration: 604800 #秒
+  prefix: Bearer

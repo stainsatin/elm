@@ -24,6 +24,9 @@ public interface UserMapper {
     @Select("select * from user where userId=#{userId}")
     public User getUserInfoById(String userId);
     
+    @Select("select * from user where userName=#{userName}")
+    public User getUserInfoByname(String userName);
+    
     @Update("update user set walletId=#{walletId} where userId=#{userId}")
     public int updateWalletId(String userId, Integer walletId);
 }

@@ -26,6 +26,7 @@
         <module>credit_server_10800</module>
         <module>virtualWallet_server_10900</module>
         <module>auth_server_11000</module>
+        <module>Common_server</module>
     </modules>
     <packaging>pom</packaging>
 
