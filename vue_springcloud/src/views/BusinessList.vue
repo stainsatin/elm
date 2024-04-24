@@ -62,7 +62,7 @@ export default {
 
     //根据businessName查询商家信息
     if (this.businessName !== undefined) {
-      let url_2 = "BusinessController/listBusinessByName/" + this.businessName;
+      let url_2 = "BusinessController/listBusinessByKeyWords/" + this.businessName;
       this.$axios
         .get(url_2)
         .then((response) => {
