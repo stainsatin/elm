@@ -2,6 +2,7 @@ package com.tju.elmcloud.controller;
 
 
 import com.tju.elmcloud.po.CommonResult;
+import com.tju.elmcloud.po.LoginVo;
 import com.tju.elmcloud.po.User;
 import com.tju.elmcloud.service.UserService;
 import com.tju.elmcloud.viewpo.UserInfo;
@@ -21,6 +22,11 @@ public class UserController {
 //
 //    @Autowired
 //    private WalletService walletService;
+    @PostMapping("/login/{username}/{password}")
+    public CommonResult<LoginVo> login(@PathVariable("username") String username,
+            @PathVariable("password") String password) throws Exception {
+        return new CommonResult<>(200,"success",userService.login(username, password));
+    }
 
     @GetMapping("/getUserByIdByPass/{userId}/{password}")
     public CommonResult<User> getUserByIdByPass(@PathVariable("userId") String userId,
