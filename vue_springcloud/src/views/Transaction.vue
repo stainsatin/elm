@@ -105,27 +105,27 @@ export default {
   },
   created() {
     this.user = this.$getSessionStorage("user");
-    let url = "TransactionController/queryTransaction/" + this.user.walletId;
-    this.$axios
-      .get(url)
-      .then((response) => {
-        let result = response.data.result;
-        console.log("array", result);
-        for (let orders of result) {
-          orders.isShowDetailet = false;
-          if (orders.type == 2) {
-            orders.businessName = this.getBusinessNameByWalletId(
-              orders.inputwalletId,
-              orders
-            );
-            // console.log(orders.businessName);
-          }
-        }
-        this.transactionArr = result;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // let url = "TransactionController/queryTransaction/" + this.user.walletId;
+    // this.$axios
+    //   .get(url)
+    //   .then((response) => {
+    //     let result = response.data.result;
+    //     console.log("array", result);
+    //     for (let orders of result) {
+    //       orders.isShowDetailet = false;
+    //       if (orders.type == 2) {
+    //         orders.businessName = this.getBusinessNameByWalletId(
+    //           orders.inputwalletId,
+    //           orders
+    //         );
+    //         // console.log(orders.businessName);
+    //       }
+    //     }
+    //     this.transactionArr = result;
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
 
     this.queryAllCredit(this.user.userId);
   },

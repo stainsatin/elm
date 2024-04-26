@@ -116,26 +116,38 @@ export default {
       .get(url_1)
       .then((response) => {
         this.orders = response.data.result;
+        // 有了订单信息后，再查询可用积分，
+		//否则异步请求（如axios.get()）不会阻塞代码的执行。当您发起一个异步请求时，代码会继续执行，而不是等待请求完成。
+        let url_2 = "CreditController/queryAvailableCredit/" + this.user.userId;
+        return this.$axios.get(url_2); // 返回这个请求，以便我们可以链式调用.then()
+      })
+      .then((response) => {
+        this.creditNum = response.data.result;
+        let money = Math.floor(this.orders.orderTotal);
+        console.log("money:", money);
+        this.queryConsumeCreditByPaying(this.user.userId, money, this.creditNum);
       })
       .catch((error) => {
         console.error(error);
       });
     //查询可用积分
-    let url_2 = "CreditController/queryAvailableCredit/" + this.user.userId;
-    this.$axios
-      .get(url_2)
-      .then((response) => {
-        this.creditNum = response.data.result;
-        let money = Math.floor(this.orders.orderTotal);
-        this.queryConsumeCreditByPaying(
-          this.user.userId,
-          money,
-          this.creditNum
-        );
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // let url_2 = "CreditController/queryAvailableCredit/" + this.user.userId;
+    // this.$axios
+    //   .get(url_2)
+    //   .then((response) => {
+    //     this.creditNum = response.data.result;
+    //     console.log("Before floor:", this.orders.orderTotal);
+    //     let money = Math.floor(this.orders.orderTotal);
+    //     console.log("money:",money)
+    //     this.queryConsumeCreditByPaying(
+    //       this.user.userId,
+    //       money,
+    //       this.creditNum
+    //     );
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   },
   setup() {
     onMounted(() => {

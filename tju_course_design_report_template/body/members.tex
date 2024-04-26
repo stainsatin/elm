@@ -1,53 +1,104 @@
-\chapter{任务分工}
-\section{JDBC~项目}
-\subsection{项目负责人员}
-\begin{enumerate}
-    \item{易东廷}
-    \item{张中天}
-\end{enumerate}
-\subsection{项目描述}
-本项目主要负责开发饿了么外卖平台的JBDBC后端，以~Java~为节点，将~JDBC~和数据库所涉及的知识点融入到本项目中。本项目专注于完成点餐业务逻辑。本项目使用~IntelliJ IDEA~开发后端，使用~MySQL~作为本软件的数据库，使用~JDBC~连接数据库，使用~Java~编写后端代码，以实现较为完整的业务逻辑。
+\chapter{团员分工}
+\section{Spring Cloud 注册中心}
+\begin{itemize}
+    \item{项目负责团员}：张梅梅
+    \item {项目描述}：本项目主要负责搭建并配置 Eureka Server 注册中心，实现管理服务的注册和发现，确保服务之间的通信顺畅。另外，本项目也需要集成服务路由和负载均衡功能，提高系统的稳定性和性能。
+\end{itemize}
 
-\section{前端项目}
-\subsection{项目负责人员}
-\begin{enumerate}
-    \item{杜伟乐}
-    \item{张梅梅}
-\end{enumerate}
-\subsection{项目描述}
-本项目主要负责开发饿了么外卖平台的网页界面，以~JavaScript~为节点，将~HTML5、CSS3、JavaScript~所涉及的知识点融入到本项目中。本项目专注于完成一个“点餐业务线”的功能，所以其它页面效果会有适当的删减。本项目使用~HBuilder~基于~HTML5、CSS3~和~JavaScript~开发本软件的网页界面，使用接近于饿了么外卖平台的颜色系开发界面，以达到较高的相似度。
+\section{Spring Cloud 微服务网关}
+\begin{itemize}
+    \item{项目负责团员}：张梅梅
+    \item {项目描述}：本项目主要负责配置并管理 Spring Cloud Gateway 等网关组件，设置路由规则，并实现请求转发和过滤功能。
+\end{itemize}
 
-\section{JavaWeb~项目}
-\subsection{项目负责人员}
-\begin{enumerate}
-    \item{易东廷}
-    \item{张中天}
-    \item{张梅梅}
-    \item{杜伟乐}
-\end{enumerate}
-\subsection{项目描述}
-本项目主要将前端与后端的代码合并在一起，组成一个可运行的外卖平台网页。对于前端，本项目主要负责将第二项目的静态页面代码以 Vue3 代码框架重新编写一次，再加上 Vue3 的一些特定功能。然后，前端部分需要在 Vue3 的代码框架上增加与后端连接的接口与指定的函数，以让前端能够成功与后端连接上。
+\section{Spring Cloud 集中配置管理中心}
+\begin{itemize}
+    \item{项目负责团员}：张中天
+    \item {项目描述}：本项目主要负责搭建 Spring Cloud Config Server，用于集中式管理配置信息。此外，需要负责配置Git或其他版本控制系统，用于存储和管理配置文件，最后集成配置中心到项目中，并实现动态配置刷新功能。
+\end{itemize}
 
-对于后端，本项目主要负责开发完成一个完善的用户点餐流程，使用servlet技术，通过jdbc连接MySQL数据库，同时进行了连接池优化。
+\section{Spring Cloud 新增微服务架构}
+\subsection{积分系统}
+\begin{itemize}
+    \item{项目负责团员}：张中天
+    \item {项目描述}：本项目主要负责设计积分系统的数据库结构，包括用户积分表、积分规则表等。此外，本项目需开发积分交易接口，包括积分查询、积分兑换等功能，并且实现积分计算逻辑，根据订单金额、活动规则等计算用户应得积分。
+\end{itemize}
 
-\section{SpringBoot~项目}
-\subsection{项目负责人员}
-\begin{enumerate}
-    \item{易东廷}
-    \item{张中天}
-\end{enumerate}
-\subsection{项目描述}
-本项目与第三项目相似，主要将前端与后端的代码合并在一起，其不同之处为后端主要负责使用 SpringBoot 框架来编写本软件的代码。对于前端，可延用第三项目的 Vue3 框架代码，因此在本项目省略。
+\subsection{虚拟钱包系统}
+\begin{itemize}
+    \item{项目负责团员}：张中天
+    \item {项目描述}：本项目主要负责设计钱包系统的数据库结构，包括用户钱包表、交易记录表等，并实现虚拟钱包功能，包括余额查询、充值、提现等。本项目的主要目的是为了实现外卖平台的支付流程，以让外卖平台的操作更方便且具人性化。
+\end{itemize}
 
-对于后端，本项目主要负责利用~SpringBoot~的架构优势，重新调整之前的代码架构以及实现方式，使得项目结构更加规整。同时，对数据库的连接方式，存储以及加密等方式等进行了优化。除此之外，为了让项目的功能更加完备和全面，在本项目中，还对项目的功能进行了拓展，比如积分功能，虚拟钱包功能，以及~AI~推荐功能等。
+\subsection{身份校验}
+\begin{itemize}
+    \item{项目负责团员}：易东廷
+    \item {项目描述}：本项目主要负责设计用户身份验证流程，包括注册、登录、认证等环节。本项目具体需要开发用户注册和登录接口，实现用户身份信息的验证和存储，并集成第三方身份验证服务，增强登录状态的管理和用户权限的控制。
+\end{itemize}
 
-\section{实践报告}
-\subsection{项目负责人员}
-\begin{enumerate}
-    \item{易东廷}
-    \item{张中天}
-    \item{杜伟乐}
-    \item{张梅梅}
-\end{enumerate}
-\subsection{项目描述}
-本项目主要负责书写实践报告的内容，其中内容包括了本软件的项目需求、每个项目的具体代码设计以及测试。此外，本项目的实践报告也包括了本项目的特色、项目开发的过程和数据以及项目开发过程中所遇到的问题与应对方法。
+\section{Spring Cloud 基础微服务架构}
+\subsection{用户服务}
+\begin{itemize}
+    \item{项目负责团员}：易东廷
+    \item {项目描述}：本项目主要负责开发用户微服务的功能，包括开发用户注册、登录和个人信息管理功能，并实现用户权限管理功能，包括用户角色、权限分配等。
+\end{itemize}
+
+\subsection{地址服务}
+\begin{itemize}
+    \item{项目负责团员}：易东廷
+    \item {项目描述}：本项目主要负责开发用户收货地址微服务的管理功能，包括添加、修改、删除地址信息。
+\end{itemize}
+
+\subsection{商家服务}
+\begin{itemize}
+    \item{项目负责团员}：杜伟乐
+    \item {项目描述}：本项目主要负责开发商家微服务的管理功能，包括商家名称、商家信息、商家地址等。本项目主要用于用户在使用平台时可以游览所支持的商家，并选择指定商家进行点餐。
+\end{itemize}
+
+\subsection{食品服务}
+\begin{itemize}
+    \item{项目负责团员}：杜伟乐
+    \item {项目描述}：本项目主要负责开发外卖食品微服务的管理功能，实现菜单查询接口，用于用户浏览和点餐。
+\end{itemize}
+
+\subsection{购物车服务}
+\begin{itemize}
+    \item{项目负责团员}：于鑫慧
+    \item {项目描述}：本项目主要负责开发购物车服务的管理功能，包括商品添加、删除、数量修改等。此外，本项目也需要实现购物车与订单的关联，确保购物车中的商品可以正确结算。
+\end{itemize}
+
+\subsection{点餐服务}
+\begin{itemize}
+    \item{项目负责团员}：于鑫慧
+    \item {项目描述}：本项目主要负责开发点餐微服务的核心功能，包括菜品浏览、加入购物车、下单等。此外，本项目也需要实现订单管理功能，包括订单查询、订单状态更新等。
+\end{itemize}
+
+\section{项目云部署}
+\begin{itemize}
+    \item{项目负责团员}：张中天
+    \item{项目描述}：本项目主要负责选择合适的云服务提供商，并将项目部署到云服务器上。另外，本项目需要配置云服务器环境，包括虚拟机、数据库、存储等，并实现持续集成和持续部署流程，确保项目的稳定性和安全性。    
+\end{itemize}
+
+\section{项目文档}
+\begin{itemize}
+    \item{项目负责团员}：杜伟乐
+    \item{项目描述}：本项目主要负责书写本项目文档的内容，其中内容包括了本软件的团员分工和需求分析。
+\end{itemize}
+
+\section{项目测试}
+\begin{itemize}
+    \item{项目负责团员}：张梅梅、于鑫慧
+    \item{项目描述}：本项目主要负责对项目进行单元测试，验证每个模块的功能和逻辑是否符合预期。此外，本项目也需要进行集成测试，测试不同模块之间的交互和整体功能，以及进行系统测试，模拟真实场景，验证系统的性能和稳定性。
+\end{itemize}
+
+\section{项目演示}
+\begin{itemize}
+    \item{项目负责团员}：张梅梅
+    \item{项目描述}：本项目主要负责演示项目的核心功能和特点，包括展示外卖平台的用户界面和具体点餐操作流程。
+\end{itemize}
+
+
+
+
+
+
