@@ -229,7 +229,7 @@ export default {
             "/" +
             this.user.walletId +
             "/" +
-            Math.floor(this.money) +
+            this.money +
             "/" +
             this.creditEarningByRecharge;
           this.$axios
