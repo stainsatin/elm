@@ -5,7 +5,6 @@
     <toRun name="BusinessApplication (1)" type="SpringBootApplicationConfigurationType" />
     <toRun name="CartApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="CartApplication (1)" type="SpringBootApplicationConfigurationType" />
-    <toRun name="CommentsApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="ConfigApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="CreditApplication" type="SpringBootApplicationConfigurationType" />
     <toRun name="DeliveryAddressApplication" type="SpringBootApplicationConfigurationType" />
