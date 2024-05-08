@@ -9,6 +9,14 @@
 jdk17  MySQL8  tomcat8.0 	redis-5.0	
 
 #### 项目结构:
+###### ELM-SpringCloud：springcloud后端代码
+###### vue_springcloud：springcloud前端代码
+###### tju_course_design_report_template：项目文档
+实验报告在该目录的tjumain.pdf
+###### sql：数据库
+elm_0417为最新版数据库代码
+
+#### 以下为springboot版本
 ###### backend:后端项目代码
 part1:jdbc代码
 part3:servlet部分(JAVAweb后端代码)
@@ -16,7 +24,6 @@ part3:springtboot项目后端代码
 ###### frontend:前端项目代码
 part2:项目二代码
 part3:vue3前端代码(用于javaweb和springboot项目前端代码)
-###### tju_course_design_report_template:项目文档
 ###### release:最终版本的各个项目包
 
 #### 使用说明
